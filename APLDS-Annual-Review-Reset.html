@@ -43,30 +43,6 @@
     .header-text .permalink a { color: #a8d5b5; text-decoration: none; }
     .header-text .permalink a:hover { text-decoration: underline; }
 
-    .sub-bar {
-      background: var(--green2);
-      padding: 10px 32px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      border-bottom: 3px solid var(--gold);
-    }
-    .sub-bar label { color: rgba(255,255,255,0.85); font-size: 13px; white-space: nowrap; }
-    .sub-bar input {
-      flex: 1; min-width: 180px; max-width: 400px;
-      padding: 7px 13px; border: none; border-radius: 4px;
-      font-size: 13px; outline: none;
-      background: #fff; color: var(--text);
-    }
-    .result-count { margin-left: auto; color: rgba(255,255,255,0.65); font-size: 12px; }
-    .btn-gold {
-      background: var(--gold); color: #fff;
-      border: none; border-radius: 4px;
-      padding: 7px 15px; font-size: 12px; font-weight: 600;
-      cursor: pointer; white-space: nowrap;
-    }
-    .btn-gold:hover { background: var(--gold2); }
 
     main { max-width: 960px; margin: 0 auto; padding: 28px 32px; }
 
@@ -199,12 +175,6 @@
     </div>
   </header>
 
-  <div class="sub-bar no-print">
-    <label for="search">Search:</label>
-    <input id="search" type="text" placeholder="Filter content…" />
-    <span class="result-count" id="result-count"></span>
-    <button class="btn-gold" onclick="window.print()">Print / Save PDF</button>
-  </div>
 
   <main>
 
@@ -360,27 +330,6 @@
 
   </main>
 
-  <script>
-    const searchInput = document.getElementById('search');
-    const countEl = document.getElementById('result-count');
-    const cards = Array.from(document.querySelectorAll('[data-searchable]'));
-
-    function updateCount() {
-      const visible = cards.filter(c => !c.classList.contains('hidden')).length;
-      countEl.textContent = visible < cards.length ? `${visible} of ${cards.length} sections` : '';
-    }
-
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      cards.forEach(card => {
-        if (!q) { card.classList.remove('hidden'); return; }
-        card.classList.toggle('hidden', !card.textContent.toLowerCase().includes(q));
-      });
-      updateCount();
-    });
-
-    updateCount();
-  </script>
 
 </body>
 </html>
