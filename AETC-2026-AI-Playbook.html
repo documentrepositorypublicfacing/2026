@@ -582,21 +582,88 @@
       <h3>Building Context That Carries Forward</h3>
       <span class="section-tag">Feeding the Machine</span>
     </div>
-    <div class="slide-body two-col img-right">
-      <div class="col-text">
-        <h4>What goes into the vault</h4>
-        <ul>
-          <li>Meeting notes</li>
-          <li>Email summaries (via Copilot → Keep → Obsidian)</li>
-          <li>Reference documents</li>
-          <li>Previous Claude outputs</li>
-        </ul>
-        <h4 style="margin-top:20px;">What Claude does with it</h4>
-        <p>Reads the context you share, connects it to what you're asking, and builds from it — so each session starts where the last one ended.</p>
-      </div>
-      <div class="img-placeholder">
-        📸 Screenshot: a note in Obsidian + the prompt that references it
-        <span>Show the input → Claude reads it → produces output flow</span>
+    <div class="slide-body" style="padding-top:20px;padding-bottom:16px;">
+      <p style="font-size:clamp(13px,1.3vw,15px);color:var(--muted);margin-bottom:16px;">A note goes into the vault. That context goes into Claude. The output knows your world.</p>
+
+      <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:20px;flex:1;min-height:0;">
+
+        <!-- LEFT: Obsidian editor mockup -->
+        <div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:1px solid #3a3a4a;box-shadow:0 2px 12px rgba(0,0,0,0.25);">
+          <!-- Title bar -->
+          <div style="background:#2a2a3a;border-bottom:1px solid #3a3a4a;padding:7px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+            <div style="display:flex;gap:5px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <span style="font-size:11px;color:rgba(255,255,255,0.45);margin-left:6px;">ARIC Directors Meeting — Aug 11, 2026.md</span>
+          </div>
+          <!-- Editor body -->
+          <div style="background:#1e1e2e;flex:1;padding:16px 20px;font-family:'Consolas','Courier New',monospace;font-size:12px;line-height:1.75;color:#cdd6f4;overflow:hidden;">
+            <div style="color:#89b4fa;font-weight:700;font-size:14px;margin-bottom:4px;"># ARIC Directors Meeting — Aug 11, 2026</div>
+            <div style="color:#a6adc8;margin-bottom:10px;font-size:11px;">**Attendees:** All 10 RIC Directors · Chilton County BOE</div>
+            <div style="color:#89dceb;font-weight:700;margin-bottom:6px;">## Key Discussion Points</div>
+            <div style="margin-left:8px;margin-bottom:3px;">- NBCT budget confirmed: <span style="color:#a6e3a1;">$81k/RIC</span> for 2026–27</div>
+            <div style="margin-left:8px;margin-bottom:3px;">- Summer schedule submissions due <span style="color:#a6e3a1;">April 15</span></div>
+            <div style="margin-left:8px;margin-bottom:10px;">- Region 5 board transition — new chair TBD</div>
+            <div style="color:#89dceb;font-weight:700;margin-bottom:6px;">## Action Items</div>
+            <div style="margin-left:8px;margin-bottom:3px;"><span style="color:#585b70;">- [ ]</span> Send budget confirmation to directors</div>
+            <div style="margin-left:8px;margin-bottom:3px;"><span style="color:#585b70;">- [ ]</span> Follow up with Region 5 re: board chair</div>
+            <div style="margin-left:8px;"><span style="color:#585b70;">- [ ]</span> Confirm kickoff date with Jeff State Clanton</div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Claude conversation referencing the note -->
+        <div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:1px solid #d1dde8;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+          <!-- Title bar -->
+          <div style="background:#f3f4f6;border-bottom:1px solid #e0e4ea;padding:7px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+            <div style="display:flex;gap:5px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <span style="font-size:11px;color:#6b7280;margin-left:6px;font-weight:600;">Claude — New Session</span>
+          </div>
+          <!-- Chat body -->
+          <div style="background:#fff;flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+            <!-- User pastes note -->
+            <div style="display:flex;justify-content:flex-end;">
+              <div style="background:#1B2A5E;color:#fff;border-radius:14px 14px 2px 14px;padding:8px 12px;font-size:11px;line-height:1.55;max-width:92%;display:flex;flex-direction:column;gap:8px;">
+                <div>Here are my notes from today's directors meeting. Draft a follow-up email to the group summarizing the key decisions.</div>
+                <!-- Pasted text "attachment" block -->
+                <div style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:8px;padding:8px 10px;display:flex;gap:8px;align-items:flex-start;">
+                  <div style="flex-shrink:0;margin-top:1px;">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="2" y="1" width="10" height="13" rx="1.5" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+                      <line x1="4.5" y1="5" x2="9.5" y2="5" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round"/>
+                      <line x1="4.5" y1="7.5" x2="9.5" y2="7.5" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round"/>
+                      <line x1="4.5" y1="10" x2="7.5" y2="10" stroke="rgba(255,255,255,0.6)" stroke-width="1" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <div style="min-width:0;">
+                    <div style="font-size:10.5px;font-weight:700;color:rgba(255,255,255,0.9);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">ARIC Directors Meeting — Aug 11, 2026.md</div>
+                    <div style="font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px;line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;">Attendees: All 10 RIC Directors · Chilton County BOE · Key Discussion Points · NBCT budget confirmed $81k/RIC · Summer schedule due April 15…</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Claude response — specific, contextual -->
+            <div style="display:flex;gap:8px;align-items:flex-start;">
+              <div style="width:24px;height:24px;border-radius:50%;background:#cc785c;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;margin-top:2px;">C</div>
+              <div style="background:#f6f8fa;border:1px solid #e5e9f0;border-radius:2px 14px 14px 14px;padding:10px 12px;font-size:11px;line-height:1.6;color:#1a1a2e;max-width:90%;">
+                <div style="font-weight:700;margin-bottom:6px;">Subject: ARIC Directors Meeting Follow-Up — Aug 11</div>
+                <div>Directors,</div>
+                <div style="margin-top:5px;">Thank you for a productive meeting today. A few key items to keep on your radar:</div>
+                <div style="margin-top:6px;padding-left:10px;border-left:2px solid var(--teal);">
+                  <div>• <strong>NBCT funding</strong> is confirmed at <strong>$81k per RIC</strong> for 2026–27.</div>
+                  <div style="margin-top:3px;">• <strong>Summer schedules</strong> are due in the ALSDE Drive by <strong>April 15.</strong></div>
+                  <div style="margin-top:3px;">• Region 5 board chair selection is still pending — I'll follow up separately.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -619,7 +686,7 @@
       <h3>Output 1 — Key Dates &amp; Deadlines Page</h3>
       <span class="section-tag">The Output</span>
     </div>
-    <div class="slide-body two-col img-right">
+    <div class="slide-body two-col img-right" style="grid-template-columns:1fr 1.6fr;padding-top:20px;padding-bottom:16px;">
       <div class="col-text">
         <h4>Input</h4>
         <p>A PDF printout from Google Calendar. Pasted into Claude with a description of what was needed.</p>
@@ -628,14 +695,67 @@
           <li>Interactive HTML table, ARIC-branded</li>
           <li>Per-event .ics calendar download links</li>
           <li>Hosted on GitHub Pages</li>
-          <li>Short link: bit.ly/ARICkeydates</li>
         </ul>
         <h4 style="margin-top:16px;">Time to build</h4>
         <p>One conversation.</p>
+        <div style="margin-top:20px;padding:10px 14px;background:#e8f4f5;border:1px solid #3AAFBB;border-radius:6px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1B3A6B;margin-bottom:4px;">Live document</div>
+          <a href="https://bit.ly/ARICkeydates" target="_blank" style="font-size:13px;font-weight:700;color:#3AAFBB;text-decoration:none;font-family:'Consolas',monospace;">bit.ly/ARICkeydates</a>
+        </div>
       </div>
-      <div class="img-placeholder">
-        📸 Screenshot: rendered key dates page in browser
-        <span>bit.ly/ARICkeydates</span>
+
+      <!-- Inline mockup of the key dates page -->
+      <div style="border-radius:8px;overflow:hidden;border:1px solid #c8d8e8;box-shadow:0 4px 16px rgba(0,0,0,0.12);display:flex;flex-direction:column;font-family:'Segoe UI',Arial,sans-serif;">
+        <!-- Page header -->
+        <div style="background:#1B3A6B;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;">
+          <img src="ARIC_L.png" alt="ARIC" style="height:28px;width:28px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
+          <div>
+            <div style="font-size:12px;font-weight:700;">ARIC 2026–27 Key Dates &amp; Deadlines</div>
+            <div style="font-size:9px;opacity:0.7;margin-top:1px;">bit.ly/ARICkeydates</div>
+          </div>
+        </div>
+        <!-- Subbar -->
+        <div style="background:#254E91;padding:5px 16px;font-size:10px;color:rgba(255,255,255,0.85);">Directors Meetings &amp; Office Hours: <span style="color:#3AAFBB;font-weight:700;">View Meeting Schedule →</span></div>
+        <!-- Table -->
+        <div style="flex:1;overflow:hidden;">
+          <table style="width:100%;border-collapse:collapse;font-size:11px;">
+            <thead>
+              <tr style="background:#1B3A6B;color:#fff;">
+                <th style="padding:7px 10px;text-align:left;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Date</th>
+                <th style="padding:7px 10px;text-align:left;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Type</th>
+                <th style="padding:7px 10px;text-align:left;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Event</th>
+                <th style="padding:7px 10px;text-align:left;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.06em;">Calendar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #e8eef4;">
+                <td style="padding:7px 10px;"><span style="display:block;font-size:9px;color:#4A5568;text-transform:uppercase;">Mon–Fri</span><span style="font-weight:700;color:#1B3A6B;">June 15–19</span></td>
+                <td style="padding:7px 10px;"><span style="background:#EAE4F7;color:#5B3FA6;border:1px solid #c5b8e8;border-radius:3px;padding:1px 6px;font-size:9px;font-weight:800;text-transform:uppercase;">Conference</span></td>
+                <td style="padding:7px 10px;font-weight:500;">AETC<div style="font-size:9px;color:#4A5568;">Von Braun Center · Huntsville</div></td>
+                <td style="padding:7px 10px;"><span style="background:#3AAFBB;color:#fff;border-radius:3px;padding:3px 8px;font-size:9px;font-weight:700;">+ Calendar</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e8eef4;background:#f7fbfc;">
+                <td style="padding:7px 10px;"><span style="display:block;font-size:9px;color:#4A5568;text-transform:uppercase;">Mon–Thu</span><span style="font-weight:700;color:#1B3A6B;">July 6–9</span></td>
+                <td style="padding:7px 10px;"><span style="background:#EAE4F7;color:#5B3FA6;border:1px solid #c5b8e8;border-radius:3px;padding:1px 6px;font-size:9px;font-weight:800;text-transform:uppercase;">Conference</span></td>
+                <td style="padding:7px 10px;font-weight:500;">Gulf Coast Writing Conference<div style="font-size:9px;color:#4A5568;">Perdido Beach Resort · Orange Beach</div></td>
+                <td style="padding:7px 10px;"><span style="background:#3AAFBB;color:#fff;border-radius:3px;padding:3px 8px;font-size:9px;font-weight:700;">+ Calendar</span></td>
+              </tr>
+              <tr style="border-bottom:1px solid #e8eef4;">
+                <td style="padding:7px 10px;"><span style="display:block;font-size:9px;color:#4A5568;text-transform:uppercase;">Thursday</span><span style="font-weight:700;color:#1B3A6B;">July 30</span></td>
+                <td style="padding:7px 10px;"><span style="background:#FDE8E8;color:#C0272D;border:1px solid #f5c2c2;border-radius:3px;padding:1px 6px;font-size:9px;font-weight:800;text-transform:uppercase;">Report Due</span></td>
+                <td style="padding:7px 10px;font-weight:500;">3rd Qtr RIC Report Due</td>
+                <td style="padding:7px 10px;"><span style="background:#3AAFBB;color:#fff;border-radius:3px;padding:3px 8px;font-size:9px;font-weight:700;">+ Calendar</span></td>
+              </tr>
+              <tr style="background:#f7fbfc;">
+                <td style="padding:7px 10px;"><span style="display:block;font-size:9px;color:#4A5568;text-transform:uppercase;">Wednesday</span><span style="font-weight:700;color:#1B3A6B;">Aug 12</span></td>
+                <td style="padding:7px 10px;"><span style="background:#E0F5F7;color:#1A7A84;border:1px solid #b3e4ea;border-radius:3px;padding:1px 6px;font-size:9px;font-weight:800;text-transform:uppercase;">Event</span></td>
+                <td style="padding:7px 10px;font-weight:500;">State Kick off @ Jeff State Clanton</td>
+                <td style="padding:7px 10px;"><span style="background:#3AAFBB;color:#fff;border-radius:3px;padding:3px 8px;font-size:9px;font-weight:700;">+ Calendar</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="padding:6px 16px;font-size:9px;color:#9ab0c8;border-top:1px solid #e8eef4;text-align:center;">+ 7 more events · Updated June 2026</div>
+        </div>
       </div>
     </div>
   </div>
@@ -648,22 +768,95 @@
       <h3>Output 2 — Illustrated Step-by-Step Guide</h3>
       <span class="section-tag">The Output</span>
     </div>
-    <div class="slide-body two-col img-right">
+    <div class="slide-body two-col img-right" style="grid-template-columns:1fr 1.6fr;padding-top:20px;padding-bottom:16px;">
       <div class="col-text">
         <h4>Input</h4>
         <p>A PDF user guide with embedded screenshots.</p>
         <h4 style="margin-top:16px;">What Claude did</h4>
         <ul>
-          <li>Extracted all 16 screenshots from the PDF automatically</li>
-          <li>Embedded them as base64 in a single HTML file</li>
-          <li>No manual screenshotting, no image hosting</li>
+          <li>Extracted all 16 screenshots automatically</li>
+          <li>Embedded them as base64 — no image hosting</li>
+          <li>No manual screenshotting</li>
         </ul>
         <h4 style="margin-top:16px;">Output</h4>
-        <p>A clean, illustrated web guide — publishable and shareable with one URL.</p>
+        <p>A clean, illustrated web guide. One HTML file. One URL.</p>
+        <div style="margin-top:20px;padding:10px 14px;background:#f5f0e8;border:1px solid #C4A882;border-radius:6px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1B2A5E;margin-bottom:4px;">16 screenshots · zero manual steps</div>
+          <div style="font-size:12px;color:#6b5c45;">Auto-extracted from PDF · embedded as base64</div>
+        </div>
+        <div style="margin-top:10px;padding:10px 14px;background:#f5f0e8;border:1px solid #C4A882;border-radius:6px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1B2A5E;margin-bottom:4px;">Live document</div>
+          <a href="https://bit.ly/PSPLcreate" target="_blank" style="font-size:13px;font-weight:700;color:#B09070;text-decoration:none;font-family:'Consolas',monospace;">bit.ly/PSPLcreate</a>
+        </div>
       </div>
-      <div class="img-placeholder">
-        📸 Screenshot: PSPL Course Creation guide in browser
-        <span>Show the embedded screenshots in context</span>
+
+      <!-- Inline PSPL page mockup -->
+      <div style="border-radius:8px;overflow:hidden;border:1px solid #c8d8e8;box-shadow:0 4px 16px rgba(0,0,0,0.12);display:flex;flex-direction:column;font-family:'Segoe UI',Arial,sans-serif;max-height:420px;">
+        <!-- Header -->
+        <div style="background:#1B2A5E;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+          <img src="ED-DEV-H-L.jpg" alt="Office of Educator Development" style="height:28px;max-width:180px;object-fit:contain;flex-shrink:0;" />
+          <div>
+            <div style="font-size:11px;font-weight:700;">Course Creation &amp; Management — PowerSchool PL</div>
+            <div style="font-size:9px;opacity:0.65;margin-top:1px;">atgp.link/PSPLcreate</div>
+          </div>
+        </div>
+        <!-- Card -->
+        <div style="flex:1;overflow:hidden;background:#EEF2F6;padding:10px;">
+          <div style="background:#fff;border:1px solid #C8D8E8;border-radius:6px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.06);">
+            <!-- Card header -->
+            <div style="background:#1B2A5E;color:#fff;display:flex;align-items:stretch;">
+              <div style="background:#C4A882;color:#fff;font-weight:900;font-size:11px;padding:8px 12px;display:flex;align-items:center;flex-shrink:0;">Course Creation</div>
+              <div style="font-size:12px;font-weight:600;padding:8px 12px;display:flex;align-items:center;">Creating a New Course in PowerSchool PL</div>
+            </div>
+            <!-- Steps -->
+            <div style="padding:12px 16px;display:flex;flex-direction:column;gap:10px;">
+
+              <!-- Step 1 -->
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="background:#1B2A5E;color:#fff;font-weight:700;font-size:11px;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">1</div>
+                <div style="flex:1;">
+                  <div style="font-size:11px;line-height:1.5;margin-bottom:6px;">Click the <strong>Professional Learning</strong> menu and then click the <strong>Build</strong> button on the left side of the screen.</div>
+                  <!-- Fake screenshot of PowerSchool UI -->
+                  <div style="border:1px solid #C8D8E8;border-radius:4px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+                    <div style="background:#1a3a6b;padding:4px 10px;display:flex;align-items:center;gap:8px;">
+                      <div style="font-size:9px;color:rgba(255,255,255,0.9);font-weight:600;">PowerSchool PL</div>
+                      <div style="margin-left:auto;display:flex;gap:6px;">
+                        <div style="font-size:9px;color:rgba(255,255,255,0.6);border-bottom:2px solid #C4A882;padding-bottom:1px;">Professional Learning</div>
+                        <div style="font-size:9px;color:rgba(255,255,255,0.4);">Reports</div>
+                        <div style="font-size:9px;color:rgba(255,255,255,0.4);">Admin</div>
+                      </div>
+                    </div>
+                    <div style="background:#f5f7f9;display:flex;min-height:52px;">
+                      <div style="background:#e8edf2;width:72px;padding:6px 8px;display:flex;flex-direction:column;gap:4px;border-right:1px solid #d1dde8;">
+                        <div style="background:#1B2A5E;color:#fff;border-radius:3px;padding:3px 6px;font-size:8.5px;font-weight:700;text-align:center;">Build</div>
+                        <div style="color:#4A5568;border-radius:3px;padding:3px 6px;font-size:8.5px;text-align:center;">Manage</div>
+                        <div style="color:#4A5568;border-radius:3px;padding:3px 6px;font-size:8.5px;text-align:center;">Reports</div>
+                      </div>
+                      <div style="flex:1;padding:8px 10px;">
+                        <div style="font-size:9px;font-weight:700;color:#1B2A5E;margin-bottom:4px;">Build</div>
+                        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                          <div style="background:#fff;border:1px solid #C8D8E8;border-radius:3px;padding:3px 8px;font-size:8px;color:#1B2A5E;">Courses</div>
+                          <div style="background:#fff;border:1px solid #C8D8E8;border-radius:3px;padding:3px 8px;font-size:8px;color:#4A5568;">Sections</div>
+                          <div style="background:#fff;border:1px solid #C8D8E8;border-radius:3px;padding:3px 8px;font-size:8px;color:#4A5568;">Catalogs</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div style="display:flex;gap:10px;align-items:flex-start;">
+                <div style="background:#1B2A5E;color:#fff;font-weight:700;font-size:11px;min-width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">2</div>
+                <div style="flex:1;">
+                  <div style="font-size:11px;line-height:1.5;">Select <strong>Courses</strong>, then click <strong>+ New Course</strong> in the upper right corner.</div>
+                </div>
+              </div>
+
+              <div style="font-size:9px;color:#9ab0c8;text-align:center;padding-top:2px;">Steps 3–19 continue below ↓</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -676,23 +869,86 @@
       <h3>Output 3 — Searchable Staff Directory</h3>
       <span class="section-tag">The Output</span>
     </div>
-    <div class="slide-body two-col img-right">
+    <div class="slide-body two-col img-right" style="grid-template-columns:1fr 1.6fr;padding-top:20px;padding-bottom:16px;">
       <div class="col-text">
         <h4>Input</h4>
-        <p>Staff names, roles, contacts, and LEA assignments across 10 regional centers. Messy source data, multiple formats.</p>
+        <p>Staff names, roles, contacts, and LEA assignments across 10 regional centers.</p>
         <h4 style="margin-top:16px;">Output</h4>
         <ul>
           <li>Live search across all staff and districts</li>
-          <li>Photo-embedded, fully branded</li>
-          <li>Printable, mobile-responsive</li>
+          <li>Fully branded, mobile-responsive</li>
+          <li>Printable</li>
           <li>Single HTML file — no database, no CMS</li>
         </ul>
         <h4 style="margin-top:16px;">Time to build</h4>
         <p>One session.</p>
+        <div style="margin-top:20px;padding:10px 14px;background:#e8f0f8;border:1px solid #1B3A6B;border-radius:6px;">
+          <div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:#1B3A6B;margin-bottom:4px;">Live document</div>
+          <a href="https://bit.ly/aric-directory" target="_blank" style="font-size:13px;font-weight:700;color:#254E91;text-decoration:none;font-family:'Consolas',monospace;">bit.ly/aric-directory</a>
+        </div>
       </div>
-      <div class="img-placeholder">
-        📸 Screenshot: ARIC Staff Directory in browser
-        <span>Show search in action if possible</span>
+
+      <!-- Inline Staff Directory mockup -->
+      <div style="border-radius:8px;overflow:hidden;border:1px solid #C8D8E8;box-shadow:0 4px 16px rgba(0,0,0,0.12);display:flex;flex-direction:column;font-family:'Segoe UI',Arial,sans-serif;max-height:430px;">
+        <!-- Header -->
+        <div style="background:#1B3A6B;color:#fff;padding:10px 14px;display:flex;align-items:center;gap:12px;flex-shrink:0;">
+          <img src="ARIC_L.png" alt="ARIC" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;" />
+          <div>
+            <div style="font-size:12px;font-weight:700;">ARIC Personnel Directory — March 2026</div>
+            <div style="font-size:9px;opacity:0.65;margin-top:1px;">Alabama Regional Inservice Centers</div>
+          </div>
+        </div>
+        <!-- Search bar -->
+        <div style="background:#254E91;padding:7px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <span style="font-size:10px;color:rgba(255,255,255,0.8);">Search staff or district:</span>
+          <div style="flex:1;background:#fff;border-radius:4px;padding:4px 10px;font-size:10px;color:#9ab0c8;max-width:200px;">Florence, Natalie, Region 1…</div>
+          <span style="margin-left:auto;font-size:9px;color:rgba(255,255,255,0.5);">Showing 1 of 10 regions</span>
+        </div>
+        <!-- Card -->
+        <div style="flex:1;overflow:hidden;background:#EEF2F6;padding:8px;">
+          <div style="background:#fff;border:1px solid #C8D8E8;border-radius:6px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,0.06);">
+            <!-- Card header -->
+            <div style="background:#1B3A6B;color:#fff;display:flex;align-items:stretch;">
+              <div style="background:#C0272D;color:#fff;font-weight:900;font-size:11px;padding:8px 12px;display:flex;align-items:center;flex-shrink:0;">Region 1</div>
+              <div style="font-size:11px;font-weight:600;padding:8px 12px;display:flex;align-items:center;">University of North Alabama</div>
+            </div>
+            <!-- Column headers -->
+            <div style="display:flex;">
+              <div style="flex:1;background:#3AAFBB;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;padding:5px 12px;border-right:1px solid #C8D8E8;">Staff &amp; Contact</div>
+              <div style="flex:1;background:#1B3A6B;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;padding:5px 12px;">LEAs Served</div>
+            </div>
+            <!-- Content -->
+            <div style="display:flex;">
+              <!-- Staff col -->
+              <div style="flex:1;padding:10px 12px;border-right:1px solid #C8D8E8;">
+                <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed #C8D8E8;">
+                  <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.07em;color:#C0272D;">Director</div>
+                  <div style="font-weight:700;font-size:12px;color:#1B3A6B;margin-top:1px;">Dr. Natalie Bendall</div>
+                  <div style="margin-top:4px;display:flex;flex-direction:column;gap:2px;">
+                    <div style="font-size:10px;color:#4A5568;"><strong style="color:#1A1A1A;min-width:46px;display:inline-block;">Email:</strong> <a href="#" style="color:#C0272D;text-decoration:none;">nbendall@una.edu</a></div>
+                    <div style="font-size:10px;color:#4A5568;"><strong style="color:#1A1A1A;min-width:46px;display:inline-block;">Office:</strong> (256) 765-4888</div>
+                    <div style="font-size:10px;color:#4A5568;"><strong style="color:#1A1A1A;min-width:46px;display:inline-block;">Address:</strong> Florence, AL 35630</div>
+                  </div>
+                </div>
+              </div>
+              <!-- LEA col -->
+              <div style="flex:1;padding:10px 12px;background:#EAF4F6;">
+                <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Colbert County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Florence City</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Franklin County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Lauderdale County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Marion County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Muscle Shoals City</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Walker County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">Winston County</span>
+                  <span style="background:#fff;border:1px solid #AECFDA;border-radius:3px;padding:2px 6px;font-size:9px;color:#2C4A5A;">+ 6 more…</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align:center;font-size:9px;color:#9ab0c8;padding:6px 0 2px;">Regions 2–10 below ↓ · Search filters instantly</div>
+        </div>
       </div>
     </div>
   </div>
@@ -731,9 +987,24 @@
           <li>Update the file → URL stays the same</li>
         </ul>
       </div>
-      <div class="img-placeholder">
-        📸 Screenshot: GitHub repo view + live URL in browser
-        <span>Show the repo and the resulting public page side by side</span>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <!-- Browser chrome frame -->
+        <div style="border-radius:8px;overflow:hidden;border:1px solid #d1dde8;box-shadow:0 4px 16px rgba(0,0,0,0.12);">
+          <div style="background:#f3f4f6;border-bottom:1px solid #e0e4ea;padding:7px 14px;display:flex;align-items:center;gap:8px;">
+            <div style="display:flex;gap:5px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <div style="flex:1;background:#fff;border:1px solid #d1d5db;border-radius:4px;padding:3px 10px;font-size:10px;color:#6b7280;font-family:monospace;">github.com/documentrepositorypublicfacing/2026</div>
+          </div>
+          <div style="overflow:hidden;height:300px;">
+            <img src="Presentation Screenshots/Screenshot 2026-06-11 154118.png"
+                 alt="GitHub repository"
+                 style="width:100%;object-fit:cover;object-position:top left;display:block;" />
+          </div>
+        </div>
+        <div style="text-align:center;font-size:11px;color:var(--muted);">Public repo → GitHub Pages deploys instantly → permanent URL</div>
       </div>
     </div>
   </div>
@@ -756,27 +1027,74 @@
       <h3>What Goes In — What Never Does</h3>
       <span class="section-tag">Data Privacy</span>
     </div>
-    <div class="slide-body two-col">
-      <div class="col-text">
-        <h4 style="color:#2E7D32;">✓ Safe to use with Claude</h4>
-        <ul>
-          <li>Meeting notes (no student data)</li>
-          <li>Publicly available information</li>
-          <li>Your own professional documents</li>
-          <li>Structural and formatting tasks</li>
-          <li>Research and reference work</li>
-        </ul>
+    <div class="slide-body" style="padding-top:20px;padding-bottom:20px;align-items:center;">
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;max-width:820px;width:100%;align-items:stretch;">
+
+        <!-- LEFT BUCKET: Safe -->
+        <div style="background:#f0faf2;border:2px solid #4CAF50;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <div style="width:36px;height:36px;background:#4CAF50;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">✓</div>
+            <div style="font-size:15px;font-weight:800;color:#2E7D32;">Claude can see this</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#4CAF50;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Meeting notes &amp; agendas</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#4CAF50;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Publicly available information</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#4CAF50;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Your own professional documents</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#4CAF50;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Formatting &amp; document creation tasks</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#4CAF50;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Research &amp; reference work</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;gap:6px;">
+          <div style="width:2px;flex:1;background:linear-gradient(to bottom, transparent, #9ab0c8, #9ab0c8, transparent);"></div>
+          <div style="background:#1B2A5E;color:#fff;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;padding:6px 10px;border-radius:4px;writing-mode:vertical-rl;text-orientation:mixed;white-space:nowrap;">FERPA Line</div>
+          <div style="width:2px;flex:1;background:linear-gradient(to bottom, #9ab0c8, #9ab0c8, transparent);"></div>
+        </div>
+
+        <!-- RIGHT BUCKET: Never -->
+        <div style="background:#fff5f5;border:2px solid #C0272D;border-radius:12px;padding:20px 24px;display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <div style="width:36px;height:36px;background:#C0272D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;color:#fff;font-weight:900;">✕</div>
+            <div style="font-size:15px;font-weight:800;color:#C0272D;">Never goes to Claude</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#C0272D;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Student names, IDs, grades, or records</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#C0272D;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Staff evaluations or personnel files</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#C0272D;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Anything under FERPA, HIPAA, or a confidentiality obligation</span>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:8px;">
+              <span style="color:#C0272D;font-weight:700;flex-shrink:0;margin-top:1px;">→</span>
+              <span style="font-size:13px;color:#1a1a2e;line-height:1.4;">Internal legal or HR communications</span>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="col-text">
-        <h4 style="color:var(--red, #C0272D);">✗ Keep off the AI layer</h4>
-        <ul>
-          <li>Student names, IDs, grades, records</li>
-          <li>Staff evaluations or personnel data</li>
-          <li>Anything under a FERPA, HIPAA, or confidentiality obligation</li>
-          <li>Internal legal or HR communications</li>
-        </ul>
-        <div class="placeholder-note" style="margin-top:16px;">📸 Simple diagram: two-bucket model — "AI sees this / AI never sees this"</div>
-      </div>
+      <p style="margin-top:16px;font-size:12px;color:var(--muted);text-align:center;max-width:600px;">The workflow is designed around this line — not as an afterthought, but as the first decision.</p>
     </div>
   </div>
 
