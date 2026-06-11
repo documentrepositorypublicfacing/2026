@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your AI Playbook — AETC 2026</title>
+  <style>
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #243579;
+      --teal:    #3AAFBB;
+      --teal2:   #2e9aa5;
+      --amber:   #F5A623;
+      --light:   #F0F4FF;
+      --text:    #1A1A2E;
+      --muted:   #6B7280;
+      --white:   #FFFFFF;
+      --slide-w: 100vw;
+      --slide-h: 100vh;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: 'Segoe UI', Arial, sans-serif; background: #0d1117; }
+
+    /* ── Slide container ── */
+    .deck { width: 100vw; height: 100vh; position: relative; }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .slide.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    /* ── Slide types ── */
+
+    /* Title / section slides — dark */
+    .slide-dark {
+      background: var(--navy);
+      color: var(--white);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 80px;
+    }
+    .slide-dark .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    .slide-dark h1 {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .slide-dark h2 {
+      font-size: clamp(22px, 3vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .slide-dark p {
+      font-size: clamp(14px, 1.6vw, 20px);
+      opacity: 0.8;
+      line-height: 1.6;
+      max-width: 680px;
+    }
+    .slide-dark .presenter {
+      margin-top: 40px;
+      font-size: 15px;
+      opacity: 0.7;
+      line-height: 1.8;
+    }
+    .slide-dark .presenter strong { color: var(--teal); opacity: 1; }
+    .slide-dark .tag {
+      display: inline-block;
+      margin-top: 28px;
+      background: rgba(58,175,187,0.18);
+      border: 1px solid var(--teal);
+      color: var(--teal);
+      border-radius: 4px;
+      padding: 5px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+    }
+
+    /* Section divider slides */
+    .slide-section {
+      background: linear-gradient(135deg, #1B2A5E 0%, #0d1a3f 100%);
+      color: var(--white);
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 80px;
+    }
+    .slide-section .section-number {
+      font-size: 72px;
+      font-weight: 900;
+      color: rgba(58,175,187,0.2);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .slide-section h2 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .slide-section p {
+      font-size: clamp(14px, 1.5vw, 18px);
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+    }
+    .slide-section .time-badge {
+      margin-top: 28px;
+      display: inline-block;
+      background: rgba(245,166,35,0.15);
+      border: 1px solid var(--amber);
+      color: var(--amber);
+      border-radius: 4px;
+      padding: 4px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* Content slides — light */
+    .slide-content {
+      background: var(--light);
+      color: var(--text);
+      padding: 0;
+    }
+    .slide-content .slide-header {
+      background: var(--navy);
+      color: var(--white);
+      padding: 18px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .slide-content .slide-header h3 {
+      font-size: clamp(16px, 2vw, 22px);
+      font-weight: 700;
+    }
+    .slide-content .slide-header .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--teal);
+    }
+    .slide-body {
+      flex: 1;
+      padding: 40px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .slide-body p {
+      font-size: clamp(14px, 1.5vw, 18px);
+      line-height: 1.7;
+      color: var(--text);
+      max-width: 820px;
+    }
+    .slide-body .placeholder-note {
+      display: inline-block;
+      background: #fff3cd;
+      border: 1px dashed #f0a500;
+      border-radius: 4px;
+      padding: 10px 16px;
+      font-size: 13px;
+      color: #7a5800;
+      margin-top: 20px;
+    }
+
+    /* Two-column layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    .two-col.img-right { grid-template-columns: 1fr 1.2fr; }
+
+    .col-text h4 {
+      font-size: clamp(14px, 1.5vw, 18px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .col-text p { font-size: clamp(13px, 1.3vw, 16px); line-height: 1.65; }
+    .col-text ul { padding-left: 20px; margin-top: 10px; }
+    .col-text ul li { font-size: clamp(13px, 1.3vw, 16px); line-height: 1.7; margin-bottom: 4px; }
+
+    .img-placeholder {
+      background: #e0e8f0;
+      border: 2px dashed #9ab0c8;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #5a7a99;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 20px;
+      min-height: 260px;
+    }
+    .img-placeholder span { display: block; font-size: 11px; font-weight: 400; margin-top: 6px; opacity: 0.7; }
+
+    /* Agenda slide */
+    .agenda-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 32px;
+      margin-top: 8px;
+    }
+    .agenda-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid #d1dde8;
+      border-radius: 6px;
+      padding: 12px 16px;
+    }
+    .agenda-num {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--teal);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 28px;
+    }
+    .agenda-label { font-size: 14px; font-weight: 600; color: var(--navy); line-height: 1.3; }
+    .agenda-time  { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+    /* Screenshot showcase slide */
+    .screenshot-slide .slide-body { padding: 24px 48px; }
+    .screenshot-frame {
+      background: #fff;
+      border: 1px solid #c8d8e8;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      overflow: hidden;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+    }
+
+    /* Nav bar ── */
+    .nav-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: rgba(13,17,23,0.92);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 24px;
+      z-index: 100;
+    }
+    .nav-btn {
+      background: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.1); }
+    .nav-btn:disabled { opacity: 0.3; cursor: default; }
+    .slide-counter { font-size: 12px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+    .progress-track {
+      flex: 1;
+      height: 3px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 2px;
+      transition: width 0.25s ease;
+    }
+    .permalink-nav {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      white-space: nowrap;
+    }
+    .permalink-nav a { color: rgba(58,175,187,0.7); text-decoration: none; }
+    .permalink-nav a:hover { color: var(--teal); }
+
+    /* Fullscreen hint */
+    .fullscreen-hint {
+      position: fixed;
+      top: 16px;
+      right: 20px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      z-index: 99;
+    }
+  </style>
+</head>
+<body>
+
+<div class="fullscreen-hint">Press F11 for fullscreen · ← → to navigate</div>
+
+<div class="deck" id="deck">
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 1 — TITLE
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-dark active" id="s1">
+    <div class="eyebrow">Alabama Educational Technology Conference 2026</div>
+    <h1>Your AI Playbook</h1>
+    <h2 style="font-weight:400;font-size:clamp(18px,2.2vw,30px);opacity:0.85;margin-bottom:28px;">
+      Building a Personal Knowledge System<br>with Claude + Obsidian
+    </h2>
+    <div class="presenter">
+      <strong>J. Mark Coleman</strong><br>
+      Office of Educator Development
+    </div>
+    <img src="ED-DEV-H-L.jpg" alt="Office of Educator Development" style="max-height:64px;max-width:500px;object-fit:contain;margin-top:28px;opacity:0.88;" />
+    <div class="tag" style="margin-top:20px;">drjmc.link/AIplaybook</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 2 — AGENDA
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s2">
+    <div class="slide-header">
+      <h3>What We're Covering Today</h3>
+      <span class="section-tag">50 Minutes</span>
+    </div>
+    <div class="slide-body">
+      <div class="agenda-grid">
+        <div class="agenda-item">
+          <div class="agenda-num">1</div>
+          <div>
+            <div class="agenda-label">The Problem</div>
+            <div class="agenda-time">5 min — Why most AI use doesn't stick</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">2</div>
+          <div>
+            <div class="agenda-label">The System</div>
+            <div class="agenda-time">8 min — Obsidian + Claude, how they fit together</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">3</div>
+          <div>
+            <div class="agenda-label">Feeding the Machine</div>
+            <div class="agenda-time">10 min — Building context that carries forward</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">4</div>
+          <div>
+            <div class="agenda-label">The Output</div>
+            <div class="agenda-time">15 min — Three real documents, start to finish</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">5</div>
+          <div>
+            <div class="agenda-label">Publishing</div>
+            <div class="agenda-time">5 min — GitHub Pages, no web team needed</div>
+          </div>
+        </div>
+        <div class="agenda-item">
+          <div class="agenda-num">6</div>
+          <div>
+            <div class="agenda-label">Data Privacy by Design</div>
+            <div class="agenda-time">5 min — FERPA as a design principle</div>
+          </div>
+        </div>
+        <div class="agenda-item" style="grid-column: 1 / -1; max-width: 400px;">
+          <div class="agenda-num">7</div>
+          <div>
+            <div class="agenda-label">Getting Started</div>
+            <div class="agenda-time">2 min — Minimal setup, Monday morning</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 3 — SECTION: THE PROBLEM
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s3">
+    <div class="section-number">01</div>
+    <h2>The Problem</h2>
+    <p>Why most people's AI use doesn't compound — and what that's costing them.</p>
+    <div class="time-badge">5 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 4 — THE PROBLEM: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s4">
+    <div class="slide-header">
+      <h3>AI as a Search Engine</h3>
+      <span class="section-tag">The Problem</span>
+    </div>
+    <div class="slide-body" style="padding-top:24px;padding-bottom:16px;gap:0;">
+      <p style="font-size:clamp(13px,1.3vw,16px);margin-bottom:18px;color:var(--muted);">Every session starts from zero. The AI is capable — but it has no idea who you are.</p>
+
+      <!-- Two chat panels -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;min-height:0;">
+
+        <!-- PANEL 1: Session 1 -->
+        <div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:1px solid #d1dde8;box-shadow:0 2px 10px rgba(0,0,0,0.08);">
+          <!-- Chrome bar -->
+          <div style="background:#f3f4f6;border-bottom:1px solid #e0e4ea;padding:8px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+            <div style="display:flex;gap:5px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <span style="font-size:11px;color:#6b7280;margin-left:6px;font-weight:600;">Session 1</span>
+          </div>
+          <!-- Sidebar + chat -->
+          <div style="display:flex;flex:1;min-height:0;">
+            <!-- Sidebar -->
+            <div style="width:140px;background:#1e1e2e;padding:10px 8px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;padding:4px 6px;margin-bottom:2px;">Recents</div>
+              <div style="background:rgba(255,255,255,0.1);border-radius:4px;padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.85);line-height:1.3;">AI tools for teachers</div>
+              <div style="padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.4);line-height:1.3;">Lesson plan draft</div>
+              <div style="padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.4);line-height:1.3;">Email to parents</div>
+            </div>
+            <!-- Chat area -->
+            <div style="flex:1;background:#fff;padding:12px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+              <!-- User message -->
+              <div style="display:flex;justify-content:flex-end;">
+                <div style="background:#1B2A5E;color:#fff;border-radius:14px 14px 2px 14px;padding:8px 12px;font-size:11.5px;line-height:1.5;max-width:85%;">
+                  I'm an instructional coach. My teachers keep asking about AI tools but I'm not sure where to point them. Any recommendations?
+                </div>
+              </div>
+              <!-- Claude response -->
+              <div style="display:flex;gap:8px;align-items:flex-start;">
+                <div style="width:24px;height:24px;border-radius:50%;background:#cc785c;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">C</div>
+                <div style="background:#f6f8fa;border:1px solid #e5e9f0;border-radius:2px 14px 14px 14px;padding:8px 12px;font-size:11.5px;line-height:1.5;color:#1a1a2e;max-width:85%;">
+                  Great question! For educators just starting with AI, I'd suggest a few entry points: <strong>Claude</strong> for writing and research, <strong>MagicSchool</strong> for lesson planning, and <strong>Diffit</strong> for differentiation. Want me to narrow this down by subject area or grade level?
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PANEL 2: New Chat — next day -->
+        <div style="display:flex;flex-direction:column;border-radius:10px;overflow:hidden;border:2px solid #e05555;box-shadow:0 2px 10px rgba(224,85,85,0.15);">
+          <!-- Chrome bar -->
+          <div style="background:#f3f4f6;border-bottom:1px solid #e0e4ea;padding:8px 14px;display:flex;align-items:center;gap:8px;flex-shrink:0;">
+            <div style="display:flex;gap:5px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:#ff5f57;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#febc2e;"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:#28c840;"></div>
+            </div>
+            <span style="font-size:11px;color:#6b7280;margin-left:6px;font-weight:600;">New Chat — Next Day</span>
+          </div>
+          <!-- Sidebar + chat -->
+          <div style="display:flex;flex:1;min-height:0;">
+            <!-- Sidebar -->
+            <div style="width:140px;background:#1e1e2e;padding:10px 8px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;">
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.08em;padding:4px 6px;margin-bottom:2px;">Recents</div>
+              <div style="background:rgba(255,255,255,0.08);border-radius:4px;padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.85);font-style:italic;line-height:1.3;">New conversation</div>
+              <div style="padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.4);line-height:1.3;">AI tools for teachers</div>
+              <div style="padding:6px 8px;font-size:10px;color:rgba(255,255,255,0.4);line-height:1.3;">Lesson plan draft</div>
+            </div>
+            <!-- Chat area -->
+            <div style="flex:1;background:#fff;padding:12px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden;">
+              <!-- User message -->
+              <div style="display:flex;justify-content:flex-end;">
+                <div style="background:#1B2A5E;color:#fff;border-radius:14px 14px 2px 14px;padding:8px 12px;font-size:11.5px;line-height:1.5;max-width:85%;">
+                  Based on what we talked about yesterday — which of those tools would work best for my math department?
+                </div>
+              </div>
+              <!-- Claude response — the sting -->
+              <div style="display:flex;gap:8px;align-items:flex-start;">
+                <div style="width:24px;height:24px;border-radius:50%;background:#cc785c;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;">C</div>
+                <div style="background:#fff5f5;border:1px solid #f5c2c2;border-radius:2px 14px 14px 14px;padding:8px 12px;font-size:11.5px;line-height:1.5;color:#1a1a2e;max-width:85%;">
+                  I'd love to help with that! To point you in the right direction, could you share a bit of context — <strong>what subject area and grade level are you working with?</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- end grid -->
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 5 — SECTION: THE SYSTEM
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s5" style="position:relative;overflow:hidden;">
+    <img src="Presentation Screenshots/Screenshot 2026-06-11 132929.png"
+         alt="" aria-hidden="true"
+         style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08;filter:blur(1px);pointer-events:none;" />
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;">
+      <div class="section-number">02</div>
+      <h2>The System</h2>
+      <p>Two tools. One workflow. Obsidian holds the knowledge. Claude does the work.</p>
+      <div class="time-badge">8 MIN</div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 6 — THE SYSTEM: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s6">
+    <div class="slide-header">
+      <h3>Obsidian + Claude: How They Fit</h3>
+      <span class="section-tag">The System</span>
+    </div>
+    <div class="slide-body two-col" style="grid-template-columns:1fr 1.8fr;">
+      <div class="col-text">
+        <h4>Obsidian — the knowledge layer</h4>
+        <ul>
+          <li>Local Markdown files on your computer</li>
+          <li>Organized vault of notes, summaries, references</li>
+          <li>Nothing goes to the cloud unless you choose</li>
+        </ul>
+        <h4 style="margin-top:20px;">Claude — the AI layer</h4>
+        <ul>
+          <li>You paste in the context it needs from Obsidian</li>
+          <li>It reads, synthesizes, and builds from what you give it</li>
+          <li>Outputs go back into the vault</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+        <img src="Presentation Screenshots/Screenshot 2026-06-11 133237.png"
+             alt="Obsidian vault folder structure"
+             style="max-height:460px;max-width:100%;object-fit:contain;border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,0.15);border:1px solid #d1dde8;" />
+        <span style="font-size:11px;color:var(--muted);font-style:italic;">Obsidian vault — the knowledge layer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 7 — SECTION: FEEDING THE MACHINE
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s7">
+    <div class="section-number">03</div>
+    <h2>Feeding the Machine</h2>
+    <p>How a meeting note or email summary becomes something Claude can build on — session after session.</p>
+    <div class="time-badge">10 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 8 — FEEDING: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s8">
+    <div class="slide-header">
+      <h3>Building Context That Carries Forward</h3>
+      <span class="section-tag">Feeding the Machine</span>
+    </div>
+    <div class="slide-body two-col img-right">
+      <div class="col-text">
+        <h4>What goes into the vault</h4>
+        <ul>
+          <li>Meeting notes</li>
+          <li>Email summaries (via Copilot → Keep → Obsidian)</li>
+          <li>Reference documents</li>
+          <li>Previous Claude outputs</li>
+        </ul>
+        <h4 style="margin-top:20px;">What Claude does with it</h4>
+        <p>Reads the context you share, connects it to what you're asking, and builds from it — so each session starts where the last one ended.</p>
+      </div>
+      <div class="img-placeholder">
+        📸 Screenshot: a note in Obsidian + the prompt that references it
+        <span>Show the input → Claude reads it → produces output flow</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 9 — SECTION: THE OUTPUT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s9">
+    <div class="section-number">04</div>
+    <h2>The Output</h2>
+    <p>Three real documents. Same workflow, same tools, increasingly complex results.</p>
+    <div class="time-badge">15 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 10 — OUTPUT 1: KEY DATES PAGE
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content screenshot-slide" id="s10">
+    <div class="slide-header">
+      <h3>Output 1 — Key Dates &amp; Deadlines Page</h3>
+      <span class="section-tag">The Output</span>
+    </div>
+    <div class="slide-body two-col img-right">
+      <div class="col-text">
+        <h4>Input</h4>
+        <p>A PDF printout from Google Calendar. Pasted into Claude with a description of what was needed.</p>
+        <h4 style="margin-top:16px;">Output</h4>
+        <ul>
+          <li>Interactive HTML table, ARIC-branded</li>
+          <li>Per-event .ics calendar download links</li>
+          <li>Hosted on GitHub Pages</li>
+          <li>Short link: bit.ly/ARICkeydates</li>
+        </ul>
+        <h4 style="margin-top:16px;">Time to build</h4>
+        <p>One conversation.</p>
+      </div>
+      <div class="img-placeholder">
+        📸 Screenshot: rendered key dates page in browser
+        <span>bit.ly/ARICkeydates</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 11 — OUTPUT 2: PSPL GUIDE
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content screenshot-slide" id="s11">
+    <div class="slide-header">
+      <h3>Output 2 — Illustrated Step-by-Step Guide</h3>
+      <span class="section-tag">The Output</span>
+    </div>
+    <div class="slide-body two-col img-right">
+      <div class="col-text">
+        <h4>Input</h4>
+        <p>A PDF user guide with embedded screenshots.</p>
+        <h4 style="margin-top:16px;">What Claude did</h4>
+        <ul>
+          <li>Extracted all 16 screenshots from the PDF automatically</li>
+          <li>Embedded them as base64 in a single HTML file</li>
+          <li>No manual screenshotting, no image hosting</li>
+        </ul>
+        <h4 style="margin-top:16px;">Output</h4>
+        <p>A clean, illustrated web guide — publishable and shareable with one URL.</p>
+      </div>
+      <div class="img-placeholder">
+        📸 Screenshot: PSPL Course Creation guide in browser
+        <span>Show the embedded screenshots in context</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 12 — OUTPUT 3: STAFF DIRECTORY
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content screenshot-slide" id="s12">
+    <div class="slide-header">
+      <h3>Output 3 — Searchable Staff Directory</h3>
+      <span class="section-tag">The Output</span>
+    </div>
+    <div class="slide-body two-col img-right">
+      <div class="col-text">
+        <h4>Input</h4>
+        <p>Staff names, roles, contacts, and LEA assignments across 10 regional centers. Messy source data, multiple formats.</p>
+        <h4 style="margin-top:16px;">Output</h4>
+        <ul>
+          <li>Live search across all staff and districts</li>
+          <li>Photo-embedded, fully branded</li>
+          <li>Printable, mobile-responsive</li>
+          <li>Single HTML file — no database, no CMS</li>
+        </ul>
+        <h4 style="margin-top:16px;">Time to build</h4>
+        <p>One session.</p>
+      </div>
+      <div class="img-placeholder">
+        📸 Screenshot: ARIC Staff Directory in browser
+        <span>Show search in action if possible</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 13 — SECTION: PUBLISHING
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s13">
+    <div class="section-number">05</div>
+    <h2>Publishing</h2>
+    <p>GitHub Pages. No web team, no CMS, no hosting bill.</p>
+    <div class="time-badge">5 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 14 — PUBLISHING: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s14">
+    <div class="slide-header">
+      <h3>One File. One Upload. Public URL.</h3>
+      <span class="section-tag">Publishing</span>
+    </div>
+    <div class="slide-body two-col img-right">
+      <div class="col-text">
+        <h4>The workflow</h4>
+        <ul>
+          <li>Claude builds the HTML file</li>
+          <li>Upload to a GitHub repository</li>
+          <li>GitHub Pages publishes it instantly</li>
+          <li>Add a short link (Rebrandly, bit.ly) for sharing</li>
+        </ul>
+        <h4 style="margin-top:20px;">What you get</h4>
+        <ul>
+          <li>A permanent, shareable URL</li>
+          <li>Free hosting, no maintenance</li>
+          <li>Update the file → URL stays the same</li>
+        </ul>
+      </div>
+      <div class="img-placeholder">
+        📸 Screenshot: GitHub repo view + live URL in browser
+        <span>Show the repo and the resulting public page side by side</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 15 — SECTION: DATA PRIVACY
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s15">
+    <div class="section-number">06</div>
+    <h2>Data Privacy by Design</h2>
+    <p>FERPA compliance isn't a disclaimer at the end. It's a design principle from the start.</p>
+    <div class="time-badge">5 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 16 — DATA PRIVACY: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s16">
+    <div class="slide-header">
+      <h3>What Goes In — What Never Does</h3>
+      <span class="section-tag">Data Privacy</span>
+    </div>
+    <div class="slide-body two-col">
+      <div class="col-text">
+        <h4 style="color:#2E7D32;">✓ Safe to use with Claude</h4>
+        <ul>
+          <li>Meeting notes (no student data)</li>
+          <li>Publicly available information</li>
+          <li>Your own professional documents</li>
+          <li>Structural and formatting tasks</li>
+          <li>Research and reference work</li>
+        </ul>
+      </div>
+      <div class="col-text">
+        <h4 style="color:var(--red, #C0272D);">✗ Keep off the AI layer</h4>
+        <ul>
+          <li>Student names, IDs, grades, records</li>
+          <li>Staff evaluations or personnel data</li>
+          <li>Anything under a FERPA, HIPAA, or confidentiality obligation</li>
+          <li>Internal legal or HR communications</li>
+        </ul>
+        <div class="placeholder-note" style="margin-top:16px;">📸 Simple diagram: two-bucket model — "AI sees this / AI never sees this"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 17 — SECTION: GETTING STARTED
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-section" id="s17">
+    <div class="section-number">07</div>
+    <h2>Getting Started</h2>
+    <p>Minimal setup. You can try this on Monday.</p>
+    <div class="time-badge">2 MIN</div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 18 — GETTING STARTED: CONTENT
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-content" id="s18">
+    <div class="slide-header">
+      <h3>Your Monday Morning Setup</h3>
+      <span class="section-tag">Getting Started</span>
+    </div>
+    <div class="slide-body">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:860px;">
+        <div style="background:#fff;border:1px solid #c8d8e8;border-radius:6px;padding:20px;">
+          <div style="font-size:28px;margin-bottom:10px;">1️⃣</div>
+          <div style="font-weight:700;color:var(--navy);margin-bottom:8px;">Install Obsidian</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.5;">Free. Local. obsidian.md — create one vault, one folder. Start dropping notes in.</div>
+        </div>
+        <div style="background:#fff;border:1px solid #c8d8e8;border-radius:6px;padding:20px;">
+          <div style="font-size:28px;margin-bottom:10px;">2️⃣</div>
+          <div style="font-weight:700;color:var(--navy);margin-bottom:8px;">Get Claude access</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.5;">claude.ai — free tier works. Pro ($20/mo) gives you more context and faster responses.</div>
+        </div>
+        <div style="background:#fff;border:1px solid #c8d8e8;border-radius:6px;padding:20px;">
+          <div style="font-size:28px;margin-bottom:10px;">3️⃣</div>
+          <div style="font-weight:700;color:var(--navy);margin-bottom:8px;">Start small</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.5;">Paste in your next meeting agenda. Ask Claude to help you prep. Save the output as a note.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       SLIDE 19 — CLOSING
+  ══════════════════════════════════════════ -->
+  <div class="slide slide-dark" id="s19">
+    <div class="eyebrow">Thank You</div>
+    <h1 style="font-size:clamp(24px,3.5vw,44px);">Your AI Playbook</h1>
+    <p style="margin-top:8px;font-size:clamp(14px,1.6vw,20px);opacity:0.75;">These slides, resources, and links are at:</p>
+    <div class="tag" style="font-size:16px;padding:10px 24px;margin-top:16px;">drjmc.link/AIplaybook</div>
+    <div class="presenter" style="margin-top:40px;">
+      <strong>J. Mark Coleman</strong><br>
+      Office of Educator Development<br>
+      jmarkcoleman@gmail.com
+    </div>
+    <img src="ED-DEV-H-L.jpg" alt="Office of Educator Development" style="max-height:64px;max-width:500px;object-fit:contain;margin-top:24px;opacity:0.88;" />
+  </div>
+
+</div><!-- end .deck -->
+
+<!-- ══════════════════════════════════════════
+     NAV BAR
+══════════════════════════════════════════ -->
+<div class="nav-bar">
+  <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>← Prev</button>
+  <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next →</button>
+  <span class="slide-counter" id="counter">1 / 19</span>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress" style="width:5.26%"></div>
+  </div>
+  <span class="permalink-nav"><a href="https://drjmc.link/AIplaybook">drjmc.link/AIplaybook</a></span>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const total  = slides.length;
+  let current  = 0;
+
+  function show(n) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, total - 1));
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent  = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100).toFixed(2) + '%';
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === total - 1;
+  }
+
+  function navigate(dir) { show(current + dir); }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); navigate(1); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); navigate(-1); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End')  show(total - 1);
+  });
+
+  // Click anywhere on slide body to advance (but not on links/buttons)
+  document.getElementById('deck').addEventListener('click', function(e) {
+    if (e.target.closest('a, button')) return;
+    navigate(1);
+  });
+</script>
+
+</body>
+</html>
