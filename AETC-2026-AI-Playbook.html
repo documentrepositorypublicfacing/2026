@@ -1339,28 +1339,34 @@ Where would you start?</p>
   <!-- ══════════════════════════════════════════
        SLIDE 18D — LONG FORM PROMPT
   ══════════════════════════════════════════ -->
-  <div class="slide slide-dark" id="s18d" style="padding:24px 80px 52px;">
-    <div style="text-align:center;margin-bottom:16px;">
+  <div class="slide slide-dark" id="s18d" style="padding:16px 60px 52px;">
+    <div style="text-align:center;margin-bottom:10px;">
       <div class="eyebrow">Long Form</div>
-      <p style="font-size:clamp(12px,1.3vw,15px);opacity:0.55;margin-top:6px;">Copy · fill in the bracket · paste into your AI of choice</p>
+      <p style="font-size:12px;opacity:0.55;margin-top:4px;">Copy · fill in the bracket · paste into your AI of choice</p>
     </div>
-    <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:22px 32px;max-width:820px;width:100%;margin:0 auto;">
-      <p style="font-size:clamp(11px,1.1vw,13px);line-height:1.9;color:rgba(255,255,255,0.88);text-align:left;white-space:pre-wrap;">Here's a workflow I saw demonstrated today:
+    <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:14px 22px;max-width:960px;width:100%;margin:0 auto;">
+      <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0;font-size:11px;line-height:1.55;color:rgba(255,255,255,0.88);">
 
-Obsidian (free, local note-taking app) serves as a personal knowledge vault — meeting notes, email summaries, role context, and reference documents. An AI assistant (Claude, ChatGPT, Gemini) with access to that vault drafts documents, builds public-facing resources, and carries context forward across sessions — no more starting from zero each time. Outputs are built as single HTML files, published to GitHub Pages, and shared via short links — no web team, no CMS, no cost.
+        <!-- Left: context -->
+        <div style="padding-right:20px;text-align:left;">
+          <p style="margin-bottom:7px;">Here's a workflow I saw demonstrated today:</p>
+          <p style="margin-bottom:7px;">Obsidian (free, local note-taking app) serves as a personal knowledge vault — meeting notes, email summaries, role context, and reference documents. An AI assistant (Claude, ChatGPT, Gemini) with access to that vault drafts documents, builds public-facing resources, and carries context forward across sessions — no more starting from zero each time. Outputs are built as single HTML files, published to GitHub Pages, and shared via short links — no web team, no CMS, no cost.</p>
+          <p>As the vault grows, the workflow grows with it. The documents you can build and publish will change as your knowledge base does — what starts as a simple reference page can evolve into something more connected and complex over time.</p>
+        </div>
 
-As the vault grows, the workflow grows with it. The documents you can build and publish will change as your knowledge base does — what starts as a simple reference page can evolve into something more connected and complex over time.
+        <!-- Divider -->
+        <div style="background:rgba(255,255,255,0.12);margin:4px 0;"></div>
 
-The full presentation is at drjmc.link/AIplaybook if you'd like a frame of reference for what was demonstrated — what this looks like in practice may be different from what you'd expect or recommend.
+        <!-- Right: intent + ask -->
+        <div style="padding-left:20px;text-align:left;display:flex;flex-direction:column;">
+          <p style="margin-bottom:7px;">The full presentation is at drjmc.link/AIplaybook if you'd like a frame of reference for what was demonstrated — what this looks like in practice may be different from what you'd expect or recommend.</p>
+          <p style="margin-bottom:7px;">I'm not looking for a specific output right now. I want to have a conversation about how this could work for my situation and what a realistic first step looks like.</p>
+          <p style="margin-bottom:7px;">A little about me: <span style="color:var(--teal);">[briefly describe your role, your organization, and the kinds of documents or communications you produce regularly]</span></p>
+          <p style="margin-bottom:16px;">Where would you start?</p>
+          <button id="copy-long-btn" onclick="copyLongPrompt()" style="background:var(--teal);color:#fff;border:none;border-radius:6px;padding:9px 24px;font-size:13px;font-weight:700;cursor:pointer;letter-spacing:0.05em;transition:background 0.2s;align-self:flex-start;">Copy Prompt</button>
+        </div>
 
-I'm not looking for a specific output right now. I want to have a conversation about how this could work for my situation and what a realistic first step looks like.
-
-A little about me: [briefly describe your role, your organization, and the kinds of documents or communications you produce regularly]
-
-Where would you start?</p>
-    </div>
-    <div style="text-align:center;margin-top:14px;">
-      <button id="copy-long-btn" onclick="copyLongPrompt()" style="background:var(--teal);color:#fff;border:none;border-radius:6px;padding:10px 32px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:0.05em;transition:background 0.2s;">Copy Prompt</button>
+      </div>
     </div>
   </div>
 
