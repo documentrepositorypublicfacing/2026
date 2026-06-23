@@ -107,6 +107,24 @@
 
         <tr>
           <td class="date-cell">
+            <span class="date-day">Thursday</span>
+            <span class="date-main">June 25, 2026</span>
+          </td>
+          <td><span class="badge badge-deadline">Deadline</span></td>
+          <td>
+            <div class="event-name">Review 2026–27 NBCT Support Schedules</div>
+            <div class="event-location"><a href="https://docs.google.com/document/d/1ym9otSS29p4ogetluSK4RiTqR3ei4uG8m5E3PK87gRw/edit?tab=t.0" target="_blank" style="color:var(--red);text-decoration:none;font-weight:600;">View Schedule Document →</a></div>
+          </td>
+          <td><a class="ics-btn" id="ics-nbct-schedules" download="NBCT-Support-Schedules-Review.ics" href="#">
+            <svg class="ics-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+            Add to Calendar
+          </a></td>
+        </tr>
+
+        <tr>
+          <td class="date-cell">
             <span class="date-day">Friday</span>
             <span class="date-main">June 26, 2026</span>
           </td>
@@ -307,6 +325,15 @@
 
 <script>
   const events = [
+    {
+      id: 'ics-nbct-schedules',
+      filename: 'NBCT-Support-Schedules-Review.ics',
+      dtstart: '20260625',
+      dtend:   '20260626',
+      summary: 'Review 2026-27 NBCT Support Schedules',
+      description: 'Review 2026-27 NBCT Support Schedule document submitted by RIC directors.',
+      location: ''
+    },
     {
       id: 'ics-moa-budget',
       filename: 'MOA-Budget-Changes-Due-2026.ics',
