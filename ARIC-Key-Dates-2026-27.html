@@ -75,6 +75,53 @@
       .ics-btn { display: none; }
       body { background: #fff; }
     }
+  
+    /* ── Filter bar ── */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      align-items: center;
+    }
+    .filter-bar label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 13px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: opacity 0.15s, box-shadow 0.15s;
+      user-select: none;
+    }
+    .filter-chip:hover { opacity: 0.85; }
+    .filter-chip.active { box-shadow: 0 0 0 2px var(--navy); }
+    .chip-all        { background: var(--navy);  color: #fff; border-color: var(--navy); }
+    .chip-deadline   { background: #FFF3CD; color: #7A5800; border-color: #ffd966; }
+    .chip-report     { background: #FDE8E8; color: var(--red); border-color: #f5c2c2; }
+    .chip-event      { background: #E0F5F7; color: #1A7A84; border-color: #b3e4ea; }
+    .chip-conference { background: #EAE4F7; color: #5B3FA6; border-color: #c5b8e8; }
+    .chip-alsde      { background: #DBEAFE; color: #1E40AF; border-color: #93C5FD; }
+    .no-results {
+      text-align: center;
+      padding: 32px;
+      color: var(--muted);
+      font-size: 13px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -94,7 +141,36 @@
 </div>
 
 <main>
+  <div class="filter-bar">
+    <label>Filter:</label>
+    <span class="filter-chip chip-all active" data-filter="all">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/></svg>
+      All
+    </span>
+    <span class="filter-chip chip-deadline" data-filter="deadline">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/></svg>
+      Deadline
+    </span>
+    <span class="filter-chip chip-report" data-filter="report">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/><path d="M4.5 5.5a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5z"/></svg>
+      Report Due
+    </span>
+    <span class="filter-chip chip-event" data-filter="event">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="M8 4a.5.5 0 0 1 .5.5v3.793l2.146 2.147a.5.5 0 0 1-.708.708l-2.5-2.5A.5.5 0 0 1 7.5 8.5V4.5A.5.5 0 0 1 8 4z"/></svg>
+      Event
+    </span>
+    <span class="filter-chip chip-conference" data-filter="conference">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/><path fill-rule="evenodd" d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z"/><path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/></svg>
+      Conference
+    </span>
+    <span class="filter-chip chip-alsde" data-filter="alsde">
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm.5 4.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3a.5.5 0 0 1 1 0z"/></svg>
+      ALSDE
+    </span>
+  </div>
+
   <div class="table-wrap">
+    <div class="no-results" id="no-results">No items match this filter.</div>
     <table>
       <thead>
         <tr>
@@ -106,7 +182,7 @@
       </thead>
       <tbody>
 
-        <tr>
+        <tr data-type="deadline">
           <td class="date-cell">
             <span class="date-day">Thursday</span>
             <span class="date-main">June 25, 2026</span>
@@ -124,7 +200,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="deadline">
           <td class="date-cell">
             <span class="date-day">Friday</span>
             <span class="date-main">June 26, 2026</span>
@@ -139,7 +215,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="deadline">
           <td class="date-cell">
             <span class="date-day">Tuesday</span>
             <span class="date-main">July 7, 2026</span>
@@ -157,7 +233,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="conference">
           <td class="date-cell">
             <span class="date-day">Mon – Thu</span>
             <span class="date-main">July 6–9, 2026</span>
@@ -175,7 +251,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="alsde">
           <td class="date-cell">
             <span class="date-day">Friday</span>
             <span class="date-main">July 10, 2026</span>
@@ -193,7 +269,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="event">
           <td class="date-cell">
             <span class="date-day">Wednesday</span>
             <span class="date-main">July 15, 2026</span>
@@ -210,7 +286,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="event">
           <td class="date-cell">
             <span class="date-day">Thu – Fri</span>
             <span class="date-main">July 16–17, 2026</span>
@@ -228,7 +304,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="conference">
           <td class="date-cell">
             <span class="date-day">Mon – Fri</span>
             <span class="date-main">July 20–24, 2026</span>
@@ -254,7 +330,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="report">
           <td class="date-cell">
             <span class="date-day">Thursday</span>
             <span class="date-main">July 30, 2026</span>
@@ -269,7 +345,7 @@
           </a></td>
         </tr>
 
-                <tr>
+                <tr data-type="alsde">
           <td class="date-cell">
             <span class="date-day">Sunday</span>
             <span class="date-main">August 17, 2026</span>
@@ -287,7 +363,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="event">
           <td class="date-cell">
             <span class="date-day">Wednesday</span>
             <span class="date-main">August 12, 2026</span>
@@ -304,7 +380,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="report">
           <td class="date-cell">
             <span class="date-day">Monday</span>
             <span class="date-main">November 30, 2026</span>
@@ -319,7 +395,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="report">
           <td class="date-cell">
             <span class="date-day">Saturday</span>
             <span class="date-main">January 30, 2027</span>
@@ -334,7 +410,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="deadline">
           <td class="date-cell">
             <span class="date-day">Thursday</span>
             <span class="date-main">April 15, 2027</span>
@@ -349,7 +425,7 @@
           </a></td>
         </tr>
 
-        <tr>
+        <tr data-type="report">
           <td class="date-cell">
             <span class="date-day">Friday</span>
             <span class="date-main">April 30, 2027</span>
@@ -538,6 +614,27 @@
     el.href = URL.createObjectURL(blob);
     el.download = e.filename;
   });
+
+  // ── Type filter ──
+  document.querySelectorAll('.filter-chip').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      var filter = this.dataset.filter;
+      document.querySelectorAll('.filter-chip').forEach(function(c) { c.classList.remove('active'); });
+      this.classList.add('active');
+      var rows = document.querySelectorAll('tbody tr');
+      var visible = 0;
+      rows.forEach(function(row) {
+        if (filter === 'all' || row.dataset.type === filter) {
+          row.style.display = '';
+          visible++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+    });
+  });
+
 </script>
 
 </body>
