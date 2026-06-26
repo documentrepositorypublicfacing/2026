@@ -269,6 +269,24 @@
           </a></td>
         </tr>
 
+        <tr data-type="deadline">
+          <td class="date-cell">
+            <span class="date-day">Thursday</span>
+            <span class="date-main">July 10, 2026</span>
+          </td>
+          <td><span class="badge badge-deadline">Deadline</span></td>
+          <td>
+            <div class="event-name">Educator Certification Changes — Director Questions Due</div>
+            <div class="event-location">Submit questions about upcoming certification renewal requirements. Questions will be compiled and forwarded to the ALSDE Certification Office.</div>
+          </td>
+          <td><a class="ics-btn" id="ics-cert-questions" download="Certification-Director-Questions-Due.ics" href="#">
+            <svg class="ics-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+            </svg>
+            Add to Calendar
+          </a></td>
+        </tr>
+
         <tr data-type="event">
           <td class="date-cell">
             <span class="date-day">Wednesday</span>
@@ -471,7 +489,16 @@
       id: 'ics-standards-feedback',
       filename: 'Accountability-Standards-Feedback-Due.ics',
       dtstart: '20260707',
-      dtend:   '20260708',
+      dt    {
+      id: 'ics-cert-questions',
+      filename: 'Certification-Director-Questions-Due.ics',
+      dtstart: '20260710',
+      dtend:   '20260711',
+      summary: 'Educator Certification Changes — Director Questions Due',
+      description: 'Deadline for RIC directors to submit questions about upcoming educator certification renewal requirements. Questions compiled and forwarded to ALSDE Certification Office.',
+      location: ''
+    },
+end:   '20260708',
       summary: 'Accountability Standards Director Feedback Due',
       description: 'Deadline for RIC directors to submit feedback on the revised ARIC Accountability Standards (2026 revision).',
       location: ''
