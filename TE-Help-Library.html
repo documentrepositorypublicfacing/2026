@@ -46,7 +46,12 @@
     .guide-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
     .guide-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
     .guide-meta { font-size: 11px; color: #999; margin-top: 3px; }
-    .guide-action { display: flex; align-items: center; padding: 13px 18px; flex-shrink: 0; }
+    .guide-action { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 8px; padding: 13px 18px; flex-shrink: 0; }
+    .guide-shortlink { display: flex; align-items: center; gap: 6px; }
+    .guide-url-text { font-size: 11px; color: var(--muted); font-family: 'Consolas', 'Courier New', monospace; background: #F3F7F4; border: 1px solid var(--border); border-radius: 4px; padding: 3px 7px; user-select: all; cursor: text; white-space: nowrap; }
+    .copy-btn-sm { display: inline-flex; align-items: center; gap: 4px; background: var(--navy); color: #fff; border: none; border-radius: 4px; padding: 4px 8px; font-size: 11px; font-weight: 600; cursor: pointer; transition: background 0.15s; white-space: nowrap; font-family: inherit; }
+    .copy-btn-sm:hover { background: var(--navy2); }
+    .copy-btn-sm.copied { background: #2E7D32; }
     .dl-btn { display: inline-flex; align-items: center; gap: 7px; background: var(--navy); color: #fff; font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 5px; text-decoration: none; white-space: nowrap; transition: background 0.15s; }
     .dl-btn:hover { background: var(--navy2); }
     footer { text-align: center; padding: 20px 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 8px; }
@@ -191,13 +196,20 @@
     <div class="guide-body">
       <div class="guide-title">APLDS User Guide</div>
       <div class="guide-desc">Comprehensive guide to the Alabama Professional Learning Data System (APLDS) &mdash; covers navigation, annual evaluation workflow, and evaluator processes.</div>
-      <div class="guide-meta">PDF &bull; APLDS</div>
+      <div class="guide-meta">PDF &bull; APLDS &bull; v1.7.1</div>
     </div>
     <div class="guide-action">
       <a class="dl-btn" href="https://drive.google.com/uc?export=download&id=1iakZbLYAsDofb-ZM8YAs-I6Vb8vB2m7n" download>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PDF
       </a>
+      <div class="guide-shortlink">
+        <span class="guide-url-text">bit.ly/APLDS-guide</span>
+        <button class="copy-btn-sm" data-url="https://bit.ly/APLDS-guide" title="Copy link">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
     </div>
   </div>
   <div class="guide-card">
@@ -205,13 +217,20 @@
     <div class="guide-body">
       <div class="guide-title">Teaching Effectiveness Evaluation Guide</div>
       <div class="guide-desc">Complete tutorial for Evaluatees on navigating the Teaching Effectiveness system &mdash; self-assessment, professional learning plan, evidence, and evaluation workflows.</div>
-      <div class="guide-meta">PDF &bull; Evaluatees</div>
+      <div class="guide-meta">PDF &bull; Evaluatees &bull; v1.4.41</div>
     </div>
     <div class="guide-action">
       <a class="dl-btn" href="https://drive.google.com/uc?export=download&id=1FOGcXBELhLCXoIjjrf6C04gsuWKx0EA8" download>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PDF
       </a>
+      <div class="guide-shortlink">
+        <span class="guide-url-text">bit.ly/TE-eval-guide</span>
+        <button class="copy-btn-sm" data-url="https://bit.ly/TE-eval-guide" title="Copy link">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
     </div>
   </div>
   <div class="guide-card">
@@ -219,13 +238,20 @@
     <div class="guide-body">
       <div class="guide-title">ATGP Full Guide</div>
       <div class="guide-desc">The comprehensive Teaching Effectiveness reference guide for the Alabama Teacher Growth Program &mdash; covering all roles and processes.</div>
-      <div class="guide-meta">PDF &bull; All Roles &bull; ATGP</div>
+      <div class="guide-meta">PDF &bull; All Roles &bull; ATGP &bull; v1.4.41</div>
     </div>
     <div class="guide-action">
       <a class="dl-btn" href="https://drive.google.com/uc?export=download&id=1gMR8scgKgh_hILHTfzqTcaLtR76HGrEC" download>
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PDF
       </a>
+      <div class="guide-shortlink">
+        <span class="guide-url-text">bit.ly/ATGP-full-guide</span>
+        <button class="copy-btn-sm" data-url="https://bit.ly/ATGP-full-guide" title="Copy link">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          Copy
+        </button>
+      </div>
     </div>
   </div>
     </div>
@@ -236,13 +262,14 @@
 <footer>Office of Educator Development &mdash; Alabama State Department of Education</footer>
 
 <script>
-document.querySelectorAll('.copy-btn').forEach(function(btn) {
+document.querySelectorAll('.copy-btn, .copy-btn-sm').forEach(function(btn) {
   btn.addEventListener('click', function() {
     var url = this.dataset.url;
     navigator.clipboard.writeText(url).then(function() {
       btn.classList.add('copied');
-      btn.querySelector('.copy-label').textContent = 'Copied!';
-      setTimeout(function() { btn.classList.remove('copied'); btn.querySelector('.copy-label').textContent = 'Copy'; }, 2000);
+      var lbl = btn.querySelector('.copy-label');
+      if (lbl) { lbl.textContent = 'Copied!'; setTimeout(function() { btn.classList.remove('copied'); lbl.textContent = 'Copy'; }, 2000); }
+      else { setTimeout(function() { btn.classList.remove('copied'); }, 2000); }
     });
   });
 });
