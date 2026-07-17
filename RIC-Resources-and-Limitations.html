@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARIC Resources — Alabama Regional Inservice Centers</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<style>
+  :root {
+    --navy:  #1B3A6B;
+    --navy2: #254E91;
+    --teal:  #3AAFBB;
+    --red:   #C0272D;
+    --bg:    #EEF2F6;
+    --border:#C8D8E8;
+    --text:  #1A1A1A;
+    --muted: #4A5568;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100vh; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.55; }
+
+  header { background: var(--navy); color: #fff; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  .header-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .header-text h1 { font-size: 21px; font-weight: 700; }
+  .header-text .sub { font-size: 13px; opacity: 0.85; margin-top: 3px; }
+  .header-text .note { font-size: 11.5px; opacity: 0.65; margin-top: 4px; }
+  .header-text .permalink { font-size: 11.5px; opacity: 0.65; margin-top: 4px; }
+  .header-text .permalink a { color: #fff; text-decoration: underline; }
+
+  main { max-width: 980px; margin: 0 auto; padding: 28px 32px 60px; }
+
+  .intro { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin-bottom: 24px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .intro p { color: var(--muted); font-size: 13.5px; }
+
+  h2.section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--navy); margin: 30px 0 12px; padding-bottom: 6px; border-bottom: 2px solid var(--teal); }
+
+  .practices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .practice-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .practice-card .num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--navy); color: #fff; border-radius: 50%; font-size: 11.5px; font-weight: 800; margin-right: 8px; flex-shrink: 0; }
+  .practice-card .title { font-weight: 700; font-size: 13.5px; color: var(--navy); display: inline-flex; align-items: center; margin-bottom: 6px; }
+  .practice-card ul { margin: 0 0 0 30px; color: var(--muted); font-size: 12.8px; }
+  .practice-card ul li { margin-bottom: 2px; }
+
+  .search-wrap { margin: 6px 0 16px; }
+  #regionSearch { width: 100%; padding: 11px 14px; font-size: 13.5px; border: 1px solid var(--border); border-radius: 8px; background: #fff; color: var(--text); }
+  #regionSearch::placeholder { color: #9AA7B5; }
+  .no-results { display: none; text-align: center; color: var(--muted); padding: 18px; font-size: 13px; }
+
+  table.summary { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.07); }
+  table.summary thead th { background: var(--navy); color: #fff; text-align: left; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 10px 12px; }
+  table.summary tbody tr { border-top: 1px solid var(--border); }
+  table.summary tbody tr:nth-child(even) { background: #F7FAFC; }
+  table.summary td { padding: 10px 12px; vertical-align: top; font-size: 12.6px; }
+  .region-badge { display: inline-block; background: var(--red); color: #fff; font-weight: 800; font-size: 11px; padding: 3px 8px; border-radius: 3px; white-space: nowrap; }
+  table.summary .inst { color: var(--muted); font-size: 11.5px; display: block; margin-top: 2px; }
+  table.summary a { color: var(--navy2); text-decoration: none; font-weight: 600; }
+  table.summary a:hover { text-decoration: underline; }
+  .limit-tag { color: var(--navy2); font-size: 12.2px; }
+
+  footer { text-align: center; padding: 24px 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 28px; }
+
+  @media (max-width: 640px) {
+    header { padding: 14px 16px; }
+    .header-logo { width: 50px; height: 50px; }
+    .header-text h1 { font-size: 17px; }
+    main { padding: 16px; }
+    table.summary thead { display: none; }
+    table.summary, table.summary tbody, table.summary tr, table.summary td { display: block; width: 100%; }
+    table.summary tr { padding: 10px 12px; }
+  }
+  @media print { body { background: #fff; } }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="header-logo" src="ARIC_L.png" alt="ARIC Logo" />
+  <div class="header-text">
+    <h1>ARIC Resources</h1>
+    <p class="sub">Alabama Regional Inservice Centers &nbsp;&middot;&nbsp; Space, Parking &amp; Scheduling Reference by Region</p>
+    <p class="note">Compiled from RIC director submissions, July 2026</p>
+    <p class="permalink">Always available at <a href="https://bit.ly/ARIC-resources" target="_blank">bit.ly/ARIC-resources</a></p>
+  </div>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>This guide summarizes available space, parking, and scheduling considerations at each Regional Inservice Center, for ALSDE divisions, sections, or programs planning training sessions or events. Use the search box to filter, or contact a director directly using the email links below.</p>
+  </div>
+
+  <h2 class="section-title">General Best Practices — All Regions</h2>
+  <div class="practices-grid">
+    <div class="practice-card">
+      <div class="title"><span class="num">1</span>Advance Notice</div>
+      <ul><li>Request space as early as possible — minimum 2–4 weeks, one month preferred</li></ul>
+    </div>
+    <div class="practice-card">
+      <div class="title"><span class="num">2</span>Provide Details</div>
+      <ul>
+        <li>Accurate participant count</li>
+        <li>Date and time preferences</li>
+        <li>Special equipment or setup needs</li>
+        <li>Technology requirements</li>
+      </ul>
+    </div>
+    <div class="practice-card">
+      <div class="title"><span class="num">3</span>Communication</div>
+      <ul>
+        <li>Work directly with the RIC director</li>
+        <li>Add the director and/or designee as an instructor in PSPL</li>
+        <li>Confirm parking arrangements and communicate to participants</li>
+      </ul>
+    </div>
+    <div class="practice-card">
+      <div class="title"><span class="num">4</span>Flexibility</div>
+      <ul>
+        <li>Be aware of academic calendar constraints</li>
+        <li>Consider alternate dates/times if first choice is unavailable</li>
+        <li>Have backup plans for larger groups</li>
+      </ul>
+    </div>
+    <div class="practice-card">
+      <div class="title"><span class="num">5</span>Cost Considerations</div>
+      <ul>
+        <li>Most RIC spaces are free</li>
+        <li>Large-group spaces (75+) typically incur fees</li>
+        <li>Off-campus venues may be necessary for very large groups</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title">Region Directory &amp; Quick Reference</h2>
+  <div class="search-wrap">
+    <input type="text" id="regionSearch" placeholder="Search by region, university, director, or keyword (e.g. &quot;auditorium&quot;, &quot;parking&quot;, &quot;Friday&quot;)..." />
+  </div>
+
+  <table class="summary" id="summaryTable">
+    <thead>
+      <tr><th>Region / Institution</th><th>Director</th><th>Email</th><th>Largest Regular Space</th><th>Key Limitation</th></tr>
+    </thead>
+    <tbody>
+      <tr data-search="region 1 una university of north alabama florence natalie bendall mazevo"><td><span class="region-badge">R1</span> <span class="inst">Univ. of North Alabama</span></td><td>Dr. Natalie Bendall</td><td><a href="mailto:nbendall@una.edu">nbendall@una.edu</a></td><td>5 rooms, 30–35 each</td><td class="limit-tag">Mazevo booking only — no last-minute requests</td></tr>
+      <tr data-search="region 2 athens state university bradley lewis carter hall ballroom"><td><span class="region-badge">R2</span> <span class="inst">Athens State University</span></td><td>Dr. Bradley Lewis</td><td><a href="mailto:brad.lewis@athens.edu">brad.lewis@athens.edu</a></td><td>Ballroom, up to 150</td><td class="limit-tag">Parking down ~50% during Carter Hall renovation</td></tr>
+      <tr data-search="region 3 alabama a&m aamu uah aundria campbell"><td><span class="region-badge">R3</span> <span class="inst">Alabama A&amp;M University</span></td><td>Aundria Campbell</td><td><a href="mailto:aundria.campbell@aamu.edu">aundria.campbell@aamu.edu</a></td><td>Up to 105</td><td class="limit-tag">Larger groups require off-campus space (fees apply)</td></tr>
+      <tr data-search="region 4 university of alabama uwa west alabama tuscaloosa holly morgan bryant conference center"><td><span class="region-badge">R4</span> <span class="inst">UA / Univ. of West Alabama</span></td><td>Dr. Holly Morgan</td><td><a href="mailto:hgmorgan@ua.edu">hgmorgan@ua.edu</a></td><td>Room 1049, 55 (M/T/F only)</td><td class="limit-tag">No free space above 55; 75–100 = paid conference space</td></tr>
+      <tr data-search="region 5 uab birmingham nicole hill renovation"><td><span class="region-badge">R5</span> <span class="inst">Univ. of Alabama at Birmingham</span></td><td>Nicole Hill</td><td><a href="mailto:nicolehillRIC@uab.edu">nicolehillRIC@uab.edu</a></td><td>SoE room, &lt;20 only</td><td class="limit-tag">No SoE space Jan–Aug 2026 (renovation); plan off-campus</td></tr>
+      <tr data-search="region 6 jacksonville state jsu valerie curtis anniston fort mcclellan auditorium"><td><span class="region-badge">R6</span> <span class="inst">Jacksonville State University</span></td><td>Valerie Curtis</td><td><a href="mailto:vcurtis@jsu.edu">vcurtis@jsu.edu</a></td><td>Auditorium, 455</td><td class="limit-tag">Located in Anniston/Ft. McClellan, ~20 min from main campus</td></tr>
+      <tr data-search="region 7 montevallo brooke hughston riec amsti wills hall myrick"><td><span class="region-badge">R7</span> <span class="inst">University of Montevallo</span></td><td>Brooke Hughston</td><td><a href="mailto:brooke.hughston@montevallo.edu">brooke.hughston@montevallo.edu</a></td><td>1 classroom, 30 (guaranteed)</td><td class="limit-tag">1 month notice for anything beyond the regular classroom</td></tr>
+      <tr data-search="region 8 alabama state university asu evelyn hodge acadome abernathy c-stem consecutive back to back"><td><span class="region-badge">R8</span> <span class="inst">Alabama State University</span></td><td>Dr. Evelyn Hodge</td><td><a href="mailto:ehodge@alasu.edu">ehodge@alasu.edu</a></td><td>Acadome / Auditorium (large)</td><td class="limit-tag">No consecutive back-to-back day sessions</td></tr>
+      <tr data-search="region 9 auburn university laura crowe friday parking passes"><td><span class="region-badge">R9</span> <span class="inst">Auburn University</span></td><td>Dr. Laura Crowe</td><td><a href="mailto:lmt0010@auburn.edu">lmt0010@auburn.edu</a></td><td>Varies — Fridays best</td><td class="limit-tag">Weekday space very limited Mon–Thu (academic year)</td></tr>
+      <tr data-search="region 10 university of south alabama usa saric fairhope mobile stephanie hulon student center ballroom"><td><span class="region-badge">R10</span> <span class="inst">Univ. of South Alabama</span></td><td>Dr. Stephanie Hulon</td><td><a href="mailto:sihulon@southalabama.edu">sihulon@southalabama.edu</a></td><td>Student Ctr. Ballroom, up to 500</td><td class="limit-tag">Space only confirmed once academic scheduling is set</td></tr>
+      <tr data-search="region 11 troy university searic robin bynum"><td><span class="region-badge">R11</span> <span class="inst">Troy University</span></td><td>Dr. Robin Bynum</td><td><a href="mailto:rbynum@troy.edu">rbynum@troy.edu</a></td><td>Per facilities system</td><td class="limit-tag">Requests must be submitted by a university employee</td></tr>
+    </tbody>
+  </table>
+  <p class="no-results" id="noResults">No regions match your search.</p>
+
+</main>
+
+<footer>
+  Alabama Regional Inservice Centers &middot; Compiled for ALSDE internal planning use, July 2026 &middot; Contact your RIC director to confirm details before finalizing an event.
+</footer>
+
+<script>
+  (function () {
+    var input = document.getElementById('regionSearch');
+    var rows = Array.prototype.slice.call(document.querySelectorAll('#summaryTable tbody tr'));
+    var noResults = document.getElementById('noResults');
+
+    input.addEventListener('input', function () {
+      var q = input.value.trim().toLowerCase();
+      var anyRow = false;
+      rows.forEach(function (row) {
+        var match = row.getAttribute('data-search').indexOf(q) !== -1;
+        row.style.display = match ? '' : 'none';
+        if (match) anyRow = true;
+      });
+      noResults.style.display = anyRow ? 'none' : 'block';
+    });
+  })();
+</script>
+
+</body>
+</html>
