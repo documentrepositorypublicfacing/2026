@@ -60,6 +60,8 @@
   .slot.filled { background: #EAF7F1; border-color: #BFE5D2; }
   .slot.filled .fill { color: var(--green); font-weight: 700; }
   .slot.filled .fill::before { content: '✓ '; }
+  .slot.partial { background: #FFF8E8; border-color: #F0DDA8; }
+  .slot.partial .fill { color: #9A7B1E; font-weight: 700; }
 
   footer { text-align: center; padding: 24px 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 28px; }
 
@@ -70,6 +72,10 @@
   .modal .modal-sub { font-size: 12.5px; color: var(--muted); margin-bottom: 14px; }
   .modal input[type="text"] { width: 100%; padding: 9px 12px; font-size: 14px; border: 1px solid var(--border); border-radius: 6px; margin-bottom: 12px; }
   .modal-actions { display: flex; gap: 8px; justify-content: flex-end; }
+  .signup-row { display: flex; align-items: center; justify-content: space-between; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; margin-bottom: 8px; font-size: 13px; }
+  .signup-row .name { font-weight: 700; color: var(--navy); }
+  .signup-row .btn-release { background: none; border: none; color: var(--red); font-size: 12px; font-weight: 700; cursor: pointer; padding: 2px 4px; }
+  .signup-row .btn-release:hover { text-decoration: underline; }
   .btn { border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; }
   .btn-primary { background: var(--navy); color: #fff; }
   .btn-primary:hover { background: var(--navy2); }
@@ -103,7 +109,7 @@
 
   <div class="intro">
     <p><strong>Monday, July 20 (setup):</strong> Directors should get their materials to the ARIC table Monday morning.</p>
-    <p><strong>Tuesday–Thursday, July 21–23 (coverage, 8:00 AM–4:00 PM):</strong> We're covering the table in two-hour shifts — 8–10, 10–12, 12–2, and 2–4 each day. Click an open shift below and enter your name to claim it.</p>
+    <p><strong>Tuesday–Thursday, July 21–23 (coverage, 8:00 AM–4:00 PM):</strong> We're covering the table in two-hour shifts — 8–10, 10–12, 12–2, and 2–4 each day. Each shift has room for up to two people. Click a shift below and enter your name to claim a spot.</p>
     <p><strong>Thursday close of day / Friday morning:</strong> Go ahead and break the table down at close of day Thursday — no need to staff it Friday. Mark will swing by Friday morning to make sure everything gets picked up, so don't worry if you can't grab your materials before you head out Thursday.</p>
     <p class="note">The room where we're presenting is nearby, so it's not a big deal if the table goes unmanned for a few minutes between shifts — just aim to cover what you can. Sign-ups may take a few minutes to show up for everyone else, so no need to refresh repeatedly.</p>
   </div>
@@ -129,8 +135,11 @@
   <div class="modal">
     <h3 id="modalTitle">Claim this shift</h3>
     <p class="modal-sub" id="modalSub"></p>
-    <input type="text" id="nameInput" placeholder="Your name" autocomplete="off" />
-    <p class="modal-error" id="modalError"></p>
+    <div id="modalSignups"></div>
+    <div id="modalAddForm">
+      <input type="text" id="nameInput" placeholder="Your name" autocomplete="off" />
+      <p class="modal-error" id="modalError"></p>
+    </div>
     <div class="modal-actions" id="modalActions"></div>
   </div>
 </div>
@@ -141,7 +150,8 @@
   var ENTRY_SHIFT = 'entry.943554594';
   var ENTRY_NAME = 'entry.991464306';
   var CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSUuHR8EEO_sptFlh_h7_iCKLWTrblGEiz2aonv0xOcZYX2POotrQ0GOiqjVL8aPv6J1sYt9iJNUglQ/pub?gid=714599118&single=true&output=csv';
-  var RELEASE_SENTINEL = 'RELEASED';
+  var RELEASE_PREFIX = 'RELEASED::';
+  var SPOTS_PER_SHIFT = 2;
 
   var DAYS = [
     { key: 'tue', label: 'Tuesday', date: 'July 21' },
@@ -166,12 +176,14 @@
   });
 
   var state = {};
-  Object.keys(SHIFT_LABELS).forEach(function (id) { state[id] = ''; });
+  Object.keys(SHIFT_LABELS).forEach(function (id) { state[id] = []; });
 
   var gridWrap = document.getElementById('gridWrap');
   var overlay = document.getElementById('overlay');
   var modalTitle = document.getElementById('modalTitle');
   var modalSub = document.getElementById('modalSub');
+  var modalSignups = document.getElementById('modalSignups');
+  var modalAddForm = document.getElementById('modalAddForm');
   var modalError = document.getElementById('modalError');
   var modalActions = document.getElementById('modalActions');
   var nameInput = document.getElementById('nameInput');
@@ -207,24 +219,27 @@
   }
 
   function renderState() {
-    var filled = 0, total = 0;
+    var filledSpots = 0, totalSpots = 0;
     Object.keys(state).forEach(function (id) {
-      total++;
+      totalSpots += SPOTS_PER_SHIFT;
       var slot = document.getElementById('slot_' + id);
       if (!slot) return;
-      var name = state[id];
+      var names = state[id];
+      filledSpots += names.length;
       var fillEl = slot.querySelector('.fill');
-      if (name) {
-        filled++;
-        slot.className = 'slot filled';
-        fillEl.textContent = name;
-      } else {
+      if (names.length === 0) {
         slot.className = 'slot open';
-        fillEl.textContent = 'Open';
+        fillEl.textContent = 'Open (2 spots)';
+      } else if (names.length < SPOTS_PER_SHIFT) {
+        slot.className = 'slot partial';
+        fillEl.textContent = names.join(', ') + ' — 1 spot open';
+      } else {
+        slot.className = 'slot filled';
+        fillEl.textContent = names.join(' & ');
       }
     });
-    coverageCount.textContent = filled + ' of ' + total + ' shifts covered';
-    progressFill.style.width = Math.round((filled / total) * 100) + '%';
+    coverageCount.textContent = filledSpots + ' of ' + totalSpots + ' spots covered';
+    progressFill.style.width = Math.round((filledSpots / totalSpots) * 100) + '%';
   }
 
   // Minimal RFC4180 CSV parser (handles quoted fields with commas/newlines).
@@ -270,20 +285,38 @@
         return res.text();
       })
       .then(function (text) {
+        // Rebuild state from scratch each sync so releases/clears are reflected.
+        Object.keys(state).forEach(function (id) { state[id] = []; });
         var rows = parseCSV(text);
         if (rows.length > 1) {
           var header = rows[0];
           var shiftCol = header.indexOf('Shift');
           var nameCol = header.indexOf('Your Name');
           if (shiftCol !== -1 && nameCol !== -1) {
-            // Last submission per shift wins.
+            // Replay submissions in order: claims add a spot (up to 2), releases remove one.
             for (var r = 1; r < rows.length; r++) {
               var row = rows[r];
               if (!row[shiftCol]) continue;
               var id = labelToId(row[shiftCol]);
               if (!id) continue;
-              var name = (row[nameCol] || '').trim();
-              state[id] = (name.toUpperCase() === RELEASE_SENTINEL) ? '' : name;
+              var raw = (row[nameCol] || '').trim();
+              if (!raw) continue;
+              if (/^RELEASED/i.test(raw)) {
+                if (raw.indexOf(RELEASE_PREFIX) === 0) {
+                  var target = raw.slice(RELEASE_PREFIX.length).trim();
+                  if (target) {
+                    var idx = state[id].map(function (n) { return n.toLowerCase(); }).indexOf(target.toLowerCase());
+                    if (idx !== -1) state[id].splice(idx, 1);
+                  } else {
+                    state[id] = [];
+                  }
+                } else {
+                  // Legacy sentinel from the old single-slot version — clears the whole shift.
+                  state[id] = [];
+                }
+              } else if (state[id].length < SPOTS_PER_SHIFT && state[id].indexOf(raw) === -1) {
+                state[id].push(raw);
+              }
             }
           }
         }
@@ -316,45 +349,53 @@
     var slot = document.getElementById('slot_' + id);
     var day = slot.getAttribute('data-day');
     var time = slot.getAttribute('data-time');
-    var currentName = state[id];
+    var names = state[id];
+    var hasRoom = names.length < SPOTS_PER_SHIFT;
 
     modalError.className = 'modal-error';
     nameInput.value = '';
 
-    if (currentName) {
-      modalTitle.textContent = 'Claimed by ' + currentName;
-      modalSub.textContent = day + ', ' + time + '.';
-      modalActions.innerHTML = '';
+    modalTitle.textContent = hasRoom
+      ? (names.length === 0 ? 'Claim this shift' : 'Add yourself to this shift')
+      : 'This shift is full';
+    modalSub.textContent = day + ', ' + time;
+
+    modalSignups.innerHTML = '';
+    names.forEach(function (n) {
+      var row = document.createElement('div');
+      row.className = 'signup-row';
+      var nameSpan = document.createElement('span');
+      nameSpan.className = 'name';
+      nameSpan.textContent = n;
       var releaseBtn = document.createElement('button');
-      releaseBtn.className = 'btn btn-danger';
-      releaseBtn.textContent = 'Release Shift';
-      releaseBtn.addEventListener('click', function () { handleRelease(id, currentName); });
-      var cancelBtn = document.createElement('button');
-      cancelBtn.className = 'btn btn-secondary';
-      cancelBtn.textContent = 'Close';
-      cancelBtn.addEventListener('click', closeModal);
-      modalActions.appendChild(cancelBtn);
-      modalActions.appendChild(releaseBtn);
-      nameInput.style.display = 'none';
-    } else {
-      modalTitle.textContent = 'Claim this shift';
-      modalSub.textContent = day + ', ' + time;
-      modalActions.innerHTML = '';
-      var cancelBtn2 = document.createElement('button');
-      cancelBtn2.className = 'btn btn-secondary';
-      cancelBtn2.textContent = 'Cancel';
-      cancelBtn2.addEventListener('click', closeModal);
+      releaseBtn.className = 'btn-release';
+      releaseBtn.textContent = 'Release';
+      releaseBtn.addEventListener('click', function () { handleRelease(id, n); });
+      row.appendChild(nameSpan);
+      row.appendChild(releaseBtn);
+      modalSignups.appendChild(row);
+    });
+
+    modalActions.innerHTML = '';
+    var cancelBtn = document.createElement('button');
+    cancelBtn.className = 'btn btn-secondary';
+    cancelBtn.textContent = 'Close';
+    cancelBtn.addEventListener('click', closeModal);
+    modalActions.appendChild(cancelBtn);
+
+    if (hasRoom) {
+      modalAddForm.style.display = '';
       var claimBtn = document.createElement('button');
       claimBtn.className = 'btn btn-primary';
       claimBtn.textContent = 'Sign Up';
       claimBtn.addEventListener('click', function () { handleClaim(id); });
-      modalActions.appendChild(cancelBtn2);
       modalActions.appendChild(claimBtn);
-      nameInput.style.display = '';
+    } else {
+      modalAddForm.style.display = 'none';
     }
 
     overlay.className = 'overlay show';
-    setTimeout(function () { nameInput.focus(); }, 50);
+    if (hasRoom) { setTimeout(function () { nameInput.focus(); }, 50); }
   }
 
   function closeModal() {
@@ -368,18 +409,24 @@
       modalError.className = 'modal-error show';
       return;
     }
-    if (state[id]) {
-      modalError.textContent = 'Someone already claimed this shift (' + state[id] + '). Pick another one.';
+    if (state[id].length >= SPOTS_PER_SHIFT) {
+      modalError.textContent = 'This shift just filled up. Pick another one.';
       modalError.className = 'modal-error show';
       return;
     }
-    state[id] = name;
+    if (state[id].indexOf(name) !== -1) {
+      modalError.textContent = "You're already signed up for this shift.";
+      modalError.className = 'modal-error show';
+      return;
+    }
+    state[id].push(name);
     renderState();
     submitEntry(SHIFT_LABELS[id], name, function (ok) {
       if (ok) {
         closeModal();
       } else {
-        state[id] = '';
+        var idx = state[id].indexOf(name);
+        if (idx !== -1) state[id].splice(idx, 1);
         renderState();
         modalError.textContent = "Couldn't save — check your connection and try again.";
         modalError.className = 'modal-error show';
@@ -388,12 +435,14 @@
   }
 
   function handleRelease(id, currentName) {
-    state[id] = '';
+    var idx = state[id].indexOf(currentName);
+    if (idx === -1) return;
+    state[id].splice(idx, 1);
     renderState();
     closeModal();
-    submitEntry(SHIFT_LABELS[id], RELEASE_SENTINEL, function (ok) {
+    submitEntry(SHIFT_LABELS[id], RELEASE_PREFIX + currentName, function (ok) {
       if (!ok) {
-        state[id] = currentName;
+        state[id].push(currentName);
         renderState();
       }
     });
