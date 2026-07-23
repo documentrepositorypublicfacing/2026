@@ -4,17 +4,15 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Office of Educator Development — ALSDE</title>
+  <title>ARIC — Alabama Regional Inservice Centers</title>
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <style>
     :root {
-      --navy:    #1B2A5E;
-      --navy2:   #243579;
-      --tan:     #C4A882;
-      --tan2:    #B09070;
-      --blue:    #1565C0;
-      --purple:  #6A1B9A;
-      --red:     #BF360C;
+      --navy:    #1B3A6B;
+      --navy2:   #254E91;
+      --teal:    #3AAFBB;
+      --teal2:   #2E8C96;
+      --red:     #C0272D;
       --bg:      #EEF2F6;
       --border:  #C8D8E8;
       --text:    #1A1A1A;
@@ -32,11 +30,11 @@
       align-items: center;
       gap: 18px;
     }
-    .header-logo { max-width: 230px; width: auto; height: auto; object-fit: contain; background: #fff; padding: 4px 10px; border-radius: 3px; flex-shrink: 0; }
+    .header-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
     .header-text h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
     .header-text p { font-size: 13px; opacity: 0.82; margin-top: 3px; }
     .header-text .permalink { font-size: 12px; opacity: 0.7; margin-top: 4px; }
-    .header-text .permalink a { color: #8FB8E8; text-decoration: none; }
+    .header-text .permalink a { color: #A8E6ED; text-decoration: none; }
     .header-text .permalink a:hover { text-decoration: underline; }
 
     .sub-bar {
@@ -46,7 +44,7 @@
       align-items: center;
       gap: 12px;
       flex-wrap: wrap;
-      border-bottom: 3px solid var(--tan);
+      border-bottom: 3px solid var(--teal);
     }
     .sub-bar label { color: rgba(255,255,255,0.85); font-size: 13px; white-space: nowrap; }
     .sub-bar input {
@@ -56,13 +54,13 @@
       background: #fff; color: var(--text);
     }
     .result-count { margin-left: auto; color: rgba(255,255,255,0.65); font-size: 12px; }
-    .btn-gold {
-      background: var(--tan); color: #fff;
+    .btn-teal {
+      background: var(--teal); color: #fff;
       border: none; border-radius: 4px;
       padding: 7px 15px; font-size: 12px; font-weight: 600;
       cursor: pointer; white-space: nowrap;
     }
-    .btn-gold:hover { background: var(--tan2); }
+    .btn-teal:hover { background: var(--teal2); }
 
     main { max-width: 1200px; margin: 0 auto; padding: 28px 32px; }
 
@@ -81,7 +79,7 @@
       align-items: stretch;
     }
     .card-badge {
-      background: var(--tan);
+      background: var(--red);
       color: #fff;
       font-weight: 900;
       font-size: 13px;
@@ -103,29 +101,30 @@
       font-size: 11px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 0.06em;
     }
-    tbody tr:nth-child(even) { background: #f5faf6; }
+    tbody tr:nth-child(even) { background: #f5f9fa; }
     tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
 
     .tag {
       display: inline-block; padding: 2px 9px;
       border-radius: 12px; font-size: 11px; font-weight: 600;
-      background: var(--tan); color: #fff;
+      background: var(--teal); color: #fff;
       margin: 1px 2px;
     }
-    .tag.blue   { background: var(--blue); }
-    .tag.purple { background: var(--purple); }
     .tag.red    { background: var(--red); }
-    .tag.green  { background: var(--navy); }
+    .tag.navy   { background: var(--navy2); }
+    .tag.muted  { background: var(--muted); }
+
+    .region-badge { display: inline-block; background: var(--red); color: #fff; font-weight: 800; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 6px; white-space: nowrap; }
 
     .section-heading {
       font-size: 16px; font-weight: 700;
       color: var(--navy);
-      border-bottom: 2px solid var(--tan);
+      border-bottom: 2px solid var(--teal);
       padding-bottom: 6px; margin-bottom: 14px;
     }
 
     .hidden { display: none !important; }
-    a { color: var(--blue); text-decoration: none; }
+    a { color: var(--navy2); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
     @media print {
@@ -138,11 +137,11 @@
 <body>
 
   <header>
-    <img class="header-logo" src="ED-DEV-L.png" alt="Office of Educator Development" />
+    <img class="header-logo" src="ARIC_L.png" alt="ARIC" />
     <div class="header-text">
-      <h1>Educator Development</h1>
-      <p>Office of Educator Development &nbsp;&middot;&nbsp; Alabama State Department of Education</p>
-      <p class="permalink">Always available at <a href="https://documentrepositorypublicfacing.github.io/2026/PL-Template.html" target="_blank">bit.ly/eddevtemplate</a></p>
+      <h1>ARIC</h1>
+      <p>Alabama Regional Inservice Centers &nbsp;&middot;&nbsp; Format Reference</p>
+      <p class="permalink">Always available at <a href="https://documentrepositorypublicfacing.github.io/2026/ARIC-Template.html" target="_blank">bit.ly/ARICtemplate</a></p>
     </div>
   </header>
 
@@ -150,13 +149,13 @@
     <label for="search">Search:</label>
     <input id="search" type="text" placeholder="Filter…" />
     <span class="result-count" id="result-count"></span>
-    <button class="btn-gold" onclick="window.print()">Print / Save PDF</button>
+    <button class="btn-teal" onclick="window.print()">Print / Save PDF</button>
   </div>
 
   <main>
 
-    <p style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--tan);border-radius:4px;padding:10px 14px;font-size:12.5px;color:var(--muted);margin-bottom:20px;">
-      <strong>Format reference only</strong> — this page is a lorem-ipsum layout mockup showing the Educator Development document style (navy/tan, card + table layout). It is not a real document. Want to publish something like this yourself? See the <a href="Publishing-Documents-to-GitHub.html" target="_blank">GitHub publishing walkthrough</a> (<a href="https://documentrepositorypublicfacing.github.io/2026/Publishing-Documents-to-GitHub.html" target="_blank">bit.ly/GitHubwalkthrough</a>).
+    <p style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--teal);border-radius:4px;padding:10px 14px;font-size:12.5px;color:var(--muted);margin-bottom:20px;">
+      <strong>Format reference only</strong> — this page is a lorem-ipsum layout mockup showing the ARIC document style (navy/teal/red, card + table layout). It is not a real document. Want to publish something like this yourself? See the <a href="Publishing-Documents-to-GitHub.html" target="_blank">GitHub publishing walkthrough</a> (<a href="https://documentrepositorypublicfacing.github.io/2026/Publishing-Documents-to-GitHub.html" target="_blank">bit.ly/GitHubwalkthrough</a>).
     </p>
 
     <p class="section-heading">Section Heading</p>
@@ -185,26 +184,28 @@
 
     <div class="card">
       <div class="card-header">
-        <h2>Sample Data Table</h2>
+        <h2>Sample Regional Schedule</h2>
       </div>
       <div class="card-body" style="padding:0;">
         <table>
           <thead>
-            <tr><th>Date</th><th>Session Title</th><th>Presenter</th><th>Location</th><th>Status</th></tr>
+            <tr><th>Date</th><th>Session Title</th><th>Presenter</th><th>Region</th><th>Status</th></tr>
           </thead>
           <tbody>
-            <tr><td>Jan 14</td><td>Lorem Ipsum Fundamentals</td><td>A. Consectetur</td><td>Region 5 RIC</td><td><span class="tag green">Complete</span></td></tr>
-            <tr><td>Feb 3</td><td>Adipiscing Elit Workshop</td><td>B. Eiusmod</td><td>Region 2 RIC</td><td><span class="tag green">Complete</span></td></tr>
-            <tr><td>Mar 12</td><td>Sed Do Tempor — Advanced</td><td>C. Laboris</td><td>Virtual</td><td><span class="tag blue">Scheduled</span></td></tr>
-            <tr><td>Apr 9</td><td>Ullamco Commodo Practicum</td><td>D. Aliquip</td><td>Region 8 RIC</td><td><span class="tag blue">Scheduled</span></td></tr>
-            <tr><td>May 21</td><td>Duis Aute Irure — Leadership</td><td>E. Reprehenderit</td><td>Region 3 RIC</td><td><span class="tag purple">Pending</span></td></tr>
-            <tr><td>Jun 4</td><td>Voluptate Velit Symposium</td><td>F. Cillum</td><td>TBD</td><td><span class="tag red">TBD</span></td></tr>
+            <tr><td>Jan 14</td><td>Lorem Ipsum Fundamentals</td><td>A. Consectetur</td><td><span class="region-badge">R5</span>Region 5 RIC</td><td><span class="tag navy">Complete</span></td></tr>
+            <tr><td>Feb 3</td><td>Adipiscing Elit Workshop</td><td>B. Eiusmod</td><td><span class="region-badge">R2</span>Region 2 RIC</td><td><span class="tag navy">Complete</span></td></tr>
+            <tr><td>Mar 12</td><td>Sed Do Tempor — Advanced</td><td>C. Laboris</td><td><span class="region-badge">V</span>Virtual</td><td><span class="tag">Scheduled</span></td></tr>
+            <tr><td>Apr 9</td><td>Ullamco Commodo Practicum</td><td>D. Aliquip</td><td><span class="region-badge">R8</span>Region 8 RIC</td><td><span class="tag">Scheduled</span></td></tr>
+            <tr><td>May 21</td><td>Duis Aute Irure — Leadership</td><td>E. Reprehenderit</td><td><span class="region-badge">R3</span>Region 3 RIC</td><td><span class="tag red">Pending</span></td></tr>
+            <tr><td>Jun 4</td><td>Voluptate Velit Symposium</td><td>F. Cillum</td><td><span class="region-badge">?</span>TBD</td><td><span class="tag muted">TBD</span></td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
   </main>
+
+  <footer style="text-align:center;padding:20px 32px;font-size:12px;color:var(--muted);border-top:1px solid var(--border);margin-top:8px;">ARIC — Alabama Regional Inservice Centers</footer>
 
   <script>
     const searchInput = document.getElementById('search');

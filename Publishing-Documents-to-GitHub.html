@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publishing Documents to GitHub — A Walkthrough</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --dark:    #24292F;
+      --dark2:   #32383F;
+      --blue:    #0969DA;
+      --blue2:   #0552A5;
+      --amber:   #9A6700;
+      --amberbg: #FFF8C5;
+      --red:     #CF222E;
+      --redbg:   #FFEBE9;
+      --bg:      #EEF2F6;
+      --border:  #C8D8E8;
+      --text:    #1A1A1A;
+      --muted:   #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    header { background: var(--dark); color: #fff; padding: 20px 32px; }
+    .header-text h1 { font-size: 22px; font-weight: 700; }
+    .header-text p { font-size: 13px; opacity: 0.82; margin-top: 4px; }
+    .header-text .permalink { font-size: 12px; opacity: 0.65; margin-top: 6px; }
+    .header-text .permalink a { color: #79C0FF; text-decoration: none; }
+
+    main { max-width: 860px; margin: 0 auto; padding: 28px 32px 48px; }
+
+    .lede { font-size: 15px; color: var(--muted); margin-bottom: 26px; }
+
+    .section-heading { font-size: 17px; font-weight: 700; color: var(--dark); border-bottom: 2px solid var(--blue); padding-bottom: 6px; margin: 32px 0 14px; }
+    .section-heading:first-of-type { margin-top: 0; }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.06); margin-bottom: 18px; }
+    .card-body { padding: 16px 18px; }
+    .card p { margin-bottom: 10px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+    .example-card { background: #fff; border: 1px solid var(--border); border-radius: 6px; padding: 16px 18px; text-align: center; }
+    .example-card .swatch { height: 8px; border-radius: 4px; margin-bottom: 12px; }
+    .example-card.aric .swatch { background: linear-gradient(90deg, #1B3A6B, #3AAFBB, #C0272D); }
+    .example-card.ed .swatch { background: linear-gradient(90deg, #1B2A5E, #C4A882); }
+    .example-card h3 { font-size: 14px; margin-bottom: 6px; }
+    .example-card p { font-size: 12.5px; color: var(--muted); margin-bottom: 12px; }
+    .example-card a.btn { display: inline-block; background: var(--dark); color: #fff; font-size: 12.5px; font-weight: 600; padding: 7px 16px; border-radius: 5px; text-decoration: none; }
+    .example-card a.btn:hover { background: var(--dark2); }
+
+    .steps { counter-reset: step; }
+    .step { position: relative; padding-left: 44px; margin-bottom: 30px; }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; left: 0; top: 0; width: 30px; height: 30px; background: var(--dark); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; }
+    .step h3 { font-size: 15.5px; color: var(--dark); margin-bottom: 8px; }
+    .step p { margin-bottom: 10px; }
+    .step ul, .step ol { margin: 8px 0 12px 20px; }
+    .step li { margin-bottom: 4px; }
+
+    .callout { border-radius: 5px; padding: 12px 15px; font-size: 13px; margin: 12px 0; }
+    .callout.warn { background: var(--amberbg); border-left: 4px solid var(--amber); border-radius: 0 5px 5px 0; }
+    .callout.warn strong { color: var(--amber); }
+    .callout.info { background: #DDF4FF; border-left: 4px solid var(--blue); border-radius: 0 5px 5px 0; }
+    .callout.info strong { color: var(--blue2); }
+    .callout.danger { background: var(--redbg); border-left: 4px solid var(--red); border-radius: 0 5px 5px 0; }
+    .callout.danger strong { color: var(--red); }
+
+    .wire { background: #F6F8FA; border: 1px solid var(--border); border-radius: 6px; padding: 16px; margin: 14px 0; }
+    .wire-caption { font-size: 11px; color: var(--muted); text-align: center; margin-top: 8px; font-style: italic; }
+    .wire svg { display: block; margin: 0 auto; max-width: 100%; height: auto; }
+
+    footer { text-align: center; padding: 24px 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 20px; }
+    footer a { color: var(--blue); }
+
+    a { color: var(--blue); }
+    code { background: #F0F2F4; padding: 1px 5px; border-radius: 3px; font-size: 12.5px; font-family: Consolas, monospace; }
+
+    @media (max-width: 620px) {
+      .example-grid { grid-template-columns: 1fr; }
+      main { padding: 20px 16px 40px; }
+    }
+    @media print { body { background: #fff; } .card, .example-card, .wire { box-shadow: none; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-text">
+    <h1>Publishing Documents to GitHub</h1>
+    <p>A general walkthrough for putting a public-facing HTML page online, free, using GitHub Pages</p>
+    <p class="permalink">Share this guide at <a href="https://documentrepositorypublicfacing.github.io/2026/Publishing-Documents-to-GitHub.html">bit.ly/GitHubwalkthrough</a></p>
+  </div>
+</header>
+
+<main>
+
+  <p class="lede">This is the same method behind ARIC's own public resource pages (staff directories, schedules, help guides). It costs nothing, takes about fifteen minutes to set up the first time, and after that, publishing a new or updated document is just a file upload.</p>
+
+  <p class="section-heading">Start with a formatting example</p>
+
+  <div class="card">
+    <div class="card-body">
+      <p>Before building your own page, look at one of the two format examples below. Each is a real, working layout filled with placeholder (lorem ipsum) text — not a real document.</p>
+      <p>The fastest way to build your own: feed your AI assistant (Copilot, Gemini, Claude, whatever your institution provides) the example page's HTML, your logo file, and your actual content, and ask it to match the example's layout and color scheme using your logo and text instead. You'll spend far less time fighting with formatting by hand.</p>
+    </div>
+  </div>
+
+  <div class="example-grid">
+    <div class="example-card aric">
+      <div class="swatch"></div>
+      <h3>ARIC-style example</h3>
+      <p>Navy / teal / red. Card-and-table layout used for ARIC schedules, directories, and key-date pages.</p>
+      <a class="btn" href="ARIC-Template.html" target="_blank">View example</a>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px;"><a href="https://documentrepositorypublicfacing.github.io/2026/ARIC-Template.html" target="_blank">bit.ly/ARICtemplate</a></p>
+    </div>
+    <div class="example-card ed">
+      <div class="swatch"></div>
+      <h3>Educator Development-style example</h3>
+      <p>Navy / tan. Card-and-table layout used for Office of Educator Development guides.</p>
+      <a class="btn" href="PL-Template.html" target="_blank">View example</a>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px;"><a href="https://documentrepositorypublicfacing.github.io/2026/PL-Template.html" target="_blank">bit.ly/eddevtemplate</a></p>
+    </div>
+  </div>
+
+  <div class="callout info"><strong>Tip:</strong> Feed the bit.ly link for whichever example you picked directly into your preferred AI assistant, along with your logo file and your actual content, and ask it to match that layout and color scheme.</div>
+
+  <p class="section-heading">Step 1 &mdash; Create a GitHub account</p>
+
+  <div class="steps">
+    <div class="step">
+      <h3>Sign up at github.com</h3>
+      <p>Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> and create a free account with an email address, a password, and a username.</p>
+
+      <div class="wire">
+        <svg viewBox="0 0 640 220" role="img" aria-label="Illustrative wireframe of a sign-up form">
+          <rect x="0" y="0" width="640" height="220" fill="#ffffff" stroke="#C8D8E8"/>
+          <rect x="20" y="16" width="600" height="30" fill="#24292F"/>
+          <circle cx="40" cy="31" r="9" fill="#ffffff"/>
+          <rect x="60" y="24" width="90" height="14" rx="2" fill="#8B949E"/>
+          <text x="270" y="80" font-family="Segoe UI, Arial" font-size="15" fill="#1A1A1A" font-weight="700">Create your account</text>
+          <rect x="220" y="98" width="200" height="26" rx="4" fill="#F6F8FA" stroke="#C8D8E8"/>
+          <text x="228" y="115" font-family="Segoe UI, Arial" font-size="11" fill="#8B949E">Email address</text>
+          <rect x="220" y="132" width="200" height="26" rx="4" fill="#F6F8FA" stroke="#C8D8E8"/>
+          <text x="228" y="149" font-family="Segoe UI, Arial" font-size="11" fill="#8B949E">Password</text>
+          <rect x="220" y="166" width="200" height="26" rx="4" fill="#F6F8FA" stroke="#C8D8E8"/>
+          <text x="228" y="183" font-family="Segoe UI, Arial" font-size="11" fill="#8B949E">Username</text>
+          <rect x="260" y="196" width="120" height="18" rx="9" fill="#0969DA"/>
+          <text x="320" y="209" font-family="Segoe UI, Arial" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">CREATE ACCOUNT</text>
+        </svg>
+        <p class="wire-caption">Illustrative wireframe — not an actual screenshot of github.com</p>
+      </div>
+
+      <div class="callout warn">
+        <strong>Name it generically, not personally.</strong> Skip a username tied to one person (e.g. <code>jsmith-ric5</code>). RIC directors and coordinators change roles, and whoever owns this account controls every page published under it. Use something tied to the program or center instead — e.g. <code>region5ric</code>, <code>[center]resources</code>, or a shared department name — so the account and its password can be documented and handed off cleanly to a successor or a colleague, the same way you'd hand off a shared inbox.
+      </div>
+
+      <div class="callout danger">
+        <strong>Check your university's branding rules before you publish anything.</strong> A GitHub Pages site is a public website. If it will carry your university's name, seal, wordmark, or official colors, run it past your institution's communications or brand office first, the same as you would for any other public-facing site. This is especially worth doing before your first upload — it's much easier to check up front than to redo it later.
+      </div>
+    </div>
+
+    <div class="step">
+      <h3>Verify your email</h3>
+      <p>GitHub will send a confirmation code or link — verify it before continuing. Store the account's login (username, password, and recovery email) somewhere your team already keeps shared credentials, not just in one person's head or personal inbox.</p>
+    </div>
+  </div>
+
+  <p class="section-heading">Step 2 &mdash; Create a repository</p>
+
+  <div class="steps" style="counter-reset: step 2;">
+    <div class="step">
+      <h3>Click "New" to start a repository</h3>
+      <p>A repository ("repo") is just a folder that lives on GitHub. Give it a clear, generic name that matches your account's purpose — e.g. <code>region5-resources</code> or <code>2026</code> for a year-based document set.</p>
+
+      <div class="wire">
+        <svg viewBox="0 0 640 210" role="img" aria-label="Illustrative wireframe of a new repository form">
+          <rect x="0" y="0" width="640" height="210" fill="#ffffff" stroke="#C8D8E8"/>
+          <rect x="20" y="16" width="600" height="30" fill="#24292F"/>
+          <rect x="540" y="22" width="60" height="18" rx="3" fill="#238636"/>
+          <text x="570" y="35" font-family="Segoe UI, Arial" font-size="9" fill="#ffffff" text-anchor="middle" font-weight="700">+ New</text>
+          <text x="220" y="76" font-family="Segoe UI, Arial" font-size="14" fill="#1A1A1A" font-weight="700">Create a new repository</text>
+          <rect x="220" y="90" width="260" height="26" rx="4" fill="#F6F8FA" stroke="#C8D8E8"/>
+          <text x="228" y="107" font-family="Segoe UI, Arial" font-size="11" fill="#8B949E">Repository name</text>
+          <circle cx="230" cy="138" r="6" fill="#0969DA"/>
+          <text x="244" y="142" font-family="Segoe UI, Arial" font-size="11" fill="#1A1A1A" font-weight="700">Public</text>
+          <text x="290" y="142" font-family="Segoe UI, Arial" font-size="10" fill="#8B949E">(required for free Pages hosting)</text>
+          <circle cx="230" cy="158" r="6" fill="none" stroke="#8B949E"/>
+          <text x="244" y="162" font-family="Segoe UI, Arial" font-size="11" fill="#8B949E">Private</text>
+          <rect x="220" y="178" width="150" height="18" rx="9" fill="#238636"/>
+          <text x="295" y="191" font-family="Segoe UI, Arial" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">Create repository</text>
+        </svg>
+        <p class="wire-caption">Illustrative wireframe — not an actual screenshot of github.com</p>
+      </div>
+
+      <div class="callout info"><strong>Keep it Public.</strong> Free GitHub Pages hosting requires a public repository. Since these are meant to be public resource pages anyway, that's not a concession — that's the point.</div>
+    </div>
+  </div>
+
+  <p class="section-heading">Step 3 &mdash; Upload your files</p>
+
+  <div class="steps" style="counter-reset: step 3;">
+    <div class="step">
+      <h3>Add your HTML files (and any logos or images they reference)</h3>
+      <p>Inside the repository, use <strong>Add file → Upload files</strong>, then drag your finished HTML page — and any image files it points to, like your logo — into the browser window. Write a short note describing the change, then commit.</p>
+
+      <div class="wire">
+        <svg viewBox="0 0 640 190" role="img" aria-label="Illustrative wireframe of a file upload screen">
+          <rect x="0" y="0" width="640" height="190" fill="#ffffff" stroke="#C8D8E8"/>
+          <rect x="20" y="16" width="600" height="30" fill="#24292F"/>
+          <rect x="500" y="22" width="100" height="18" rx="3" fill="#30363D"/>
+          <text x="550" y="35" font-family="Segoe UI, Arial" font-size="9" fill="#ffffff" text-anchor="middle">Add file &#9662;</text>
+          <rect x="60" y="66" width="520" height="86" rx="6" fill="#F6F8FA" stroke="#8B949E" stroke-dasharray="6,4"/>
+          <text x="320" y="105" font-family="Segoe UI, Arial" font-size="12" fill="#57606A" text-anchor="middle">Drag files here to add them to your repository</text>
+          <text x="320" y="124" font-family="Segoe UI, Arial" font-size="10" fill="#8B949E" text-anchor="middle">or choose your files</text>
+          <rect x="460" y="164" width="120" height="18" rx="9" fill="#238636"/>
+          <text x="520" y="177" font-family="Segoe UI, Arial" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">Commit changes</text>
+        </svg>
+        <p class="wire-caption">Illustrative wireframe — not an actual screenshot of github.com</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-heading">Step 4 &mdash; Turn on GitHub Pages</p>
+
+  <div class="steps" style="counter-reset: step 4;">
+    <div class="step">
+      <h3>Point GitHub at your files</h3>
+      <p>Open the repository's <strong>Settings</strong> tab, then <strong>Pages</strong> in the left sidebar. Under "Build and deployment," set <strong>Source</strong> to "Deploy from a branch," then set the branch to <code>main</code> and the folder to <code>/ (root)</code>. Save.</p>
+
+      <div class="wire">
+        <svg viewBox="0 0 640 230" role="img" aria-label="Illustrative wireframe of the GitHub Pages settings screen">
+          <rect x="0" y="0" width="640" height="230" fill="#ffffff" stroke="#C8D8E8"/>
+          <rect x="20" y="16" width="600" height="30" fill="#24292F"/>
+          <text x="40" y="35" font-family="Segoe UI, Arial" font-size="10" fill="#ffffff">Settings</text>
+          <rect x="20" y="56" width="130" height="150" fill="#F6F8FA" stroke="#C8D8E8"/>
+          <text x="34" y="78" font-family="Segoe UI, Arial" font-size="10" fill="#57606A">General</text>
+          <rect x="20" y="94" width="130" height="20" fill="#DDF4FF"/>
+          <text x="34" y="108" font-family="Segoe UI, Arial" font-size="10" fill="#0969DA" font-weight="700">Pages</text>
+          <text x="34" y="130" font-family="Segoe UI, Arial" font-size="10" fill="#57606A">Collaborators</text>
+          <text x="170" y="80" font-family="Segoe UI, Arial" font-size="13" fill="#1A1A1A" font-weight="700">GitHub Pages</text>
+          <text x="170" y="98" font-family="Segoe UI, Arial" font-size="10" fill="#57606A">Build and deployment</text>
+          <rect x="170" y="108" width="140" height="24" rx="4" fill="#F6F8FA" stroke="#8B949E"/>
+          <text x="178" y="124" font-family="Segoe UI, Arial" font-size="10" fill="#1A1A1A">Deploy from a branch &#9662;</text>
+          <rect x="170" y="140" width="90" height="24" rx="4" fill="#F6F8FA" stroke="#8B949E"/>
+          <text x="178" y="156" font-family="Segoe UI, Arial" font-size="10" fill="#1A1A1A">main &#9662;</text>
+          <rect x="266" y="140" width="90" height="24" rx="4" fill="#F6F8FA" stroke="#8B949E"/>
+          <text x="274" y="156" font-family="Segoe UI, Arial" font-size="10" fill="#1A1A1A">/ (root) &#9662;</text>
+          <rect x="170" y="176" width="60" height="18" rx="9" fill="#238636"/>
+          <text x="200" y="189" font-family="Segoe UI, Arial" font-size="10" fill="#ffffff" text-anchor="middle" font-weight="700">Save</text>
+          <rect x="170" y="204" width="330" height="18" rx="3" fill="#DAFBE1" stroke="#238636"/>
+          <text x="178" y="217" font-family="Segoe UI, Arial" font-size="9.5" fill="#0F5A28">&#10003; Your site is live at yourname.github.io/repo-name/</text>
+        </svg>
+        <p class="wire-caption">Illustrative wireframe — not an actual screenshot of github.com</p>
+      </div>
+
+      <p>Give it a minute or two after saving. Your page will be reachable at:</p>
+      <p style="text-align:center;"><code>https://&lt;your-username&gt;.github.io/&lt;your-repo-name&gt;/&lt;your-file&gt;.html</code></p>
+    </div>
+  </div>
+
+  <p class="section-heading">Step 5 &mdash; Share and maintain the link</p>
+
+  <div class="steps" style="counter-reset: step 5;">
+    <div class="step">
+      <h3>Shorten it, and know how to update it</h3>
+      <ul>
+        <li>Run the long GitHub Pages URL through a link shortener (e.g. bit.ly) so it's easy to print, say aloud, or put on a flyer.</li>
+        <li>To update the page later, go back into the repository and upload a new version of the file with the same name — it overwrites the old one and the short link keeps working.</li>
+        <li>Document the account's login and the repository name somewhere your team already keeps shared records, so the next person doesn't have to start over.</li>
+      </ul>
+    </div>
+  </div>
+
+</main>
+
+<footer>Alabama State Department of Education &mdash; general guide, not tied to any single office or program</footer>
+
+</body>
+</html>
