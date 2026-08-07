@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ARIC Accountability Standards — Proposed Revision (Redline)</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<style>
+  :root {
+    --navy:  #1B3A6B;
+    --navy2: #254E91;
+    --teal:  #3AAFBB;
+    --red:   #C0272D;
+    --bg:    #EEF2F6;
+    --border:#C8D8E8;
+    --text:  #1A1A1A;
+    --muted: #4A5568;
+    --del-bg: #FDE8E8;
+    --del-text: #B22234;
+    --ins-bg: #E8F0FE;
+    --ins-text: #1B3A6B;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; min-height: 100vh; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.55; }
+
+  header { background: var(--navy); color: #fff; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  .header-logo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+  .header-text h1 { font-size: 21px; font-weight: 700; }
+  .header-text .sub { font-size: 13px; opacity: 0.85; margin-top: 3px; }
+  .header-text .note { font-size: 11.5px; opacity: 0.65; margin-top: 4px; }
+  .header-text .permalink { font-size: 11.5px; opacity: 0.7; margin-top: 4px; }
+  .header-text .permalink a { color: #fff; text-decoration: underline; }
+
+  main { max-width: 1040px; margin: 0 auto; padding: 28px 32px 60px; }
+
+  .intro { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 18px 22px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .intro p { color: var(--muted); font-size: 13.5px; margin-bottom: 8px; }
+  .intro p:last-child { margin-bottom: 0; }
+
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 18px; margin-bottom: 20px; font-size: 12.5px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .legend-item { display: flex; align-items: center; gap: 7px; }
+  .legend-swatch { display: inline-block; padding: 1px 8px; border-radius: 3px; font-size: 12px; }
+  .legend .del-sample { background: var(--del-bg); color: var(--del-text); text-decoration: line-through; }
+  .legend .ins-sample { background: var(--ins-bg); color: var(--ins-text); text-decoration: underline; font-weight: 600; }
+
+  .toolbar { display: flex; align-items: center; gap: 10px; margin-bottom: 22px; }
+  .toolbar label { display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 8px 16px; font-size: 12.8px; font-weight: 600; color: var(--navy); cursor: pointer; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .toolbar input { accent-color: var(--navy); width: 15px; height: 15px; }
+  .jump-count { font-size: 12px; color: var(--muted); }
+
+  h2.section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #fff; background: var(--navy); margin: 30px 0 14px; padding: 9px 16px; border-radius: 6px; border-left: 5px solid var(--teal); }
+  h2.section-title:first-of-type { margin-top: 0; }
+
+  .standard-box { background: #fff; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 14px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .standard-box.changed { border-left: 4px solid var(--red); }
+  .standard-header { background: #F0F4F9; padding: 8px 16px; font-weight: 700; font-size: 13px; color: var(--navy); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .changed-badge { background: var(--red); color: #fff; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 8px; border-radius: 10px; }
+
+  .standard-body { display: grid; grid-template-columns: 62% 38%; }
+  .standard-left { padding: 14px 18px; border-right: 1px solid var(--border); font-size: 13px; }
+  .standard-left p { margin-bottom: 8px; }
+  .standard-left p:last-child { margin-bottom: 0; }
+  .standard-left ol, .standard-left ul { margin: 6px 0 8px 22px; }
+  .standard-left li { margin-bottom: 5px; }
+  .standard-right { padding: 14px 18px; background: #FAFBFD; font-size: 12.3px; color: var(--muted); }
+  .doc-label { font-weight: 800; color: var(--navy); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .standard-right ul { margin-left: 16px; }
+  .standard-right li { margin-bottom: 5px; }
+  .no-doc { color: #B0B8C4; font-style: italic; }
+
+  .del { background: var(--del-bg); color: var(--del-text); text-decoration: line-through; padding: 0 2px; border-radius: 2px; }
+  .ins { background: var(--ins-bg); color: var(--ins-text); text-decoration: underline; font-weight: 600; padding: 0 2px; border-radius: 2px; }
+
+  body.changes-only .standard-box:not(.changed) { display: none; }
+
+  footer { text-align: center; padding: 24px 32px; font-size: 12px; color: var(--muted); border-top: 1px solid var(--border); margin-top: 28px; }
+
+  @media (max-width: 720px) {
+    .standard-body { grid-template-columns: 1fr; }
+    .standard-left { border-right: none; border-bottom: 1px solid var(--border); }
+    header { padding: 14px 16px; }
+    .header-logo { width: 50px; height: 50px; }
+    .header-text h1 { font-size: 17px; }
+    main { padding: 16px; }
+  }
+  @media print {
+    body { background: #fff; }
+    .toolbar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img class="header-logo" src="ARIC_L.png" alt="ARIC Logo" />
+  <div class="header-text">
+    <h1>ARIC Accountability Standards — Proposed Revision</h1>
+    <p class="sub">Alabama Regional Inservice Centers &nbsp;&middot;&nbsp; Current (April 2026) vs. Proposed (August 2026)</p>
+    <p class="note">Prepared for stakeholder committee review, August 2026 &nbsp;&middot;&nbsp; Draft v0.1</p>
+    <p class="permalink">Always available at <a href="https://bit.ly/standardsrev-v01" target="_blank">bit.ly/standardsrev-v01</a></p>
+  </div>
+</header>
+
+<main>
+
+  <div class="intro">
+    <p>This page shows the ARIC Accountability Standards as currently drafted (April 2026) alongside the proposed revisions (August 2026), built from RIC director feedback collected via a June–July 2026 survey. Changed language is marked inline: <span class="del-sample-inline">struck-through text</span> is being removed, <span class="ins-sample-inline">underlined text</span> is being added. Everything else is unchanged.</p>
+    <p>7 of the standards' 22 total items were revised. Use the toggle below to see only the changed standards, or view the full document.</p>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-swatch del-sample">removed text</span></div>
+    <div class="legend-item"><span class="legend-swatch ins-sample">added text</span></div>
+    <div class="legend-item"><span class="changed-badge">REVISED</span><span style="color:var(--muted)">marks a standard with at least one change</span></div>
+  </div>
+
+  <div class="toolbar">
+    <label><input type="checkbox" id="showAllToggle" /> Show only changed standards</label>
+    <span class="jump-count" id="changeCount"></span>
+  </div>
+
+  <h2 class="section-title">Governing Board &amp; Director</h2>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard I: Board Composition</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. The composition of each governing board shall comply with the following schedule of membership categories and specific numerical representations:</p>
+        <p>B. Governing boards whose service area is comprised of more than 12 school districts may have representation from classroom teachers and administrators from each of the districts in the service area. The number of teachers or administrators shall be increased proportionally (two teachers for each administrator) to ensure that all school districts are represented. Board members shall serve staggered terms of three years and shall be eligible for one reappointment term.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>A list of board members by name, membership category, and term of office submitted to ALSDE.</li>
+          <li>Sign-in sheets from the three governing board meetings submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard II: Board Appointment and Meetings</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Initial appointments to board membership and/or reappointments to board membership shall be made by official resolution(s) of incumbent governing boards in duly constituted meetings. Nominations for board membership shall be solicited equitably from local education associations, local superintendents, In-Service Center Directors, and the State Superintendent of Education.</p>
+        <p>B. Each governing board shall conduct a minimum of three (3) meetings per calendar year.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>All correspondence related to nominations for board membership submitted to ALSDE.</li>
+          <li>Designated meeting dates submitted to ALSDE 30 days prior to actual meeting.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard III: Board Member Orientation and Professional Learning <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. All new board members shall participate in orientation/training to become acquainted with the ARIC Accountability Standards as well as the specific goals, projects, and programming of the relevant ARIC.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li><span class="del">Documentation of board member orientation participation submitted to ALSDE.</span> <span class="ins">Documentation of board member orientation participation (sign-in sheet or submission of orientation training materials) submitted to ALSDE.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard IV: Bylaws</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Each governing board shall develop and adopt official bylaws to which its internal structure and operation shall conform. Adopted bylaws must address election of board officers; term of officers; quorum for official business; committee structures and functions, if any; parliamentary procedures; and other issues and concerns as determined by incumbent boards. As specified in each governing board's bylaws, voting on decisions that must be made prior to the next governing board meeting may be conducted electronically.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Minutes from governing board meetings submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard V: Board Responsibilities</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Commensurate with statutory authority, each governing board shall fulfill the following responsibilities:</p>
+        <ol>
+          <li>In cooperation with the ALSDE and host institution, determine the policies for the operation of the center, including days and hours of operation;</li>
+          <li>Approve programs and activities that address needs as identified by needs assessments and/or student achievement data, and the plan to access the center's programs and services by its constituent schools and districts;</li>
+          <li>Review and acknowledge the in-service center's annual budget;</li>
+          <li>Delegate to the in-service center director the authority and responsibility for the daily operation of the center, including the development and maintenance of necessary records (financial and programmatic) and the coordination of programs and activities; and</li>
+          <li>Review the center's official report of the programs and trainings offered.</li>
+        </ol>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Results from the needs assessment from all LEAs submitted annually to ALSDE.</li>
+          <li>Documentation of alignment between programs/trainings and needs assessment results submitted annually to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard VI: Board Minutes</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Each in-service center must maintain accurate minutes of all board meetings and distribute minutes to board members in a timely fashion.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Minutes from the three governing board meetings submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard VII: Director</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Each regional in-service center shall have a full-time director. Current part-time directors shall be grandfathered in. The governing board chairperson and/or his/her designee must serve on the search committee and take part in the interview process as a voting member.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <p class="no-doc">None specified.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard VIII: Director Orientation and Professional Learning <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. <span class="del">All new in-service center directors shall receive orientation from a committee of current in-service center directors.</span> <span class="ins">All new in-service center directors shall receive orientation from a committee of current in-service center directors, assigned on a rotating basis so the responsibility does not fall consistently on the same directors.</span></p>
+        <p>B. All in-service center directors shall participate both individually and collectively in continuous improvement through professional learning and growth endeavors.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Documentation supporting the director's participation in continuous professional learning submitted annually to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard IX: Position Description</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. A position description for the center director shall be developed and approved by the governing board and the institution's appropriate official.</p>
+        <p>B. The in-service center director is an ex-officio member of the Governing Board.</p>
+        <p>C. The in-service center director shall serve as Executive Secretary for the governing board and shall perform administrative duties as determined by the board within the framework of personnel policies of the employing institution.</p>
+        <p>D. Directors are compensated in accordance with the established salary matrix.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>A copy of the approved position description submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard X: Annual Report <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. By December 1 of each year, each governing board shall approve and submit to the State Superintendent of Education and/or his/her designee an annual report of programs and activities including at least the following components:</p>
+        <ol>
+          <li><span class="del">Impact of the ARIC's programming on improving the skills of teachers and leaders across all professional learning initiatives provided;</span> <span class="ins">Evidence of the ARIC's impact on the growth and development of teachers and leaders — specifically their knowledge, skills, and practice — through targeted, high-quality professional learning that addresses regional needs, as demonstrated by the number and types of professional learning opportunities offered, participation rates, and participant satisfaction;</span></li>
+          <li>Quantitative and qualitative data for the number of programs, participants, and results of evaluations; and</li>
+          <li>Compliance with Accountability Standards as approved by the State Board of Education.</li>
+        </ol>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Annual reports submitted to ALSDE by December 1.</li>
+          <li>Report contains number of participants and evaluation results.</li>
+          <li>A reflective narrative describing improvement efforts submitted annually to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Programs</h2>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard I: Assessment</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Each in-service center shall review the performance of its service area schools in mathematics and reading/ELA on state assessments and utilize that information as a part of its pre-programming assessment.</p>
+        <p>B. In-service centers shall utilize additional data to determine the professional learning needs of the districts and schools in the service area as they relate to the improvement of student learning. The determination may include, but not be limited to: educator effectiveness data, formal needs assessment instruments, dialogue with districts and schools, summative student assessment data, feedback/observations from regional staff, and specific district/school requests.</p>
+        <p>C. Results from the professional learning needs assessment will be provided to each LEA.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Results from the needs assessment from all LEAs submitted annually to ALSDE.</li>
+          <li>Documentation supporting the use of multiple data sources submitted to ALSDE.</li>
+          <li>Documentation of alignment between programs/trainings and needs assessment results submitted annually to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard II: Programs <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Professional learning must address the needs identified as outlined in Standard I: Assessment.</p>
+        <p>B. <span class="del">The selection of professional learning opportunities will be guided by evidence-based practices and professional learning standards, consistent with applicable state legislation including ARI and OMI.</span> <span class="ins">The selection of professional learning opportunities will be guided by evidence-based practices and professional learning standards, consistent with applicable state legislation.</span></p>
+        <p>C. Centers shall maintain documentation demonstrating alignment between needs assessment results and program offerings.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Documentation of alignment between program offerings and needs assessment results (e.g., topic distribution charts, session alignment spreadsheets) submitted annually to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard III: Communication</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Information about the programs and services of the in-service center will be made available to the center's participating districts and will be posted electronically for open access. All trainings offered during the summer months will be posted digitally by April 15.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Electronic posting of summer trainings completed by April 15 each year.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard IV: ALSDE/Center Collaboration</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. The State Superintendent, or his/her designee, will appoint a member of the ALSDE to serve as a liaison who will provide the following coordination and support:</p>
+        <ul>
+          <li>Each in-service center director will ensure that ALSDE appointees have information regarding upcoming meetings as quickly as possible.</li>
+          <li>The State Superintendent or his/her designee and in-service center directors will strive to meet annually to discuss on-going work, possible additional collaborations, programmatic updates, and other relevant information.</li>
+        </ul>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>All collaboration efforts documented and submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Finance</h2>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard I: Budget <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. <span class="del">Each in-service center director shall submit to the ALSDE a prepared budget for the fiscal year. The governing board and the institution acting as fiscal agent prior to submission to the ALSDE for final approval by the Deputy State Superintendent of Education for Finance must approve the budget.</span> <span class="ins">Each in-service center director shall submit to the ALSDE a prepared budget for the fiscal year. The governing board and the institution acting as fiscal agent must review and acknowledge the budget prior to submission to the ALSDE for final approval by the Deputy State Superintendent of Education for Finance.</span></p>
+        <p>B. The budget shall include designated expenditure categories and amounts in compliance with the following schedule of line items:</p>
+        <ul>
+          <li>Salaries &amp; Benefits – includes actual salaries paid from the funds (indicate in FTE) and benefits provided.</li>
+          <li>Travel – in-state and out-of-state, with rates, purpose, and travelers indicated.</li>
+          <li>Consultants (contracted &amp; staff) – purpose of work and approximate contract amount.</li>
+          <li>Materials/Supplies – office supplies, books, postage, etc. Any single item purchase of $500 or more must be inventoried.</li>
+          <li>Equipment – any purchase of $5,000 or more must be inventoried.</li>
+          <li>Research/Evaluation – funds for research conducted for the benefit of ALSDE.</li>
+          <li>Indirect Cost – capped at 10%.</li>
+        </ul>
+        <p>C. <span class="del">Consultant honoraria amounts shall reflect the most recent board-approved rates. If the expertise or unique ability of a consultant requires a higher honorarium, the director must obtain governing board approval.</span> <span class="ins">Consultant honoraria amounts shall reflect the statewide rate of $400 per full day and $200 per half day. If the expertise or unique ability of a consultant requires a higher honorarium, or if the honorarium exceeds $5,000, the director must obtain governing board approval.</span></p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Expenditures submitted to ALSDE organized by designated categories.</li>
+          <li>Indirect cost calculations submitted with the budget to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard II: State Financial Accountability</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. The governing board must approve each instance in which center funds are utilized to finance the cost of client participation in out-of-state professional learning programs/conferences. In-service center funds shall not be authorized for use for schools or school systems other than those for whom state funds were appropriated.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Governing board approval documented and submitted to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box changed">
+    <div class="standard-header">Standard III: Financial Reports <span class="changed-badge">REVISED</span></div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. Quarterly Expenditure Reports are to be submitted to the ALSDE by the 30th day after the end of the quarter.</p>
+        <p>B. The End of Year Quarterly Report is to be submitted to the ALSDE by November 15.</p>
+        <p>C. <span class="del">Adjustments between expenditure line items are allowed providing the cumulative adjustment does not exceed 10% of the total amount budgeted unless it is paid for through university sources, as confirmed permissible by the ALSDE Finance Division.</span> <span class="ins">Adjustments between expenditure line items are allowed providing the cumulative adjustment does not exceed 10% of the total amount budgeted unless it is paid for through university sources.</span></p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <p class="no-doc">None specified.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard IV: Approving Authority</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. The State Superintendent of Education is the final approving authority for the center's budget.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <p class="no-doc">None specified.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard V: Funds Management</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. All funds allotted to the in-service centers will be receipted to a separate fund number and disbursed in accordance with fiscal policies approved by the chief financial officer of the university and the ALSDE.</p>
+        <p>B. A consultant whose salary is paid by in-service center funds may not receive an honorarium from center funds for conducting business for that center. This restriction does not prohibit an employee of one center from receiving a standard honorarium for providing consultant services for another center; however, the center employee must not be paid by the home center and the center being provided consultant services during the same period. Leave time must be requested while being paid for services to another center.</p>
+        <p>C. Payment of an honorarium to a program consultant is authorized and permissible only if services are rendered. In-service centers shall not use funds, directly or indirectly, to finance course credit, including the payment of stipends to be used for credit courses and/or tuition of any kind.</p>
+        <p>D. Director salaries are determined based on the teacher pay scale with established percentage increases, as set forth by the ALSDE.</p>
+        <p>E. Travel will be paid in accordance with state and institutional policy.</p>
+        <p>F. Persons designated to perform administrative duties resulting from institutional or agency involvement in official in-service center consortia shall not receive compensation from center funds beyond the regular annual contract salary paid by the institution or agency.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <p class="no-doc">None specified.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Research and Evaluation</h2>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard I: Research</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. As mandated in the original enabling legislation and as approved by the governing board, each in-service center shall serve as a data-gathering center for research and/or research collaborator in areas of public education.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <ul>
+          <li>Research/evaluation documentation submitted by December 1 to ALSDE.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="standard-box">
+    <div class="standard-header">Standard II: Evaluation</div>
+    <div class="standard-body">
+      <div class="standard-left">
+        <p>A. All in-service centers shall use a common evaluation process to gather evaluations of in-service center programs by program participants. Acceptable evaluation processes include common survey platforms (e.g., PowerSchool survey) or other instruments that satisfy this standard as clarified by the ALSDE. ARIC Needs Assessments may fulfill this standard where appropriate.</p>
+        <p>B. The State Department of Education will conduct an internal evaluation of the ARICs based solely on each center's compliance with the standards, to be conducted at a minimum of every five years.</p>
+        <p>C. An exit conference will be held upon completion of evaluation.</p>
+        <p>D. The final evaluation report will be shared with the director at least two weeks before results are shared publicly.</p>
+        <p>E. A corrective action plan for non-compliance will be developed and submitted to the ALSDE liaison within sixty days after the final evaluation report is received.</p>
+        <p>F. A corrective action plan review may be conducted six months after implementation.</p>
+        <p>G. Additional reviews may be conducted based on continued non-compliance.</p>
+        <p>H. Should the Alabama State Department of Education or Alabama State Board of Education determine an external evaluation of ARIC is necessary, such an evaluation will be based solely on the center's compliance with the standards herein specified and shall be conducted at a minimum of every five years. Funding for such evaluation to be paid by ALSDE as funds allow.</p>
+      </div>
+      <div class="standard-right">
+        <div class="doc-label">Required Documentation</div>
+        <p class="no-doc">None specified.</p>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>Alabama State Department of Education &nbsp;|&nbsp; Alabama Regional Inservice Centers &nbsp;|&nbsp; Never Stop Learning</footer>
+
+<script>
+  document.getElementById('showAllToggle').addEventListener('change', function() {
+    document.body.classList.toggle('changes-only', this.checked);
+  });
+  document.getElementById('changeCount').textContent =
+    document.querySelectorAll('.standard-box.changed').length + ' of ' +
+    document.querySelectorAll('.standard-box').length + ' standards revised';
+</script>
+
+<style>
+  .del-sample-inline { background: var(--del-bg); color: var(--del-text); text-decoration: line-through; padding: 0 3px; border-radius: 2px; }
+  .ins-sample-inline { background: var(--ins-bg); color: var(--ins-text); text-decoration: underline; font-weight: 600; padding: 0 3px; border-radius: 2px; }
+</style>
+
+</body>
+</html>
