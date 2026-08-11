@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TE, APLDS, ATGP &amp; LEADAlabama — 2026-2027 Implementation Procedures</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #243579;
+      --tan:     #C4A882;
+      --tan2:    #B09070;
+      --blue:    #1565C0;
+      --purple:  #6A1B9A;
+      --red:     #BF360C;
+      --bg:      #EEF2F6;
+      --border:  #C8D8E8;
+      --text:    #1A1A1A;
+      --muted:   #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    header {
+      background: var(--navy);
+      color: #fff;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .header-logo { max-width: 230px; width: auto; height: auto; object-fit: contain; background: #fff; padding: 4px 10px; border-radius: 3px; flex-shrink: 0; }
+    .header-text h1 { font-size: 21px; font-weight: 700; letter-spacing: 0.01em; line-height: 1.3; }
+    .header-text p { font-size: 13px; opacity: 0.82; margin-top: 3px; }
+    .header-text .permalink { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+    .header-text .permalink a { color: #8FB8E8; text-decoration: none; }
+    .header-text .permalink a:hover { text-decoration: underline; }
+
+    main { max-width: 980px; margin: 0 auto; padding: 28px 32px; }
+
+    .draft-banner {
+      background: #fdecea;
+      border: 2px solid var(--red);
+      border-radius: 6px;
+      padding: 18px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .draft-banner .draft-label {
+      background: var(--red);
+      color: #fff;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: 0.08em;
+      padding: 8px 18px;
+      border-radius: 4px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .draft-banner .draft-text {
+      font-size: 13px;
+      color: #7a1f10;
+      line-height: 1.6;
+    }
+    .draft-banner .draft-text strong { color: var(--red); }
+
+    .section-heading {
+      font-size: 11px; font-weight: 800; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--navy);
+      margin: 26px 0 10px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid var(--border);
+    }
+    .section-heading:first-of-type { margin-top: 0; }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      margin-bottom: 14px;
+    }
+    .card-header {
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: stretch;
+    }
+    .card-badge {
+      background: var(--tan);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 10px 14px;
+      display: flex; align-items: center;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .card-header h2 {
+      font-size: 14px; font-weight: 600;
+      padding: 10px 15px;
+      display: flex; align-items: center; line-height: 1.3;
+    }
+    .card-body { padding: 14px 20px; }
+    .card-body p { font-size: 13px; color: var(--muted); margin-bottom: 10px; line-height: 1.6; }
+    .card-body p:last-child { margin-bottom: 0; }
+
+    /* Calendar table */
+    .cal-card .card-header { background: var(--navy2); border-bottom: 3px solid var(--tan); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead th {
+      background: var(--navy); color: #fff;
+      padding: 9px 12px; text-align: left;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    tbody tr:nth-child(even) { background: #f6f8fb; }
+    tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    tbody tr:last-child td { border-bottom: none; }
+    .date-range { white-space: nowrap; font-weight: 600; color: var(--navy); }
+    .date-range .arrow { color: var(--tan2); font-weight: 400; margin: 0 3px; }
+
+    .tag {
+      display: inline-block; padding: 2px 9px;
+      border-radius: 12px; font-size: 11px; font-weight: 600;
+      color: #fff; margin: 1px 3px 1px 0;
+      white-space: nowrap;
+    }
+    .tag.blue   { background: var(--blue); }
+    .tag.purple { background: var(--purple); }
+    .tag.green  { background: var(--navy); }
+
+    .reason-list { list-style: none; padding: 0; margin: 10px 0 0; }
+    .reason-list li {
+      padding: 8px 0 8px 20px;
+      border-bottom: 1px solid #f0f0f0;
+      color: var(--muted);
+      font-size: 13px;
+      position: relative;
+    }
+    .reason-list li:last-child { border-bottom: none; }
+    .reason-list li::before {
+      content: "›";
+      position: absolute; left: 4px;
+      color: var(--tan); font-weight: 700; font-size: 15px;
+    }
+
+    .step-list { list-style: none; padding: 0; margin: 10px 0 0; }
+    .step-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-num {
+      background: var(--navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: 12px;
+      min-width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .note-box {
+      background: #e8f5e9;
+      border: 1px solid #a5d6a7;
+      border-left: 4px solid var(--navy);
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 12px 0 4px;
+      font-size: 13px;
+      color: #1b5e20;
+    }
+    .warning-box {
+      background: #fff8e1;
+      border: 1px solid #f9c846;
+      border-left: 4px solid var(--tan);
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 12px 0 4px;
+      font-size: 13px;
+      color: #5a4000;
+    }
+    .warning-box strong { color: #7a5200; }
+
+    .contact-grid { display: flex; flex-wrap: wrap; gap: 14px; }
+    .contact-item { flex: 1 1 260px; }
+    .contact-item .role { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--tan2); margin-bottom: 3px; }
+    .contact-item .name { font-weight: 700; color: var(--navy); font-size: 14px; }
+    .contact-item .detail { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+    .contact-item a { color: var(--blue); text-decoration: none; }
+    .contact-item a:hover { text-decoration: underline; }
+
+    footer {
+      text-align: center;
+      padding: 24px 32px 32px;
+      font-size: 12px;
+      color: #888;
+    }
+    footer a { color: #888; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img class="header-logo" src="ED-DEV-H-L.jpg" alt="Office of Educator Development" />
+    <div class="header-text">
+      <h1>TE, APLDS, ATGP &amp; LEADAlabama — 2026-2027 Implementation Procedures</h1>
+      <p>Office of Educator Development &nbsp;&middot;&nbsp; Alabama State Department of Education</p>
+      <p class="permalink">Permalink: <a href="https://documentrepositorypublicfacing.github.io/2026/TE-Implementation-2026-27.html" target="_blank">bit.ly/TEguidelines26-27</a></p>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="draft-banner">
+      <div class="draft-label">DRAFT</div>
+      <div class="draft-text">
+        This page is based on a <strong>draft</strong> ALSDE memorandum and has not been finalized. Content, dates, and procedures are subject to change before official release.
+      </div>
+    </div>
+
+    <p class="section-heading">2026&ndash;2027 Implementation Calendar</p>
+
+    <div class="card cal-card">
+      <div class="card-header">
+        <div class="card-badge">Calendar</div>
+        <h2>Key Steps, Windows &amp; Responsible Parties</h2>
+      </div>
+      <div class="card-body" style="padding:0;">
+        <table>
+          <thead>
+            <tr>
+              <th>Applies&nbsp;To</th>
+              <th>Step</th>
+              <th>Window</th>
+              <th>Responsible</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="tag blue">ATGP</span><span class="tag green">LEADAlabama</span></td>
+              <td>Self-Assessment</td>
+              <td class="date-range">7/1/2026<span class="arrow">&rarr;</span>10/1/2026</td>
+              <td>All Evaluatees</td>
+            </tr>
+            <tr>
+              <td><span class="tag purple">APLDS</span><span class="tag blue">ATGP</span><span class="tag green">LEADAlabama</span></td>
+              <td>Professional Learning Plan (PLP)</td>
+              <td class="date-range">7/1/2026<span class="arrow">&rarr;</span>10/1/2026</td>
+              <td>All Evaluatees and Evaluators</td>
+            </tr>
+            <tr>
+              <td><span class="tag purple">APLDS</span></td>
+              <td>Certification of Stipend Eligibility</td>
+              <td class="date-range">7/1/2026<span class="arrow">&rarr;</span>10/1/2026</td>
+              <td>All Evaluatees and Evaluators</td>
+            </tr>
+            <tr>
+              <td><span class="tag purple">APLDS</span><span class="tag blue">ATGP</span><span class="tag green">LEADAlabama</span></td>
+              <td>Evidence</td>
+              <td class="date-range">10/1/2026<span class="arrow">&rarr;</span>5/1/2027</td>
+              <td>All Evaluatees and Evaluators</td>
+            </tr>
+            <tr>
+              <td><span class="tag blue">ATGP</span></td>
+              <td>Teacher Observations (ATOT) &mdash; required<br><span style="color:var(--muted);font-weight:400;font-size:12px;">Professional Practice Diagnostic &mdash; optional</span></td>
+              <td class="date-range">10/1/2026<span class="arrow">&rarr;</span>5/1/2027</td>
+              <td>Teacher Observers</td>
+            </tr>
+            <tr>
+              <td><span class="tag blue">ATGP</span></td>
+              <td>Cognia Data Entry (ATOT Observations)</td>
+              <td class="date-range">10/1/2026<span class="arrow">&rarr;</span>5/31/2027</td>
+              <td>Teacher Observers</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p class="section-heading">2026&ndash;2027 District Options</p>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="warning-box" style="margin-top:0;margin-bottom:12px;">
+          <strong>Do this first:</strong> the superintendent or designee must select one of the three options below in the AIM Portal before any other step on the calendar &mdash; self-assessments, PLPs, evidence, or ATOT observations &mdash; can be completed.
+        </div>
+        <ol class="step-list">
+          <li>
+            <span class="step-num">1</span>
+            <span>Teachers self-assess on all ten Alabama Core Teaching Standards. All classroom teachers are observed using the Alabama Teacher Observation Tool (ATOT). District leaders self-assess on all LEADAlabama indicators. School administrators complete the APLDS Evaluation System.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Teachers self-assess on specific Alabama Core Teaching Standards determined by the district. All classroom teachers are observed using the ATOT. District leaders self-assess on the LEADAlabama indicators determined by the district. School administrators complete the APLDS Evaluation System.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>All classroom teachers are observed using the ATOT. School administrators complete the APLDS Evaluation System. Teachers and district leaders use the LEA-developed and/or adopted evaluation system. The LEA is responsible for storing and maintaining all evaluation system data.</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <p class="section-heading">Getting Set Up in ATOT</p>
+
+    <div class="card">
+      <div class="card-body">
+        <p>All information must be correct in the Education Directory (EdDir) and in the ATOT before observations begin.</p>
+        <ol class="step-list">
+          <li>
+            <span class="step-num">1</span>
+            <span>Confirm EdDir access rules are assigned correctly: school-level observers need <strong>TE App School Certifier</strong>; central-office reviewers/observers need <strong>TE App System Certifier</strong>.</span>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span>Log in to the <a href="https://aim.alsde.edu" target="_blank">AIM Portal</a>. The TE tile is generated directly from EdDir &mdash; if it isn&rsquo;t visible, EdDir information is inaccurate and the LEA EdDir Editor needs to update it.</span>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span>School administrators use the TE tile / roster management in AIM to verify instructors are assigned to the correct site and access rules.</span>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <span>Allow 24&ndash;48 hours for AIM Portal changes to sync to ATOT (and vice versa). The e-mail on file in ATOT must match AIM exactly.</span>
+          </li>
+          <li>
+            <span class="step-num">5</span>
+            <span>Confirm the teacher is listed in myJourney before conducting observations; add via Manage Users using the same name/e-mail as EdDir if missing.</span>
+          </li>
+        </ol>
+        <div class="warning-box">
+          <strong>EdDir/AIM issues:</strong> ALSDE Service Desk &mdash; 334-694-4777 or <a href="mailto:servicedesk@alsde.edu">servicedesk@alsde.edu</a>.
+        </div>
+        <div class="note-box">
+          <strong>ATOT/myJourney/Cognia issues:</strong> Cognia Client Care &mdash; <a href="https://alsde.onlinehelp.cognia.org/" target="_blank">alsde.onlinehelp.cognia.org</a> or 1-888-413-3669.
+        </div>
+      </div>
+    </div>
+
+    <p class="section-heading">Questions</p>
+
+    <div class="card">
+      <div class="card-body">
+        <div class="contact-grid">
+          <div class="contact-item">
+            <div class="role">APLDS Procedures</div>
+            <div class="name">Dr. Anna Shepherd-Jones</div>
+            <div class="detail"><a href="mailto:anna.jones@alsde.edu">anna.jones@alsde.edu</a></div>
+            <div class="detail">(334) 694-0785</div>
+          </div>
+          <div class="contact-item">
+            <div class="role">ATGP Procedures</div>
+            <div class="name">Dr. Mark Coleman</div>
+            <div class="detail"><a href="mailto:mark.coleman@alsde.edu">mark.coleman@alsde.edu</a></div>
+            <div class="detail">334-694-4886</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    Alabama State Department of Education &mdash; Office of Educator Development &mdash; <a href="https://documentrepositorypublicfacing.github.io/2026/TE-Implementation-2026-27.html">bit.ly/TEguidelines26-27</a>
+  </footer>
+
+</body>
+</html>
