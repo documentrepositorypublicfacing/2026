@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alabama Standards Library</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #243579;
+      --tan:     #C4A882;
+      --tan2:    #B09070;
+      --bg:      #EEF2F6;
+      --border:  #C8D8E8;
+      --text:   #1A1A1A;
+      --muted:  #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    header { background: var(--navy); color: #fff; padding: 18px 32px; display: flex; align-items: center; gap: 18px; }
+    .header-text h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    .header-text p { font-size: 13px; opacity: 0.82; margin-top: 3px; }
+    .header-text .permalink { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+    .header-text .permalink a { color: #5B9BD5; text-decoration: none; }
+    .header-text .permalink a:hover { text-decoration: underline; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 28px 32px; }
+
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+      margin-bottom: 22px;
+    }
+    .card-header {
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      align-items: stretch;
+    }
+    .card-badge {
+      background: var(--tan);
+      color: #fff;
+      font-weight: 900;
+      font-size: 13px;
+      padding: 10px 14px;
+      display: flex; align-items: center;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .card-header h2 {
+      font-size: 15px; font-weight: 600;
+      padding: 10px 15px;
+      display: flex; align-items: center; line-height: 1.3;
+    }
+    .card-body { padding: 0; }
+
+    /* Link rows */
+    .link-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      border-bottom: 1px solid #F0F0F0;
+    }
+    .link-row:last-child { border-bottom: none; }
+    .link-row:hover { background: #FAFCFA; }
+
+    .link-main { flex: 1; min-width: 0; }
+    .link-title {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+      text-decoration: none;
+      margin-bottom: 3px;
+    }
+    .link-title:hover { text-decoration: underline; color: var(--navy2); }
+    .link-desc {
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .link-url-block {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+    .link-url-text {
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'Consolas', 'Courier New', monospace;
+      background: #F3F7F4;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 4px 9px;
+      user-select: all;
+      cursor: text;
+    }
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .copy-btn:hover { background: var(--navy2); }
+    .copy-btn.copied {
+      background: #2E7D32;
+    }
+    .copy-label { line-height: 1; }
+
+    @media (max-width: 650px) {
+      .link-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .link-url-block { width: 100%; }
+      .link-url-text { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+    }
+
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #fff; }
+      .card { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-text">
+    <h1>Alabama Standards Library</h1>
+    <p>Core standards and frameworks for Alabama educators and school leaders</p>
+    <p class="permalink"><a href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-Library.html">https://bit.ly/ALstandardslib</a></p>
+  </div>
+</header>
+
+<main>
+
+  <div style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--tan);border-radius:6px;padding:14px 18px;margin-bottom:22px;font-size:13px;color:var(--muted);line-height:1.6;">
+    <strong style="color:var(--text);display:block;margin-bottom:4px;">About This Library</strong>
+    This page collects the foundational Alabama State Department of Education standards that underlie teacher and leader evaluation and professional learning &mdash; the Core Teaching Standards, the Standards for School Leadership, the Standards for Professional Learning, and the Educator Code of Ethics. Each links to its own page with the full standards text, nicely formatted for reading online. All documents are publicly available and may be freely shared.
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">STANDARDS</div>
+      <h2>Alabama Standards &amp; Frameworks</h2>
+    </div>
+    <div class="card-body">
+
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Core-Teaching-Standards.html" target="_blank" rel="noopener">Alabama Core Teaching Standards (ACTS)</a>
+          <div class="link-desc">Ala. Admin. Code r. 290-3-3-.03 &mdash; the foundational standards defining effective teaching practice in Alabama, and the basis for Alabama Teacher Growth Program (ATGP) evaluation indicators.</div>
+        </div>
+        <div class="link-url-block">
+          <span class="link-url-text">https://bit.ly/AL-TeachingStandards</span>
+          <button class="copy-btn" data-url="https://bit.ly/AL-TeachingStandards" title="Copy link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-for-School-Leadership.html" target="_blank" rel="noopener">Alabama Standards for School Leadership</a>
+          <div class="link-desc">Ala. Admin. Code r. 290-4-3-.04 (updated September 2024) &mdash; the 5 Domains of Principal Effectiveness that form the basis for APLDS evaluation indicators.</div>
+        </div>
+        <div class="link-url-block">
+          <span class="link-url-text">https://bit.ly/ALSchoolLeadStandards</span>
+          <button class="copy-btn" data-url="https://bit.ly/ALSchoolLeadStandards" title="Copy link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-for-Professional-Learning.html" target="_blank" rel="noopener">Alabama Standards for Professional Learning</a>
+          <div class="link-desc">Updated December 2024 &mdash; defines what constitutes high-quality, ALSDE-approved professional learning for Alabama educators. Full version and 1-pager.</div>
+        </div>
+        <div class="link-url-block">
+          <span class="link-url-text">https://bit.ly/AL-PLstandards</span>
+          <button class="copy-btn" data-url="https://bit.ly/AL-PLstandards" title="Copy link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Educator-Code-of-Ethics.html" target="_blank" rel="noopener">Alabama Educator Code of Ethics</a>
+          <div class="link-desc">The ALSDE Code of Ethics governing the conduct expected of all certified Alabama educators.</div>
+        </div>
+        <div class="link-url-block">
+          <span class="link-url-text">https://bit.ly/AL-EdEthics</span>
+          <button class="copy-btn" data-url="https://bit.ly/AL-EdEthics" title="Copy link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="copy-label">Copy</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="no-print" style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px;">District Leadership standards intentionally left off this library for now.</p>
+
+</main>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var url = btn.getAttribute('data-url');
+      navigator.clipboard.writeText(url).then(function() {
+        var label = btn.querySelector('.copy-label');
+        btn.classList.add('copied');
+        label.textContent = 'Copied!';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          label.textContent = 'Copy';
+        }, 2000);
+      }).catch(function() {
+        var span = btn.previousElementSibling;
+        if (span) {
+          var range = document.createRange();
+          range.selectNode(span);
+          window.getSelection().removeAllRanges();
+          window.getSelection().addRange(range);
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

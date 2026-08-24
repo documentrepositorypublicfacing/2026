@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alabama Standards for School Leadership</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #243579;
+      --tan:     #C4A882;
+      --tan2:    #B09070;
+      --bg:      #EEF2F6;
+      --border:  #C8D8E8;
+      --text:   #1A1A1A;
+      --muted:  #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    header { background: var(--navy); color: #fff; padding: 18px 32px; display: flex; align-items: center; gap: 18px; }
+    .header-text h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    .header-text p { font-size: 13px; opacity: 0.82; margin-top: 3px; }
+    .header-text .permalink { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+    .header-text .permalink a { color: #5B9BD5; text-decoration: none; }
+    .header-text .permalink a:hover { text-decoration: underline; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 28px 32px; }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
+    .card-header { background: var(--navy); color: #fff; display: flex; align-items: stretch; }
+    .card-badge { background: var(--tan); color: #fff; font-weight: 900; font-size: 12.5px; padding: 10px 14px; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+    .card-header h2 { font-size: 15px; font-weight: 600; padding: 10px 15px; display: flex; align-items: center; line-height: 1.3; }
+    .card-body { padding: 16px 20px; }
+
+    .link-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+    .link-main { flex: 1; min-width: 0; }
+    .link-title { display: inline-block; font-size: 14px; font-weight: 700; color: var(--navy); text-decoration: none; margin-bottom: 3px; }
+    .link-title:hover { text-decoration: underline; color: var(--navy2); }
+    .link-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+    .link-url-block { display: flex; align-items: center; gap: 8px; flex-shrink: 0; white-space: nowrap; }
+    .link-url-text { font-size: 12px; color: var(--muted); font-family: 'Consolas', 'Courier New', monospace; background: #F3F7F4; border: 1px solid var(--border); border-radius: 4px; padding: 4px 9px; user-select: all; cursor: text; }
+    .copy-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--navy); color: #fff; border: none; border-radius: 4px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: inherit; }
+    .copy-btn:hover { background: var(--navy2); }
+    .copy-btn.copied { background: #2E7D32; }
+    .copy-label { line-height: 1; }
+
+    .back-link { display: inline-block; font-size: 13px; color: var(--navy); margin-bottom: 16px; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    p.body-text { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 10px; }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc a { font-size: 12.5px; color: var(--navy); background: #F3F7F4; border: 1px solid var(--border); border-radius: 14px; padding: 5px 12px; text-decoration: none; font-weight: 600; }
+    .toc a:hover { background: var(--tan); color: #fff; border-color: var(--tan); }
+
+    .standard-statement { font-size: 13.5px; line-height: 1.7; margin-bottom: 12px; color: var(--text); }
+    .indicator-list { list-style: none; }
+    .indicator-list li { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid #F5F5F5; font-size: 13px; line-height: 1.6; }
+    .indicator-list li:last-child { border-bottom: none; }
+    .indicator-letter { flex-shrink: 0; font-weight: 700; color: var(--tan2); min-width: 20px; }
+
+    .citation-box { font-size: 11.5px; color: var(--muted); line-height: 1.6; background: #F3F7F4; border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-top: 4px; }
+
+    @media (max-width: 650px) {
+      .link-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .link-url-block { width: 100%; }
+      .link-url-text { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+    }
+    @media print { body { background: #fff; } .card { box-shadow: none; } .no-print { display: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-text">
+    <h1>Alabama Standards for School Leadership</h1>
+    <p>Ala. Admin. Code r. 290-4-3-.04 &mdash; the 5 Domains of Principal Effectiveness (updated September 2024)</p>
+    <p class="permalink"><a href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-for-School-Leadership.html">https://bit.ly/ALSchoolLeadStandards</a></p>
+  </div>
+</header>
+
+<main>
+
+  <a class="back-link no-print" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-Library.html">&larr; Back to Alabama Standards Library</a>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">ABOUT</div>
+      <h2>Alabama Standards for School Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="body-text">The Alabama Standards for School Leadership define the expectations for principal effectiveness under Ala. Admin. Code r. 290-4-3-.04, updated September 2024. They are organized into 5 Domains and form the basis for the evaluation indicators used in the Alabama Principal Leadership Development System (APLDS).</p>
+    </div>
+  </div>
+
+  <div class="card no-print">
+    <div class="card-header">
+      <div class="card-badge">JUMP TO</div>
+      <h2>Domains</h2>
+    </div>
+    <div class="card-body">
+      <div class="toc">
+        <a href="#domain-1">1. Visionary Leadership</a><a href="#domain-2">2. Instructional Leadership</a><a href="#domain-3">3. Managerial and Operational Leadership</a><a href="#domain-4">4. Relational Leadership</a><a href="#domain-5">5. Innovative Leadership</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="domain-1">
+    <div class="card-header">
+      <div class="card-badge">DOMAIN 1</div>
+      <h2>Visionary Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Effective visionary leaders facilitate the development, articulation, implementation, and stewardship of a shared vision that guides the learning of every student. An effective school leader:</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>Collaboratively develops a clear, measurable, and shared vision and school improvement plan based on the needs of all students identified through multiple sources of data.</span></li><li><span class="indicator-letter">(b)</span><span>Develops a shared understanding of and commitment to the vision and school improvement plan within the school and community.</span></li><li><span class="indicator-letter">(c)</span><span>Collects, analyzes, and interprets data to monitor progress toward meeting goals, makes adjustments as needed, and evaluates results for continuous school improvement.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="domain-2">
+    <div class="card-header">
+      <div class="card-badge">DOMAIN 2</div>
+      <h2>Instructional Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Effective instructional leaders ensure intellectually rigorous and coherent systems of curricula, instruction, and assessment while facilitating productive collaboration and professional learning to drive growth and achievement for all students. An effective school leader:</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>Engages and supports staff to implement a coherent system of curricula, instruction, and assessments that is rigorous, relevant, and aligned to state standards.</span></li><li><span class="indicator-letter">(b)</span><span>Maintains high expectations for all staff and students, with a focus on the quality of instruction in their schools that emphasizes evidenced-based strategies to improve teaching and learning as determined by formative and summative student assessment data and classroom observations.</span></li><li><span class="indicator-letter">(c)</span><span>Observes classroom instruction and provides meaningful and timely feedback on teacher practice and evidence of student learning to drive instructional improvement.</span></li><li><span class="indicator-letter">(d)</span><span>Works with teachers to analyze student performance data from formative and summative assessments and other measures to support student learning and provide helpful feedback to students.</span></li><li><span class="indicator-letter">(e)</span><span>Analyzes and acts upon multiple sources of student, school, and district-level data to improve learning for all students, with an emphasis on closing achievement gaps.</span></li><li><span class="indicator-letter">(f)</span><span>Develops a culture of ongoing, collaborative professional learning that builds collective efficacy and leads to student learning.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="domain-3">
+    <div class="card-header">
+      <div class="card-badge">DOMAIN 3</div>
+      <h2>Managerial and Operational Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Effective managerial leaders strategically oversee school operations, staff, and resources to foster a safe and productive school community. An effective school leader:</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>Provides and oversees a functional, safe, and clean facility and campus.</span></li><li><span class="indicator-letter">(b)</span><span>Establishes routines, procedures, and schedules to maximize learning time and maintain a safe and orderly learning environment.</span></li><li><span class="indicator-letter">(c)</span><span>Recruits, hires, places, inducts, develops, and retains a diverse and effective staff with a goal of ensuring that students from all backgrounds have access to effective educators.</span></li><li><span class="indicator-letter">(d)</span><span>Models and communicates high expectations, clear guidelines, and systematic procedures in alignment with the state’s code of ethics for educators.</span></li><li><span class="indicator-letter">(e)</span><span>Guides the development of teachers' and staff members' professional knowledge, skills, and practice through intervention, coaching, and differentiated opportunities for learning and growth.</span></li><li><span class="indicator-letter">(f)</span><span>Knows, complies with, and helps the school community understand local, state, and federal laws, rights, policies, and regulations so as to promote student success.</span></li><li><span class="indicator-letter">(g)</span><span>Manages, allocates, aligns, and efficiently utilizes fiscal and non-fiscal resources to support school goals and priorities.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="domain-4">
+    <div class="card-header">
+      <div class="card-badge">DOMAIN 4</div>
+      <h2>Relational Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Effective relational leaders cultivate a welcoming, supportive, and collaborative learning environment for all students, staff, families, and the community. An effective school leader:</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>Promotes a student-centered learning environment of high expectations and support that addresses the comprehensive and diverse needs of all students.</span></li><li><span class="indicator-letter">(b)</span><span>Advocates for the welfare of all students.</span></li><li><span class="indicator-letter">(c)</span><span>Establishes positive and supportive relationships with all students.</span></li><li><span class="indicator-letter">(d)</span><span>Develops and supports open, productive, caring, and trusting working relationships among faculty and staff to promote professional growth and the improvement of practice.</span></li><li><span class="indicator-letter">(e)</span><span>Ensures a collaborative culture of professionalism and respect among staff.</span></li><li><span class="indicator-letter">(f)</span><span>Cultivates leadership in others by empowering and entrusting teachers and staff with collective responsibility for meeting the comprehensive needs of each student.</span></li><li><span class="indicator-letter">(g)</span><span>Builds and sustains positive, collaborative, and productive relationships with families for the benefit of all students.</span></li><li><span class="indicator-letter">(h)</span><span>Establishes a positive presence in the community to build productive partnerships to support the school’s mission and vision.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="domain-5">
+    <div class="card-header">
+      <div class="card-badge">DOMAIN 5</div>
+      <h2>Innovative Leadership</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Effective innovative leaders continue professional growth, actively engage in reflective practices, and apply new knowledge and understanding to drive change. An effective school leader:</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>Acquires and applies knowledge, skills, and evidence-based practices to improve teaching and learning.</span></li><li><span class="indicator-letter">(b)</span><span>Engages in a professional network of peers and mentors as a means for growth.</span></li><li><span class="indicator-letter">(c)</span><span>Demonstrates a commitment to reflective practices and ongoing growth and development.</span></li><li><span class="indicator-letter">(d)</span><span>Seeks and utilizes feedback to improve performance.</span></li><li><span class="indicator-letter">(e)</span><span>Maintains a focus on high priorities related to academic achievement and school climate.</span></li><li><span class="indicator-letter">(f)</span><span>Creates a culture of innovation that continuously examines strategies for improvement and adapts to change.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">SOURCE</div>
+      <h2>Source Document</h2>
+    </div>
+    <div class="card-body">
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://www.alabamaachieves.org/wp-content/uploads/2024/09/PD_220240925_Alabama-Standards-for-School-Leadership_v1.0.pdf" target="_blank" rel="noopener">Source PDF (ALSDE, Sept. 2024)</a>
+          <div class="link-desc">Original document this page was built from.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">RELATED</div>
+      <h2>Related Resources</h2>
+    </div>
+    <div class="card-body">
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/School-Leaders.html" target="_blank" rel="noopener">Alabama School Leader Evaluation Indicators</a>
+          <div class="link-desc">The evaluation indicators built on these 5 domains, used in APLDS.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+</body>
+</html>

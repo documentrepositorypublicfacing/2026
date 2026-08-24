@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alabama Core Teaching Standards</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <style>
+    :root {
+      --navy:    #1B2A5E;
+      --navy2:   #243579;
+      --tan:     #C4A882;
+      --tan2:    #B09070;
+      --bg:      #EEF2F6;
+      --border:  #C8D8E8;
+      --text:   #1A1A1A;
+      --muted:  #4A5568;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; min-height: 100vh; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+    header { background: var(--navy); color: #fff; padding: 18px 32px; display: flex; align-items: center; gap: 18px; }
+    .header-text h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+    .header-text p { font-size: 13px; opacity: 0.82; margin-top: 3px; }
+    .header-text .permalink { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+    .header-text .permalink a { color: #5B9BD5; text-decoration: none; }
+    .header-text .permalink a:hover { text-decoration: underline; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 28px 32px; }
+
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.07); margin-bottom: 20px; }
+    .card-header { background: var(--navy); color: #fff; display: flex; align-items: stretch; }
+    .card-badge { background: var(--tan); color: #fff; font-weight: 900; font-size: 12.5px; padding: 10px 14px; display: flex; align-items: center; white-space: nowrap; flex-shrink: 0; }
+    .card-header h2 { font-size: 15px; font-weight: 600; padding: 10px 15px; display: flex; align-items: center; line-height: 1.3; }
+    .card-body { padding: 16px 20px; }
+
+    .link-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; }
+    .link-main { flex: 1; min-width: 0; }
+    .link-title { display: inline-block; font-size: 14px; font-weight: 700; color: var(--navy); text-decoration: none; margin-bottom: 3px; }
+    .link-title:hover { text-decoration: underline; color: var(--navy2); }
+    .link-desc { font-size: 12.5px; color: var(--muted); line-height: 1.5; }
+    .link-url-block { display: flex; align-items: center; gap: 8px; flex-shrink: 0; white-space: nowrap; }
+    .link-url-text { font-size: 12px; color: var(--muted); font-family: 'Consolas', 'Courier New', monospace; background: #F3F7F4; border: 1px solid var(--border); border-radius: 4px; padding: 4px 9px; user-select: all; cursor: text; }
+    .copy-btn { display: inline-flex; align-items: center; gap: 5px; background: var(--navy); color: #fff; border: none; border-radius: 4px; padding: 5px 10px; font-size: 12px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: inherit; }
+    .copy-btn:hover { background: var(--navy2); }
+    .copy-btn.copied { background: #2E7D32; }
+    .copy-label { line-height: 1; }
+
+    .back-link { display: inline-block; font-size: 13px; color: var(--navy); margin-bottom: 16px; text-decoration: none; }
+    .back-link:hover { text-decoration: underline; }
+    p.body-text { font-size: 13.5px; color: var(--text); line-height: 1.7; margin-bottom: 10px; }
+    p.body-text:last-child { margin-bottom: 0; }
+
+    .toc { display: flex; flex-wrap: wrap; gap: 8px; }
+    .toc a { font-size: 12.5px; color: var(--navy); background: #F3F7F4; border: 1px solid var(--border); border-radius: 14px; padding: 5px 12px; text-decoration: none; font-weight: 600; }
+    .toc a:hover { background: var(--tan); color: #fff; border-color: var(--tan); }
+
+    .standard-statement { font-size: 13.5px; line-height: 1.7; margin-bottom: 12px; color: var(--text); }
+    .indicator-list { list-style: none; }
+    .indicator-list li { display: flex; gap: 8px; padding: 6px 0; border-bottom: 1px solid #F5F5F5; font-size: 13px; line-height: 1.6; }
+    .indicator-list li:last-child { border-bottom: none; }
+    .indicator-letter { flex-shrink: 0; font-weight: 700; color: var(--tan2); min-width: 20px; }
+
+    .citation-box { font-size: 11.5px; color: var(--muted); line-height: 1.6; background: #F3F7F4; border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; margin-top: 4px; }
+
+    @media (max-width: 650px) {
+      .link-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .link-url-block { width: 100%; }
+      .link-url-text { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+    }
+    @media print { body { background: #fff; } .card { box-shadow: none; } .no-print { display: none !important; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-text">
+    <h1>Alabama Core Teaching Standards</h1>
+    <p>Ala. Admin. Code r. 290-3-3-.03 &mdash; the foundational standards for effective teaching practice in Alabama</p>
+    <p class="permalink"><a href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Core-Teaching-Standards.html">https://bit.ly/AL-TeachingStandards</a></p>
+  </div>
+</header>
+
+<main>
+
+  <a class="back-link no-print" href="https://documentrepositorypublicfacing.github.io/2026/Alabama-Standards-Library.html">&larr; Back to Alabama Standards Library</a>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">ABOUT</div>
+      <h2>Alabama Core Teaching Standards (ACTS)</h2>
+    </div>
+    <div class="card-body">
+      <p class="body-text">Pursuant to the mission of improving the academic achievement of all students in the public schools of Alabama, candidates will align their practice with the following standards, modified from the Model Core Teaching Standards developed by the Interstate Teacher Assessment and Support Consortium (InTASC). These standards are the basis for the evaluation indicators used in the Alabama Teacher Growth Program (ATGP).</p>
+    </div>
+  </div>
+
+  <div class="card no-print">
+    <div class="card-header">
+      <div class="card-badge">JUMP TO</div>
+      <h2>Standards</h2>
+    </div>
+    <div class="card-body">
+      <div class="toc">
+        <a href="#standard-1">1. Learner Development</a><a href="#standard-2">2. Learning Differences</a><a href="#standard-3">3. Learning Environments</a><a href="#standard-4">4. Content Knowledge</a><a href="#standard-5">5. Application of Content</a><a href="#standard-6">6. Assessment</a><a href="#standard-7">7. Planning for Instruction</a><a href="#standard-8">8. Instructional Strategies</a><a href="#standard-9">9. Professional Learning and Ethical Practice</a><a href="#standard-10">10. Leadership and Collaboration</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="standard-1">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 1</div>
+      <h2>Learner Development</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate understands how learners grow and develop, recognizing that patterns of learning and development vary individually within and across the cognitive, linguistic, social, emotional, and physical areas, and designs and implements developmentally appropriate and challenging learning experiences.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate regularly assesses individual and group performance in order to design and modify instruction to meet learners' needs in each area of development (cognitive, linguistic, social, emotional, and physical) and scaffolds the next level of development.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate creates developmentally appropriate instruction that takes into account individual learners' strengths, interests, and needs and that enables each learner to advance and accelerate his/her learning.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate collaborates with families, communities, colleagues, and other professionals to promote learner growth and development.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate understands how learning occurs-how learners construct knowledge, acquire skills, and develop discipline thinking processes-and knows how to use instructional strategies that promote student learning.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate understands that each learner's cognitive, linguistic, social, emotional, and physical development influences learning and knows how to make instructional decisions that build on learners' strengths and needs.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate identifies readiness for learning and understands how development in any one area may affect performance in other areas.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate understands the role of language and culture in learning and knows how to modify instruction to make language comprehensible and instruction relevant, accessible, and challenging.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate respects learners' differing strengths and needs and is committed to using this information to further each learner's development.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate is committed to using learners' strengths as a basis for growth and their misconceptions as opportunities for learning.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate takes responsibility for promoting learners' growth and development.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate values the input and contributions of families, colleagues, and other professionals in understanding and supporting each learner's development.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-2">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 2</div>
+      <h2>Learning Differences</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate uses understanding of individual differences and diverse cultures and communities to ensure inclusive learning environments that enable each learner to meet high standards.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate designs, adapts, and delivers instruction to address each student's diverse learning strengths and needs and creates opportunities for students to demonstrate their learning in different ways.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate makes appropriate and timely provisions (e.g., pacing for individual rates of growth, task demands, communication, assessment, and response modes) for individual students with particular learning differences or needs.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate designs instruction to build on learners' prior knowledge and experiences, allowing learners to accelerate as they demonstrate their understandings.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate brings multiple perspectives to the discussion of content, including attention to learners' personal, family, and community experiences and cultural norms.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate incorporates tools of language development into planning and instruction, including strategies for making content accessible to English language learners and for evaluating and supporting their development of English proficiency.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate accesses resources, supports, and specialized assistance and services to meet particular learning differences or needs.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate understands and identifies differences in approaches to learning and performance and knows how to design instruction that uses each learner's strengths to promote growth.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate understands students with exceptional needs, including those associated with disabilities and giftedness, and knows how to use strategies and resources to address these needs.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate knows about second language acquisition processes and knows how to incorporate instructional strategies and resources to support language acquisition.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands that learners bring assets for learning based on their individual experiences, abilities, talents, prior learning, and peer and social group interactions, as well as language, culture, family, and community values.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate knows how to access information about the values of diverse cultures and communities and how to incorporate learners' experiences, cultures, and community resources into instruction.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate believes that all learners can achieve at high levels and persists in helping each learner reach his/her full potential.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate respects learners as individuals with differing personal and family backgrounds and various skills, abilities, perspectives, talents, and interests.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate makes learners feel valued and helps them learn to value each other.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate values diverse languages and dialects and seeks to integrate them into his/her instructional practice to engage students in learning.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-3">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 3</div>
+      <h2>Learning Environments</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate works with others to create environments that support individual and collaborative learning, and that encourage positive social interaction, active engagement in learning, and self-motivation.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate collaborates with learners, families, and colleagues to build a safe, positive learning climate of openness, mutual respect, support, and inquiry.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate develops learning experiences that engage learners in collaborative and self- directed learning and that extend learner interaction with ideas and people locally and globally.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate collaborates with learners and colleagues to develop shared values and expectations for respectful interactions, rigorous academic discussions, and individual and group responsibility for quality work.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate manages the learning environment to actively and equitably engage learners by organizing, allocating, and coordinating the resources of time, space, and learners' attention.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate uses a variety of methods to engage learners in evaluating the learning environment and collaborates with learners to make appropriate adjustments.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate communicates verbally and nonverbally in ways that demonstrate respect for and responsiveness to the cultural backgrounds and differing perspectives learners bring to the learning environment.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate promotes responsible learner use of interactive technologies to extend the possibilities for learning locally and globally.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate intentionally builds learner capacity to collaborate in face-to-face and virtual environments through applying effective interpersonal communication skills.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate understands the relationship between motivation and engagement and knows how to design learning experiences using strategies that build learner self-direction and ownership of learning.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate knows how to help learners work productively and cooperatively with each other to achieve learning goals.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate knows how to collaborate with learners to establish and monitor elements of a safe and productive learning environment including norms, expectations, routines, and organizational structures.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate understands how learner diversity can affect communication and knows how to communicate effectively in differing environments.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate knows how to use technologies and how to guide learners to apply them in appropriate, safe, and effective ways.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate is committed to working with learners, colleagues, families, and communities to establish positive and supportive learning environments.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate values the role of learners in promoting each other's learning and recognizes the importance of peer relationships in establishing a climate of learning.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate is committed to supporting learners as they participate in decision making, engage in exploration and invention, work collaboratively and independently, and engage in purposeful learning.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate seeks to foster respectful communication among all members of the learning community.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate is a thoughtful and responsive listener and observer.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-4">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 4</div>
+      <h2>Content Knowledge</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate understands the central concepts, tools of inquiry, and structures of the discipline(s) he or she teaches and creates learning experiences that make these aspects of the discipline accessible and meaningful for learners to assure mastery of the content.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate effectively uses multiple representations and explanations that capture key ideas in the discipline, guide learners through learning progressions, and promote each learner's achievement of content standards.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate engages students in learning experiences in the discipline(s) that encourage learners to understand, question, and analyze ideas from diverse perspectives so that they master the content.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate engages learners in applying methods of inquiry and standards of evidence used in the discipline.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate stimulates learner reflection on prior content knowledge, links new concepts to familiar concepts, and makes connections to learners' experiences.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate recognizes learner misconceptions in a discipline that interfere with learning, and creates experiences to build accurate conceptual understanding.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate evaluates and modifies instructional resources and curriculum materials for their comprehensiveness, accuracy for representing particular concepts in the discipline, and appropriateness for his/her learners.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate uses supplementary resources and technologies effectively to ensure accessibility and relevance for all learners.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate creates opportunities for students to learn, practice, and master academic language in their content.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate accesses school and/or district-based resources to evaluate the leaner's content knowledge in the learner's primary language.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands major concepts, assumptions, debates, processes of inquiry, and ways of knowing that are central to the discipline(s) she/he teaches.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate understands common misconceptions in learning the discipline and how to guide learners to accurate conceptual understanding.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate knows and uses the academic language of the discipline and knows how to make it accessible to learners.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate knows how to integrate culturally relevant content to build on learners' background knowledge.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate has a deep knowledge of student content standards and learning progressions in the discipline(s) she or he teaches.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate has deep knowledge of current and emerging state initiatives and programs including, but not limited to, the Alabama Reading Initiative (ARI); the Alabama Math, Science, and Technology Initiative (AMSTI); Alabama Learning Exchange (ALEX); Alabama Connecting Classrooms, Educators and Students Statewide (ACCESS); and RTI (Response to Instruction) and their relationship to student achievement.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate realizes that content knowledge is not a fixed body of facts but is complex, culturally situated, and ever evolving. She or he keeps abreast of new ideas and understanding in the field.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate appreciates multiple perspectives within the discipline and facilitates learners' critical analysis of these perspectives.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate recognizes the potential of bias in his/her representation of the discipline and seeks to appropriately address problems of bias.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate is committed to work toward each learner's mastery of disciplinary content and skills.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-5">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 5</div>
+      <h2>Application of Content</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate understands how to connect concepts and use differing perspectives to engage learners in critical thinking, creativity, and collaborative problem solving related to authentic local and global issues.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate develops and implements projects that guide learners in analyzing the complexities of an issue or question using perspectives from varied disciplines and cross-disciplinary skills (e.g., a water quality study that draws upon biology and chemistry to look at factual information and social studies to examine policy implications).</span></li><li><span class="indicator-letter">(b)</span><span>The candidate engages learners in applying content knowledge to real world problems through the lens of interdisciplinary themes (e.g., financial literacy, environmental literacy).</span></li><li><span class="indicator-letter">(c)</span><span>The candidate facilitates learners' use of current tools and resources to maximize content learning in varied contexts.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate engages learners in questioning and challenging assumptions and approaches in order to foster innovation and problem solving in local and global contexts.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate develops learners' communication skills in disciplinary and interdisciplinary contexts by creating meaningful opportunities to employ a variety of forms of communication that address varied audiences and purposes.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate engages learners in generating and evaluating new ideas and novel approaches, seeking inventive solutions to problems, and developing original work.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate facilitates learners' ability to develop diverse social and cultural perspectives that expand their understanding of local and global issues and create novel approaches to solving problems.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate develops and implements supports for learner literacy development across content areas.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate understands the ways of knowing in his/her discipline, how it relates to other disciplinary approaches to inquiry, and the strengths and limitations of each approach in addressing problems, issues, and concerns.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands how current interdisciplinary themes (e.g., civic literacy, health literacy, global awareness) connect to the core subjects and knows how to weave those themes into meaningful learning experiences.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate understands the demands of accessing and managing information as well as how to evaluate issues of ethics and quality related to information and its use.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate understands how to use digital and interactive technologies for efficiently and effectively achieving specific learning goals.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate understands critical thinking processes and knows how to help learners develop high level questioning skills to promote their independent learning.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate understands communication modes and skills as vehicles for learning (e.g., information gathering and processing) across disciplines as well as vehicles for expressing learning.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate understands creative thinking processes and how to engage learners in producing original work.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate knows when and how to access resources to build global awareness and understanding, and how to integrate them into the curriculum.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate is constantly exploring how to use disciplinary knowledge as a lens to address local and global issues.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate values knowledge outside his/her own content area and how such knowledge enhances student learning.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate values flexible learning environments that encourage learner exploration, discovery, and expression across content areas.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-6">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 6</div>
+      <h2>Assessment</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate understands and uses multiple methods of assessment to engage learners in their own growth, to monitor learner progress, and to guide the candidate's and learner's decision making.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate balances the use of formative and summative assessment as appropriate to support, verify, and document learning.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate designs assessments that match learning objectives with assessment methods and minimizes sources of bias that can distort assessment results.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate works independently and collaboratively to examine test and other performance data to understand each learner's progress and to guide planning.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate engages learners in understanding and identifying quality work and provides them with effective descriptive feedback to guide their progress toward that work.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate engages learners in multiple ways of demonstrating knowledge and skill as part of the assessment process.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate models and structures processes that guide learners in examining their own thinking and learning as well as the performance of others.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate effectively uses multiple and appropriate types of assessment data to identify each student's learning needs and to develop differentiated learning experiences.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate prepares all learners for the demands of particular assessment formats and makes appropriate accommodations in assessments or testing conditions, especially for learners with disabilities and language learning needs.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate continually seeks appropriate ways to employ technology to support assessment practice both to engage learners more fully and to assess and address learner needs.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands the differences between formative and summative applications of assessment and knows how and when to use each.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate understands the range of types and multiple purposes of assessment and how to design, adapt, or select appropriate assessments to address specific learning goals and individual differences, and to minimize sources of bias.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate knows how to analyze assessment data to understand patterns and gaps in learning, to guide planning and instruction, and to provide meaningful feedback to all learners.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate knows when and how to engage learners in analyzing their own assessment results and in helping to set goals for their own learning.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate understands the positive impact of effective descriptive feedback for learners and knows a variety of strategies for communicating this feedback.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate knows when and how to evaluate and report learner progress against standards.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate understands how to prepare learners for assessments and how to make accommodations in assessments and testing conditions, especially for learners with disabilities and language learning needs.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate possesses knowledge of Alabama's assessment requirements and processes.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate is committed to engaging learners actively in assessment processes and to developing each learner's capacity to review and communicate about their own progress and learning.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate takes responsibility for aligning instruction and assessment with learning goals.</span></li><li><span class="indicator-letter">(t)</span><span>The candidate is committed to providing timely and effective descriptive feedback to learners on their progress.</span></li><li><span class="indicator-letter">(u)</span><span>The candidate is committed to using multiple types of assessment processes to support, verify, and document learning.</span></li><li><span class="indicator-letter">(v)</span><span>The candidate is committed to making accommodations in assessments and testing conditions, especially for learners with disabilities and language learning needs.</span></li><li><span class="indicator-letter">(w)</span><span>The candidate is committed to the ethical use of various assessments and assessment data to identify learner strengths and needs to promote learner growth.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-7">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 7</div>
+      <h2>Planning for Instruction</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">Based on the appropriate Alabama Course(s) of Study, the candidate plans instruction that supports every student in meeting rigorous learning goals by drawing upon knowledge of content areas, curriculum, cross-disciplinary skills, and pedagogy, as well as knowledge of learners and the community context.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate individually and collaboratively selects and creates learning experiences that are appropriate for curriculum goals and content standards, and are relevant to learners.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate plans how to achieve each student's learning goals, choosing appropriate strategies and accommodations, resources, and materials to differentiate instruction for individuals and groups of learners.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate develops appropriate sequencing of learning experiences and provides multiple ways to demonstrate knowledge and skill.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate plans for instruction based on formative and summative assessment data, prior learner knowledge, and learner interest.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate plans collaboratively with professionals who have specialized expertise (e.g., special educators, related service providers, language learning specialists, librarians, media specialists) to design and jointly deliver, as appropriate, learning experiences to meet unique learning needs.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate evaluates plans in relation to short- and long-range goals and systematically adjusts plans to meet each student's learning needs and enhance learning.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate integrates Alabama-wide programs and initiatives into the curriculum and instructional processes.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate communicates with students, parents, and the public about Alabama's assessment system and major Alabama educational improvement initiatives.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate understands content and content standards and how these are organized in the curriculum.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands how integrating cross-disciplinary skills in instruction engages learners purposefully in applying content knowledge.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate understands learning theory, human development, cultural diversity, and individual differences and how these impact ongoing planning.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate understands the strengths and needs of individual learners and how to plan instruction that is responsive to these strengths and needs.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate knows a range of evidence-based instructional strategies, resources, and technological tools and how to use them effectively to plan instruction that meets diverse learning needs.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate knows when and how to adjust plans based on assessment information and learner responses.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate knows when and how to access resources and collaborates with others to support student learning (e.g., special educators, related service providers, language learner specialists, librarians, media specialists, community organizations).</span></li><li><span class="indicator-letter">(p)</span><span>The candidate respects learners' diverse strengths and needs and is committed to using this information to plan effective instruction.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate values planning as a collegial activity that takes into consideration the input of learners, colleagues, families, and the larger community.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate takes professional responsibility to use short- and long-term planning as a means of assuring student learning.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate believes that plans must always be open to adjustment and revision based on learner needs and changing circumstances.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-8">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 8</div>
+      <h2>Instructional Strategies</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate understands and uses a variety of instructional strategies to encourage learners to develop deep understanding of content areas and their connections, and to build skills to apply knowledge in meaningful ways.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate uses appropriate strategies and resources to adapt instruction to the needs of individuals and groups of learners.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate continuously monitors student learning, engages learners in assessing their progress, and adjusts instruction in response to student learning needs.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate collaborates with learners to design and implement relevant learning experiences, identify their strengths, and access family and community resources to develop their areas of interest.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate varies his/her role in the instructional process (e.g., instructor, facilitator, coach, audience) in relation to the content and purposes of instruction and the needs of learners.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate provides multiple models and representations of concepts and skills with opportunities for learners to demonstrate their knowledge through a variety of products and performances.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate engages all learners in developing higher order questioning skills and metacognitive processes.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate engages all learners in using a range of learning skills and technology tools to access, interpret, evaluate, and apply information.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate uses a variety of instructional strategies to support and expand learners' communication through speaking, listening, reading, writing, and other modes.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate asks questions to stimulate discussion that serves different purposes (e.g., probing for learner understanding, helping learners articulate their ideas and thinking processes, stimulating curiosity, and helping learners to question).</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands the cognitive processes associated with various kinds of learning (e.g., critical and creative thinking, problem framing and problem solving, invention, memorization and recall) and how these processes can be stimulated.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate knows how to apply a range of developmentally, culturally, and linguistically appropriate instructional strategies to achieve learning goals.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate knows when and how to use appropriate strategies to differentiate instruction and engage all learners in complex thinking and meaningful tasks.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate understands how multiple forms of communication (oral, written, nonverbal, digital, visual) convey ideas, foster self-expression, and build relationships.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate knows how to use a wide variety of resources, including human and technological, to engage students in learning.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate understands how content and skill development can be supported by media and technology and knows how to evaluate these resources for quality, accuracy, and effectiveness.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate is committed to deepening awareness and understanding the strengths and needs of diverse learners when planning and adjusting instruction</span></li><li><span class="indicator-letter">(q)</span><span>The candidate values the variety of ways people communicate and encourages learners to develop and use multiple forms of communication.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate is committed to exploring how the use of new and emerging technologies can support and promote student learning.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate values flexibility and reciprocity in the teaching process as necessary for adapting instruction to learner responses, ideas, and needs.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-9">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 9</div>
+      <h2>Professional Learning and Ethical Practice</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate engages in ongoing professional learning and uses evidence to continually evaluate his/her practice, particularly the effects of his/her choices and actions on others (learners, families, other professionals, and the community) and adapts practice to meet the needs of each learner.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate engages in ongoing learning opportunities to develop knowledge and skills in order to provide all learners with engaging curriculum and learning experiences based on local and state standards.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate engages in meaningful and appropriate professional learning experiences aligned with his/her own needs and the needs of the learners, school, and system.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate, independently and in collaboration with colleagues, uses a variety of data (e.g., systematic observation, information about learners, research) to evaluate the outcomes of teaching and learning and to adapt planning and practice.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate actively seeks professional, community, and technological resources, within and outside the school, as supports for analysis, reflection, and problem-solving.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate reflects on his/her personal biases and accesses resources to deepen his/her own understanding of cultural, ethnic, gender, and learning differences to build stronger relationships and create more relevant learning experiences.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate advocates, models, and teaches safe, legal, and ethical use of information and technology including appropriate documentation of sources and respect for others in the use of social media.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate understands and knows how to use a variety of self-assessment and problem- solving strategies to analyze and reflect on his/her practice and to plan for adaptations/adjustments.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate knows how to use learner data to analyze practice and differentiate instruction accordingly.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate understands how personal identity, worldview, and prior experience affect perceptions and expectations, and recognizes how they may bias behaviors and interactions with others.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate understands laws related to learners' rights and teacher responsibilities (e.g., for educational equity, appropriate education for learners with disabilities, confidentiality, privacy, appropriate treatment of learners, reporting in situations related to possible child abuse).</span></li><li><span class="indicator-letter">(k)</span><span>The candidate knows how to build and implement a plan for professional growth directly aligned with his/her needs as a growing professional using feedback from candidate evaluations and observations, data on learner performance, and school- and system-wide priorities.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate takes responsibility for student learning and uses ongoing analysis and reflection to improve planning and practice.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate is committed to deepening understanding of his/her own frames of reference (e.g., culture, gender, language, abilities, ways of knowing), the potential biases in these frames, and their impact on expectations for and relationships with learners and their families.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate sees him/herself as a learner, continuously seeking opportunities to draw upon current education policy and research as sources of analysis and reflection to improve practice.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate understands the expectations of the profession including the Alabama Educator Code of Ethics, professional standards of practice, and relevant law and policy.</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" id="standard-10">
+    <div class="card-header">
+      <div class="card-badge">STANDARD 10</div>
+      <h2>Leadership and Collaboration</h2>
+    </div>
+    <div class="card-body">
+      <p class="standard-statement">The candidate seeks appropriate leadership roles and opportunities to take responsibility for student learning, to collaborate with learners, families, colleagues, other school professionals, and community members to ensure learner growth, and to advance the profession.</p>
+      <ul class="indicator-list">
+        <li><span class="indicator-letter">(a)</span><span>The candidate takes an active role on the instructional team, giving and receiving feedback on practice, examining learner work, analyzing data from multiple sources, and sharing responsibility for decision making and accountability for each student's learning.</span></li><li><span class="indicator-letter">(b)</span><span>The candidate works with other school professionals to plan and jointly facilitate learning on how to meet diverse needs of learners.</span></li><li><span class="indicator-letter">(c)</span><span>The candidate engages collaboratively in the school-wide effort to build a shared vision and supportive culture, identify common goals, and monitor and evaluate progress toward those goals.</span></li><li><span class="indicator-letter">(d)</span><span>The candidate works collaboratively with learners and their families to establish mutual expectations and ongoing communication to support learner development and achievement.</span></li><li><span class="indicator-letter">(e)</span><span>The candidate, working with school colleagues, builds ongoing connections with community resources to enhance student learning and wellbeing.</span></li><li><span class="indicator-letter">(f)</span><span>The candidate engages in professional learning, contributes to the knowledge and skill of others, and works collaboratively to advance professional practice.</span></li><li><span class="indicator-letter">(g)</span><span>The candidate uses technological tools and a variety of communication strategies to build local and global learning communities that engage learners, families, and colleagues.</span></li><li><span class="indicator-letter">(h)</span><span>The candidate uses and generates meaningful research on education issues and policies.</span></li><li><span class="indicator-letter">(i)</span><span>The candidate seeks appropriate opportunities to model effective practice for colleagues, to lead professional learning activities, and to serve in other leadership roles.</span></li><li><span class="indicator-letter">(j)</span><span>The candidate advocates to meet the needs of learners, to strengthen the learning environment, and to enact system change.</span></li><li><span class="indicator-letter">(k)</span><span>The candidate takes on leadership roles at the school, district, state, and/or national level and advocates for learners, the school, the community, and the profession.</span></li><li><span class="indicator-letter">(l)</span><span>The candidate understands schools as organizations within a historical, cultural, political, and social context and knows how to work with others across the system to support learners.</span></li><li><span class="indicator-letter">(m)</span><span>The candidate understands that alignment of family, school, and community spheres of influence enhances student learning and that discontinuity in these spheres of influence interferes with learning.</span></li><li><span class="indicator-letter">(n)</span><span>The candidate knows how to work with other adults and has developed skills in collaborative interaction appropriate for both face-to-face and virtual contexts.</span></li><li><span class="indicator-letter">(o)</span><span>The candidate knows how to contribute to a common culture that supports high expectations for student learning.</span></li><li><span class="indicator-letter">(p)</span><span>The candidate actively shares responsibility for shaping and supporting the mission of his/her school as one of advocacy for learners and accountability for their success.</span></li><li><span class="indicator-letter">(q)</span><span>The candidate respects families' beliefs, norms, and expectations and seeks to work collaboratively with learners and families in setting and meeting challenging goals.</span></li><li><span class="indicator-letter">(r)</span><span>The candidate takes initiative to grow and develop with colleagues through interactions that enhance practice and support student learning.</span></li><li><span class="indicator-letter">(s)</span><span>The candidate takes responsibility for contributing to and advancing the profession.</span></li><li><span class="indicator-letter">(t)</span><span>The candidate embraces the challenge of continuous improvement and change.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">SOURCE</div>
+      <h2>Citation &amp; History</h2>
+    </div>
+    <div class="card-body">
+      <div class="citation-box">
+        New Rule: December 19, 1978. Amended: December 13, 1990; effective February 1, 1991. Repealed and Replaced: Filed January 9, 1997; effective February 13, 1997; operative July 1, 1997. Repealed and New Rule: Filed September 11, 2003; effective October 16, 2003. Repealed and New Rule: Filed July 13, 2004; effective August 17, 2004. Repealed and New Rule: April 14, 2005; effective May 19, 2005. Repealed and New Rule: Filed August 6, 2007; effective September 10, 2007. Amended by Alabama Administrative Monthly Volume XXXIII, Issue No. 11, August 31, 2015, eff. September 17, 2015. Amended by Alabama Administrative Monthly Volume XXXVI, Issue No. 12, September 28, 2018, eff. October 28, 2018; operative June 1, 2019.<br><br>
+        Author: Dr. Eric G. Mackey &nbsp;&bull;&nbsp; Statutory Authority: Code of Ala. 1975, &sect;&sect; 16-3-16, 16-13-14.
+      </div>
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://www.una.edu/education/Accreditation/standards/alabama-core-teaching-standards-or-acts.pdf" target="_blank" rel="noopener">Source PDF</a>
+          <div class="link-desc">Original document this page was built from.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-badge">RELATED</div>
+      <h2>Related Resources</h2>
+    </div>
+    <div class="card-body">
+      <div class="link-row">
+        <div class="link-main">
+          <a class="link-title" href="https://documentrepositorypublicfacing.github.io/2026/Educator-Indicators.html" target="_blank" rel="noopener">Alabama Educator (ATGP) Evaluation Indicators</a>
+          <div class="link-desc">The evaluation indicators built on these standards, used in the Alabama Teacher Growth Program.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var url = btn.getAttribute('data-url');
+      navigator.clipboard.writeText(url).then(function() {
+        var label = btn.querySelector('.copy-label');
+        btn.classList.add('copied');
+        label.textContent = 'Copied!';
+        setTimeout(function() { btn.classList.remove('copied'); label.textContent = 'Copy'; }, 2000);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
