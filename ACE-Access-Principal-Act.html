@@ -256,6 +256,27 @@
       color: #7A2E17;
     }
     .warn strong { color: var(--red); }
+
+    .rule-wording {
+      margin-top: 10px;
+      padding: 8px 12px;
+      border-left: 3px solid var(--tan2);
+      background: #FAFAFA;
+      border-radius: 0 4px 4px 0;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .rule-wording .label {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tan2);
+      margin-bottom: 2px;
+    }
+    .rule-wording em { color: var(--text); font-style: italic; }
   </style>
 </head>
 <body>
@@ -283,7 +304,7 @@
       </div>
       <div class="card-body">
         <div class="role-tag">Access: Automatic &mdash; no Education Directory role needed</div>
-        <p>A principal or assistant principal can log into the <strong>ACE</strong> tile as soon as their <strong>Demographics</strong> are completed in the AIM portal &mdash; no Education Directory access rule has to be assigned for this. Once in ACE, they select the <strong>Applicant</strong> role to start and complete their portion of the Principal Act application (see the <a href="https://documentrepositorypublicfacing.github.io/2026/ACE-Principal-Act-Applicant-Guide.html">Applicant Guide</a>).</p>
+        <p>A principal or assistant principal can log into the <strong>ACE</strong> tile as soon as their <strong>Extended Demographics</strong> are completed in the AIM portal &mdash; no Education Directory app access rule has to be assigned for this. Once in ACE, they select the <strong>Applicant</strong> role to start and complete their portion of the Principal Act application (see the <a href="https://documentrepositorypublicfacing.github.io/2026/ACE-Principal-Act-Applicant-Guide.html">Applicant Guide</a>).</p>
       </div>
     </div>
 
@@ -295,25 +316,24 @@
       </div>
       <div class="card-body">
         <div class="role-tag">Assigned to: Central office administrators (already Teaching Effectiveness System Editor or System Certifier) who are part of Principal Act/APLDS oversight</div>
-        <p>A central office administrator who already holds the <strong>Teaching Effectiveness System Editor</strong> or <strong>Teaching Effectiveness System Certifier</strong> role and is part of the school system's Principal Act oversight needs one additional Education Directory access rule &mdash; <strong>LEA Principal Act Editor</strong> &mdash; assigned in ACE. This is the role that reviews eligibility, notifies eligible principals/assistant principals, and completes the school-system attestations (see the <a href="https://documentrepositorypublicfacing.github.io/2026/ACE-Principal-Act-LEA-Guide.html">LEA Editor Guide</a>). See <strong>How to Assign an ACE Access Rule</strong> below.</p>
+        <p>A central office administrator who already holds the <strong>Teaching Effectiveness System Editor</strong> or <strong>Teaching Effectiveness System Certifier</strong> role and is part of the school system's Principal Act oversight needs one additional app access rule &mdash; <strong>LEA Principal Act Editor</strong> &mdash; assigned in the Education Directory (not in ACE itself). This is the role that reviews eligibility, notifies eligible principals/assistant principals, and completes the school-system attestations (see the <a href="https://documentrepositorypublicfacing.github.io/2026/ACE-Principal-Act-LEA-Guide.html">LEA Editor Guide</a>). See <strong>How to Assign an ACE App Access Rule</strong> below.</p>
+        <div class="rule-wording"><span class="label">Complete app access rule wording</span><em>&ldquo;ACE application user that can edit Principal Act system data.&rdquo;</em></div>
         <div class="warn" style="margin-top:12px;">The LEA Principal Act Editor role should only be given to staff directly involved in Principal Act oversight &mdash; not assigned broadly alongside the general TE System Editor/Certifier roles.</div>
+        <div class="note" style="margin-top:10px;">A view-only variant of this app access rule also exists in ACE &mdash; &ldquo;ACE application user that can view Principal Act system data&rdquo; &mdash; for staff who need read-only visibility. It is not currently assigned to anyone as part of this workflow.</div>
       </div>
     </div>
 
-    <!-- Warning Note -->
-    <div class="note-box">
-      <strong>Please note:</strong> Users should only be assigned one ACE application access rule. Assigning a user multiple ACE application access rules can cause conflicts in the application.
-    </div>
+    
 
 
     <!-- How-To: Assign Access -->
     <div class="card">
       <div class="card-header">
         <div class="card-badge">ASSIGN ACCESS</div>
-        <h2>How to Assign an ACE Access Rule</h2>
+        <h2>How to Assign an ACE App Access Rule</h2>
       </div>
       <div class="card-body">
-        <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">Access rules are assigned to users in the Education Directory by the LEA's <strong>Education Directory Application Editor</strong>. Follow these steps to assign the <strong>LEA Principal Act Editor</strong> ACE access rule to a central office administrator.</p>
+        <p style="font-size:13px; color:var(--muted); margin-bottom:14px;">App access rules are assigned to users in the Education Directory by the LEA's <strong>Education Directory Application Editor</strong>. Follow these steps to assign the <strong>LEA Principal Act Editor</strong> ACE app access rule to a central office administrator.</p>
         <ol class="steps">
 
           <li>
@@ -367,7 +387,7 @@
             <div class="step-body">
               <p><strong>Assign the application access rule.</strong> Confirm the school.</p>
               <ul class="sub-steps">
-                <li><div class="sub-label">a</div><div class="sub-body"><p>Filter app access rules to only rules containing "ace" &mdash; then select <strong>LEA Principal Act Editor</strong>.</p></div></li>
+                <li><div class="sub-label">a</div><div class="sub-body"><p>Filter app access rules to only rules containing "ace" &mdash; then select <strong>&ldquo;ACE application user that can edit Principal Act system data&rdquo;</strong>.</p></div></li>
                 <li><div class="sub-label">b</div><div class="sub-body"><p>Select the rule for the user.</p></div></li>
                 <li><div class="sub-label">c</div><div class="sub-body"><p>Select <strong>Add app access rule</strong> to add the rule(s) to the user.</p></div></li>
               </ul>
@@ -384,7 +404,7 @@
                 <li><div class="sub-label">a</div><div class="sub-body"><p>Filter the application access rules grid to show only the ACE application.</p></div></li>
                 <li><div class="sub-label">b</div><div class="sub-body"><p>Further filter by partial name or email address.</p></div></li>
               </ul>
-              <div class="pending-screenshot">Screenshot pending &mdash; needs a fresh stage-AIM capture of the access rules grid filtered to ACE.</div>
+              <div class="pending-screenshot">Screenshot pending &mdash; needs a fresh stage-AIM capture of the app access rules grid filtered to ACE.</div>
             </div>
           </li>
 
