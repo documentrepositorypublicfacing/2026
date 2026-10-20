@@ -133,11 +133,26 @@
     .copy-btn.copied {
       background: #2E7D32;
     }
+    .pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--tan);
+      color: var(--navy);
+      border-radius: 4px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .pdf-btn:hover { background: var(--tan2); color: #fff; }
     .copy-label { line-height: 1; }
 
     @media (max-width: 650px) {
       .link-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-      .link-url-block { width: 100%; }
+      .link-url-block { width: 100%; flex-wrap: wrap; }
       .link-url-text { flex: 1; overflow: hidden; text-overflow: ellipsis; }
     }
   </style>
@@ -151,7 +166,7 @@
     <p>Office of Educator Development Quick-Access Links</p>
     <p class="permalink"><a href="https://documentrepositorypublicfacing.github.io/2026/library.html">https://bit.ly/aleddev-library</a></p>
     <p class="permalink pdf-link">PDF versions of most documents: <a href="https://drive.google.com/drive/folders/1cNGssJ5MJcLaS58cfREMAL_Wd0tAVPvM?usp=sharing" target="_blank" rel="noopener">Google Drive PDF folder</a></p>
-  <p class="doc-updated" style="font-size:11px;opacity:0.75;margin-top:4px;color:inherit;">Last updated: October 15, 2026</p>
+  <p class="doc-updated" style="font-size:11px;opacity:0.75;margin-top:4px;color:inherit;">Last updated: October 20, 2026</p>
 </div>
 </header>
 
@@ -160,7 +175,7 @@
   <div style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--tan);border-radius:6px;padding:14px 18px;margin-bottom:22px;font-size:13px;color:var(--muted);line-height:1.6;">
     <strong style="color:var(--text);display:block;margin-bottom:4px;">About This Library</strong>
     This page collects documents and resources that the ALSDE Office of Educator Development team shares on a routine basis. Links are kept current — when a document is updated, the link here reflects the latest version. All documents are publicly available and may be freely shared.<br><br>
-    <strong style="color:var(--text);">How to use:</strong> Click any document title to open it directly. Each document also has a short link (shown below the title) that is easy to copy, paste into an email, or share verbally. Use the <strong>Copy</strong> button to grab it quickly. <em>Note: short links are case-sensitive — copy exactly as shown.</em>
+    <strong style="color:var(--text);">How to use:</strong> Click any document title to open it directly. Each document also has a short link (shown below the title) that is easy to copy, paste into an email, or share verbally. Use the <strong>Copy</strong> button to grab it quickly. Where a PDF version exists, the <strong>Open PDF</strong> button opens it from Google Drive. <em>Note: short links are case-sensitive — copy exactly as shown.</em>
   </div>
 
   <div class="card">
@@ -180,6 +195,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/183Q19tUpf2Wm_jb4VcfEU5yMeSFYtRj2/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
     </div>
@@ -202,6 +221,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1oAMecLMtw62CYCVaBz_7sMaeOrUEn2Ez/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
           <div class="link-row">
@@ -215,6 +238,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1pxGwSma5bsG36fspMIo4gUJ3t9vQVA5B/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -228,6 +255,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1GdUBR1NGmUGwm0XswBpZZwgzleNt0A6o/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -267,6 +298,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/11neUdqJEvbvgCVlv_bBY3_sxAhgs1BT3/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
     </div>
@@ -289,6 +324,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1gkpewIuKYGJ_ONA6dL28Vfo-3U28cncR/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -302,6 +341,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1oAMecLMtw62CYCVaBz_7sMaeOrUEn2Ez/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -315,6 +358,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1qz3zqZDh8lFmDLUmVL5y-1DKteC3du57/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -328,6 +375,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1ZNOyfU4bojEil_xcByyVh22tfitY5YKf/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -341,6 +392,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1ElITwFBeRHx4D7BRHu51dzVPL1H2m2Yi/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -367,6 +422,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/11neUdqJEvbvgCVlv_bBY3_sxAhgs1BT3/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
     </div>
@@ -539,6 +598,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1bthQeXiSulHOhqI8EQfoHJCqGqt-ctfT/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -552,6 +615,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1WMsuwJ7EMMVFO_uFqMfCb6ais-J9dkCX/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -591,6 +658,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1U9rBZzq8ENtId2xrhVBLj3z-zN7w24I-/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -617,6 +688,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1BoLcsMQc06rBCuUZaPediX1nn0hNQjUR/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -666,6 +741,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/11ZQmyGvF5mYLcKAYqu4yidbpDL9i8STu/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -679,6 +758,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1srHxEaX6ugIDvvKxULyimqvQHM1B4Uf5/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -692,6 +775,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1KMAKPh0tT7TAAukCYe1y4M503iQ8x-D1/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -705,6 +792,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1mp4OF8hJ7jE7ZjGRUvoUmQQnHjuV48l9/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -718,6 +809,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1oZKorqKh7KXsXlhl1Jdd-HIYTc0NhHon/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -731,6 +826,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1WzSN4tWK33sEEdFZazyMYg2qlCq3o0Oj/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -744,6 +843,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1mTYpJ5ANsMJ0o4U5sNZgCCmO0jpZGSHp/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
       <div class="link-row">
@@ -757,6 +860,10 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             <span class="copy-label">Copy</span>
           </button>
+          <a class="pdf-btn" href="https://drive.google.com/file/d/1eJG8njzllYwxMSNRm_VPqVn_ZhXr9LpG/view?usp=sharing" target="_blank" rel="noopener" title="Open the PDF version (Google Drive)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            <span class="copy-label">Open PDF</span>
+          </a>
         </div>
       </div>
     </div>
